@@ -1,5 +1,7 @@
 "use client";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
+import { Header } from "@/components/Header";
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -13,12 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div className="flex flex-col items-center bg-[#403e3e]">
-          <div className="max-w-[500px] w-full h-full bg-white">{children}</div>
-        </div>
+    <html
+      lang="en"
+      className="relative w-full h-full flex flex-col items-center justify-center bg-[#403e3e]"
+    >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className="max-w-[500px] w-full h-full mb-[8vh] bg-white">
+        {children}
       </body>
+      <Footer />
     </html>
   );
 }
