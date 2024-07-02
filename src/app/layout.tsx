@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <script
           defer
@@ -24,9 +24,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
-        <div className="max-w-[500px] w-full h-full mb-[8vh] bg-white">
-          {children}
-        </div>
+        <div className="max-w-[500px] w-full h-full bg-white">{children}</div>
       </body>
     </html>
   );
