@@ -10,8 +10,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
         white: "#ffffff",
         purple: "#3f3cbb",
         midnight: "#121063",
@@ -26,6 +24,7 @@ const config: Config = {
         subBlack: "#EFF4FF",
         positive: "#21C389",
         negative: "#FF4D4D",
+        kakaoYellow: "#FAE100",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
