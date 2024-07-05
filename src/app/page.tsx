@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full h-full flex flex-col justify-between items-center">
       <div>hello</div> <div>hello2</div> <div>hello33</div>
-      <PostButton bgColor={SubjectType.baejjange} />{" "}
+      <PostButton bgColor={SubjectType.baejjange} />
       <PostButton bgColor={SubjectType.gaemi} />
       <BasicButton text="dogyeong" bgColor="baejjange" />
       <BasicButton text="dogyeong" bgColor="gaemi" />
