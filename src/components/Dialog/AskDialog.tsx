@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostEditDialog = ({ isOpen, onClose }: any) => {
+const AskDialog = ({ isOpen, onClose }: any) => {
   if (!isOpen) return null;
 
   return (
@@ -24,4 +24,4 @@ const PostEditDialog = ({ isOpen, onClose }: any) => {
   );
 };
 
-export default PostEditDialog;
+export default AskDialog;
