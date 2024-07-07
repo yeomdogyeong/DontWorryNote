@@ -10,7 +10,7 @@ export const Sleep = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <g clip-path="url(#clip0_421_1659)">
+      <g clipPath="url(#clip0_421_1659)">
         <rect width="28" height="28" fill="url(#pattern0_421_1659)" />
       </g>
       <defs>

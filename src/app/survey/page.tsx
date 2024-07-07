@@ -1,41 +1,14 @@
+"use client";
 import { Header } from "@/components/Header";
 import onestep from "../../../public/onestep.png";
 import Image from "next/image";
 import { ProgressBar } from "@/components/Survey/ProgressBar";
 import { ListComponent } from "@/components/Survey/ListComponent";
-import { School } from "@/components/Icon/School";
-import { Burning } from "@/components/Icon/Burning";
-import { Sleep } from "@/components/Icon/Sleep";
-import { Drawing } from "@/components/Icon/Drawing";
-import { Muscle } from "@/components/Icon/Muscle";
-import { Family } from "@/components/Icon/Family";
+import { listItem } from "@/components/Dummy";
+import { useState } from "react";
+
 export default function Survey() {
-  const listItem = [
-    {
-      text: "업무 또는 학업",
-      srcImg: <School />,
-    },
-    {
-      text: "생산적인 자기계발",
-      srcImg: <Burning />,
-    },
-    {
-      text: "휴식과 수면",
-      srcImg: <Sleep />,
-    },
-    {
-      text: "취미와 여가활동",
-      srcImg: <Drawing />,
-    },
-    {
-      text: "운동 등 셀프 케어",
-      srcImg: <Muscle />,
-    },
-    {
-      text: "가족과 친구와의 시간",
-      srcImg: <Family />,
-    },
-  ];
+  const [select, setSelect] = useState<string | null>(null);
 
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
@@ -52,11 +25,25 @@ export default function Survey() {
           <p>5</p>
         </div>
       </div>
-      {listItem.map((el) => (
-        <ListComponent srcImg={el.srcImg} text={el.text} />
+      {listItem.map((el, idx) => (
+        <ListComponent
+          key={idx}
+          srcImg={el.srcImg}
+          text={el.text}
+          select={select}
+          onClick={setSelect}
+        />
       ))}
-      <div className="flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[220px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm">
-        <button className="flex justify-center items-center h-1/3 w-full text-lg ">
+      <div
+        className={`${
+          select ? "bg-mainGreen" : ""
+        } flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+      >
+        <button
+          className={`${
+            select ? "text-white" : "text-gray-400"
+          } flex justify-center items-center h-1/3 w-full text-lg`}
+        >
           다음으로
         </button>
       </div>

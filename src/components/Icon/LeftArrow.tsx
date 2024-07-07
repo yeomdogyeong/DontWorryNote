@@ -12,15 +12,15 @@ export const LeftArrow = () => {
       <path
         d="M4 14H24"
         stroke="#111111"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         d="M11 7L4 14L11 21"
         stroke="#111111"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
