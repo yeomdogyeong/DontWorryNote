@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import pencil from "../../public/pencil.png";
+import pencil from "../../../public/pencil.png";
 import { SubjectType } from "@/types/common";
 interface PostButtonType {
   bgColor: SubjectType;
