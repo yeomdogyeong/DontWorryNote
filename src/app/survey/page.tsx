@@ -16,7 +16,7 @@ export default function Survey() {
   console.log(step);
 
   useEffect(() => {
-    setSelect(null); // Reset select state when step (step) changes
+    setSelect(null);
   }, [step]);
 
   useEffect(() => {
@@ -56,7 +56,9 @@ export default function Survey() {
         } flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <Link
-          href={`/survey?step=${step + 1}`}
+          href={`${
+            step + 1 !== 6 ? `/survey?step=${step + 1}` : `/survey/result`
+          }`}
           className={`${
             select ? "text-white" : "text-gray-400 "
           } flex justify-center items-center h-1/3 w-full text-lg`}
