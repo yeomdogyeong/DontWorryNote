@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LeftArrow = ({ onClick }: { onClick: () => void }) => {
+export const LeftArrow = () => {
   return (
     <svg
       width="28"

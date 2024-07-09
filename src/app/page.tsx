@@ -5,10 +5,11 @@ import google from "../../public/google.png";
 import kakao from "../../public/kakao.png";
 import { PostButton } from "@/components/Button/PostButton";
 import { SubjectType } from "@/types/common";
+import { ProgressBar2 } from "@/components/Survey/ProgressBar2";
 export default function Home() {
   return (
     <main className="w-full h-full flex flex-col justify-between items-center">
-      <div>hello</div> <div>hello2</div> <div>hello33</div>
+      <ProgressBar2 stepNumber={5} />
       <PostButton bgColor={SubjectType.baejjange} />
       <PostButton bgColor={SubjectType.gaemi} />
       <BasicButton text="dogyeong" bgColor="baejjange" />

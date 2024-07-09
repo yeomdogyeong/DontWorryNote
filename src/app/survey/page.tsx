@@ -7,6 +7,7 @@ import { listItem } from "@/components/Dummy";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { ProgressBar2 } from "@/components/Survey/ProgressBar2";
 export default function Survey() {
   const [select, setSelect] = useState<string | null>(null);
   const params = useSearchParams();
@@ -28,8 +29,8 @@ export default function Survey() {
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       <Header />
-      <ProgressBar srcImg={onestep} />
-
+      {/* <ProgressBar srcImg={onestep} /> */}
+      <ProgressBar2 stepNumber={1} />
       <div className="w-full p-6 mt-4 flex justify-between items-center ">
         <div className="self-start ml-2">
           <p className="text-2xl font-bold">{listItem[step]?.title?.one}</p>
