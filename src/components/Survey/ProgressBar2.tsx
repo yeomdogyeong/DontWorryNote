@@ -5,7 +5,7 @@ export const ProgressBar2 = ({ stepNumber }: { stepNumber: number }) => {
   const barWidth = widthClass[stepNumber];
   return (
     <div className="w-full bg-gray-200">
-      <p className={`${barWidth} bg-mainGreen h-[10px]`}>&nbsp;</p>
+      <p className={`${barWidth} bg-mainGreen h-[8px]`}>&nbsp;</p>
     </div>
   );
 };
