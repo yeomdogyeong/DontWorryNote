@@ -1,13 +1,12 @@
 "use client";
 import { Header } from "@/components/Header";
 import onestep from "../../../public/onestep.png";
-import { ProgressBar } from "@/components/Survey/ProgressBar";
 import { ListComponent } from "@/components/Survey/ListComponent";
 import { listItem } from "@/components/Dummy";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ProgressBar2 } from "@/components/Survey/ProgressBar2";
+import { ProgressBar } from "@/components/Survey/ProgressBar";
 export default function Survey() {
   const [select, setSelect] = useState<string | null>(null);
   const params = useSearchParams();
@@ -30,9 +29,9 @@ export default function Survey() {
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       <Header />
       {/* <ProgressBar srcImg={onestep} /> */}
-      <ProgressBar2 stepNumber={step} />
+      <ProgressBar stepNumber={step} />
       <div className="w-full p-6 mt-4 flex justify-between items-center ">
-        <div className="self-start ml-2">
+        <div className="self-start ml-8">
           <p className="text-2xl font-bold">{listItem[step]?.title?.one}</p>
           <p className="text-2xl font-bold">{listItem[step]?.title?.two}</p>
         </div>
