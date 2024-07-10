@@ -7,13 +7,21 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ProgressBar } from "@/components/Survey/ProgressBar";
+import useUserStore from "@/store/useUserStore";
 export default function Survey() {
   const [select, setSelect] = useState<string | null>(null);
   const params = useSearchParams();
   const step = Number(params.get("step"));
   const router = useRouter();
+  const { users, increaseScore } = useUserStore();
 
-  console.log(step);
+  //클릭을 하고 다음 버튼을 누를때 score저장
+  const handleScore = () => {
+    const selectedScore =
+      listItem[step]?.items?.find((el) => el.text === select)?.score || 0;
+    increaseScore(selectedScore);
+    console.log(users);
+  };
 
   useEffect(() => {
     setSelect(null);
@@ -51,6 +59,7 @@ export default function Survey() {
         />
       ))}
       <div
+        onClick={handleScore}
         className={`${
           select ? "bg-mainGreen" : ""
         } flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}

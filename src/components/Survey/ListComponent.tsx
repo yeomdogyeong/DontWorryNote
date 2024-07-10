@@ -30,7 +30,7 @@ export const ListComponent = ({
       <button className="mt-4">
         <div
           onClick={() => {
-            console.log(select), handlePick();
+            handlePick();
           }}
           className={`tracking-wide border-2 flex justify-left items-center pl-8 text-lg rounded-xl w-[400px] max-w-[80vw] h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
             isSelected ? "bg-subGreen border-mainGreen" : ""
