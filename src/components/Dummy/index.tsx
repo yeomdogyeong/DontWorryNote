@@ -13,26 +13,31 @@ export const listItem = [
       two: "쓰는 활동은 무엇인가요?",
     },
     items: [
-      { text: "업무 또는 학업", srcImg: <School /> },
+      { text: "업무 또는 학업", srcImg: <School />, score: 3 },
       {
         text: "생산적인 자기계발",
         srcImg: <Burning />,
+        score: 3,
       },
       {
         text: "휴식과 수면",
         srcImg: <Sleep />,
+        score: 3,
       },
       {
         text: "취미와 여가활동",
         srcImg: <Drawing />,
+        score: 3,
       },
       {
         text: "운동 등 셀프 케어",
         srcImg: <Muscle />,
+        score: 3,
       },
       {
         text: "가족과 친구와의 시간",
         srcImg: <Family />,
+        score: 3,
       },
     ],
   },
@@ -42,26 +47,31 @@ export const listItem = [
       two: "느끼는것은 무엇인가요?",
     },
     items: [
-      { text: "끊임없는 자기 발전", srcImg: <School /> },
+      { text: "끊임없는 자기 발전", srcImg: <School />, score: 3 },
       {
         text: "행복과 만족",
         srcImg: <Burning />,
+        score: 3,
       },
       {
         text: "성취감과 목표달성",
         srcImg: <Sleep />,
+        score: 3,
       },
       {
         text: "여유와 휴식",
         srcImg: <Drawing />,
+        score: 3,
       },
       {
         text: "효율성과 생산성",
         srcImg: <Muscle />,
+        score: 3,
       },
       {
         text: "가족과 친구와의 유대감",
         srcImg: <Family />,
+        score: 3,
       },
     ],
   },
@@ -75,22 +85,27 @@ export const listItem = [
       {
         text: "스파나 마사지로 힐링",
         srcImg: <Burning />,
+        score: 3,
       },
       {
         text: "워크숍 및 세미나 참석",
         srcImg: <Sleep />,
+        score: 3,
       },
       {
         text: "여유롭고 느긋한 휴식",
         srcImg: <Drawing />,
+        score: 3,
       },
       {
         text: "강의 수강 및 자격증 취득",
         srcImg: <Muscle />,
+        score: 3,
       },
       {
         text: "집에서 영화나 드라마 몰아보기",
         srcImg: <Family />,
+        score: 3,
       },
     ],
   },
@@ -100,26 +115,31 @@ export const listItem = [
       two: "주로 어떻게 해소하나요?",
     },
     items: [
-      { text: "운동으로 스트레스 해소", srcImg: <School /> },
+      { text: "운동으로 스트레스 해소", srcImg: <School />, score: 3 },
       {
         text: "가족이나 친구와의 대화",
         srcImg: <Burning />,
+        score: 3,
       },
       {
         text: "음악 감상 또는 명상",
         srcImg: <Sleep />,
+        score: 3,
       },
       {
         text: "계획을 세우고 문제를 해결",
         srcImg: <Drawing />,
+        score: 3,
       },
       {
         text: "취미 활동 즐기기",
         srcImg: <Muscle />,
+        score: 3,
       },
       {
         text: "새로운 프로젝트나 도전에 집중",
         srcImg: <Family />,
+        score: 3,
       },
     ],
   },
@@ -129,26 +149,31 @@ export const listItem = [
       two: "어떤 모습인가요?",
     },
     items: [
-      { text: "목표지향적 개짱이", srcImg: <School /> },
+      { text: "목표지향적 개짱이", srcImg: <School />, score: 3 },
       {
         text: "똑똑한 개짱이",
         srcImg: <Burning />,
+        score: 3,
       },
       {
         text: "여유로운 개짱이",
         srcImg: <Sleep />,
+        score: 3,
       },
       {
         text: "계획적인 개짱이",
         srcImg: <Drawing />,
+        score: 3,
       },
       {
         text: "행복한 개짱이",
         srcImg: <Muscle />,
+        score: 3,
       },
       {
         text: "즐거운 개짱이",
         srcImg: <Family />,
+        score: 3,
       },
     ],
   },
