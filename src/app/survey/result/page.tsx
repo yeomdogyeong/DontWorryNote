@@ -1,8 +1,13 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import gajjange from "../../../../public/baejjange.png";
 import minibaejjange from "../../../../public/Ellipse1.png";
 import Image from "next/image";
+import useUserStore from "@/store/useUserStore";
+import { ResultBar } from "@/components/Survey/ResultBar";
 function page() {
+  const { users } = useUserStore();
+  useEffect(() => console.log(users));
   return (
     <div className="flex-col w-full p-6 mt-4 flex justify-between items-center ">
       <div className="self-start ml-8">
@@ -41,7 +46,7 @@ function page() {
             <p>개미력</p>
             <p>20/100</p>
           </div>
-          <div>component</div>
+          <ResultBar />
           <div className="flex justify-between w-full font-thin text-gray-600 mt-2">
             <p>베짱이력</p>
             <p>20/100</p>
