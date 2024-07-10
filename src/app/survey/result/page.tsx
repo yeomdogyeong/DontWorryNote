@@ -50,9 +50,9 @@ function page() {
         </div>
       </div>
       <div
-        className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white bg-mainGreen bottom-0 p-2 rounded-t-sm`}
       >
-        내맘이단짠단짠
+        프로필만들기
       </div>
     </div>
   );
