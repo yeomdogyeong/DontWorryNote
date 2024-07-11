@@ -42,16 +42,16 @@ function page() {
           </div>
         </div>
         <div className="w-full mt-6 flex flex-col items-start bg-gray-50 rounded-xl p-4">
-          <div className="flex justify-between w-full font-thin text-gray-600">
+          <div className="flex justify-between w-full font-thin text-gray-600 tracking-widest">
             <p>개미력</p>
             <p>20/100</p>
           </div>
-          <ResultBar />
+          <ResultBar count={2} gaemi={true} />
           <div className="flex justify-between w-full font-thin text-gray-600 mt-2">
             <p>베짱이력</p>
             <p>20/100</p>
           </div>
-          <div>component</div>
+          <ResultBar count={2} gaemi={false} />
         </div>
       </div>
       <div
