@@ -14,6 +14,7 @@ export type SurveyResult = {
   subTitle2: string;
   score1: number;
   score2: number;
+  srcBg: string;
 };
 
 export type SurveyList = {
