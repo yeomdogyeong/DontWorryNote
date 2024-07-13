@@ -20,6 +20,12 @@ export default function Survey() {
     const selectedScore =
       listItem[step]?.items?.find((el) => el.text === select)?.score || 0;
     increaseScore(selectedScore);
+
+    if (select) {
+      const nextStep =
+        step + 1 !== 6 ? `/survey?step=${step + 1}` : `/survey/result`;
+      router.push(nextStep);
+    }
     console.log(users);
   };
 
@@ -58,23 +64,21 @@ export default function Survey() {
           onClick={setSelect}
         />
       ))}
-      <div
+      <button
         onClick={handleScore}
+        disabled={!select}
         className={`${
           select ? "bg-mainGreen" : ""
-        } flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
-        <Link
-          href={`${
-            step + 1 !== 6 ? `/survey?step=${step + 1}` : `/survey/result`
-          }`}
+        <span
           className={`${
-            select ? "text-white" : "text-gray-400 "
+            select ? "text-white" : "text-gray-400"
           } flex justify-center items-center h-1/3 w-full text-lg`}
         >
           {step === 5 ? "내 성향 분석하기" : "다음으로"}
-        </Link>
-      </div>
+        </span>
+      </button>
     </div>
   );
 }
