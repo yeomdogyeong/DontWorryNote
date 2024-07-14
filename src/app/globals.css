@@ -8,3 +8,9 @@
   line-height: 140%;
   letter-spacing: -0.015em;
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

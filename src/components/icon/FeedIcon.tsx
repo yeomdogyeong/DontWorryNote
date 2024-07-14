@@ -42,7 +42,7 @@ export default function FeedIcon(props: Props) {
         />
         <path
           d="M16.5 13.1H10.5M12.5 16.7H10.5M18.5 9.5H10.5"
-          stroke={color}
+          stroke="white"
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"

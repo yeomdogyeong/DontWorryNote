@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import HomeIcon from "../icon/HomeIcon";
 import React, { useMemo } from "react";
 import FeedIcon from "../icon/FeedIcon";
@@ -15,22 +14,26 @@ import {
 import useUserStore from "../../store/useUserStore";
 import { SubjectType } from "../../types/common";
 
-interface Props {}
+import { useRouter, usePathname } from "next/navigation";
 
-export default function BottomNavigation(props: Props) {
+export default function BottomNavigation() {
   const router = useRouter();
+  const pathname = usePathname();
   const userType = useUserStore((state) => state.userType);
   const color = useMemo(() => {
     return userType === SubjectType.baejjange ? "#2FA464" : "#353C49";
   }, [userType]) as string;
 
   return (
-    <div className="flex-center">
-      <div className="flex-col items-center flex-1">
-        <HomeIcon fill={HOME_PATH === router.pathname} color={color} />
+    <div className="bg-white h-[52px] p-[4px 32px] flex-center fixed bottom-0 space-between w-full">
+      <div
+        className="flex-center flex-col flex-1"
+        onClick={() => router.push(HOME_PATH)}
+      >
+        <HomeIcon fill={HOME_PATH === pathname} color={color} />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
-            router.pathname === HOME_PATH
+            pathname === HOME_PATH
               ? userType === SubjectType.baejjange
                 ? "#2FA464"
                 : "#353C49"
@@ -40,11 +43,14 @@ export default function BottomNavigation(props: Props) {
           홈
         </div>
       </div>
-      <div className="flex-col items-center flex-1">
-        <FeedIcon fill={FEED_PATH === router.pathname} color={color} />
+      <div
+        className="flex-center flex-col items-center flex-1"
+        onClick={() => router.push(FEED_PATH)}
+      >
+        <FeedIcon fill={FEED_PATH === pathname} color={color} />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
-            router.pathname === FEED_PATH
+            pathname === FEED_PATH
               ? userType === SubjectType.baejjange
                 ? "#2FA464"
                 : "#353C49"
@@ -54,14 +60,14 @@ export default function BottomNavigation(props: Props) {
           피드
         </div>
       </div>
-      <div className="flex-col items-center flex-1">
-        <AddRoutineIcon
-          fill={ADD_ROUTINE_PATH === router.pathname}
-          color={color}
-        />
+      <div
+        className="flex-center flex-col items-center flex-1"
+        onClick={() => router.push(ADD_ROUTINE_PATH)}
+      >
+        <AddRoutineIcon fill={ADD_ROUTINE_PATH === pathname} color={color} />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
-            router.pathname === ADD_ROUTINE_PATH
+            pathname === ADD_ROUTINE_PATH
               ? userType === SubjectType.baejjange
                 ? "#2FA464"
                 : "#353C49"
@@ -71,11 +77,14 @@ export default function BottomNavigation(props: Props) {
           루틴추가
         </div>
       </div>
-      <div className="flex-col items-center flex-1">
-        <ReportIcon fill={REPORT_PATH === router.pathname} color={color} />
+      <div
+        className="flex-center flex-col items-center flex-1"
+        onClick={() => router.push(REPORT_PATH)}
+      >
+        <ReportIcon fill={REPORT_PATH === pathname} color={color} />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
-            router.pathname === REPORT_PATH
+            pathname === REPORT_PATH
               ? userType === SubjectType.baejjange
                 ? "#2FA464"
                 : "#353C49"
@@ -85,11 +94,14 @@ export default function BottomNavigation(props: Props) {
           통계
         </div>
       </div>
-      <div className="flex-col items-center flex-1">
-        <MyPageIcon fill={MY_PAGE_PATH === router.pathname} color={color} />
+      <div
+        className="flex-center flex-col items-center flex-1"
+        onClick={() => router.push(MY_PAGE_PATH)}
+      >
+        <MyPageIcon fill={MY_PAGE_PATH === pathname} color={color} />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
-            router.pathname === MY_PAGE_PATH
+            pathname === MY_PAGE_PATH
               ? userType === SubjectType.baejjange
                 ? "#2FA464"
                 : "#353C49"
