@@ -24,11 +24,16 @@ export default function Main() {
           <Image alt="user-img" src={camera} width={40} />
         </p>
       </div>
-      <input
-        className="border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-mainGreen"
-        placeholder="닉네임을 입력해주세요"
-      />
-      <div>6자리 이하 뭐시기</div>
+      <div>
+        <input
+          className="border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-mainGreen"
+          placeholder="닉네임을 입력해주세요"
+        />
+        <div className="self-start mt-[8px] text-gray-600">
+          6자리 이내, 문자/숫자 가능, 특수문자/기호 입력불가
+        </div>
+      </div>
+
       <button
         className={`${
           select ? "bg-mainGreen" : ""
