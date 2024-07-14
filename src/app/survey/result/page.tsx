@@ -4,10 +4,15 @@ import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
 import { ResultBar } from "@/components/survey/ResultBar";
 import { surveyList } from "@/components/dummy";
+import { useRouter } from "next/navigation";
 function page() {
   const { users } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";
   const [resultIdx, setResultIdx] = useState<ResultKey | undefined>();
+  const router = useRouter();
+  const handleMakeProfile = () => {
+    router.push("/main");
+  };
 
   useEffect(() => {
     console.log(users.score);
@@ -98,7 +103,8 @@ function page() {
         </div>
       </div>
       {resultIdx && (
-        <div
+        <button
+          onClick={handleMakeProfile}
           className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"
@@ -106,7 +112,7 @@ function page() {
           } bottom-0 p-2 rounded-t-sm`}
         >
           프로필만들기
-        </div>
+        </button>
       )}
     </div>
   );
