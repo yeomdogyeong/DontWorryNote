@@ -5,6 +5,7 @@ import baejjange from "../../../public/Ellipse1.png";
 import camera from "../../../public/camera.png";
 export default function Main() {
   const [select, setSelect] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       {/* <ProgressBar srcImg={onestep} /> */}
@@ -23,7 +24,11 @@ export default function Main() {
           <Image alt="user-img" src={camera} width={40} />
         </p>
       </div>
-      <input />
+      <input
+        className="border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-mainGreen"
+        placeholder="닉네임을 입력해주세요"
+      />
+      <div>6자리 이하 뭐시기</div>
       <button
         className={`${
           select ? "bg-mainGreen" : ""
