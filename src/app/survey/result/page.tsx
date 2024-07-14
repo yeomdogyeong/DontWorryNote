@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
-import { ResultBar } from "@/components/Survey/ResultBar";
-import { surveyList } from "@/components/Dummy";
+import { ResultBar } from "@/components/survey/ResultBar";
+import { surveyList } from "@/components/dummy";
 function page() {
   const { users } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";

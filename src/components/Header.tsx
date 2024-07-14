@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LeftArrow } from "./Icon/LeftArrow";
+import { LeftArrow } from "./icon/LeftArrow";
 import { useRouter } from "next/navigation";
 export const Header = () => {
   const router = useRouter();

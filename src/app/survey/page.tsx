@@ -1,12 +1,12 @@
 "use client";
 import { Header } from "@/components/Header";
 import onestep from "../../../public/onestep.png";
-import { ListComponent } from "@/components/Survey/ListComponent";
-import { listItem } from "@/components/Dummy";
+import { ListComponent } from "@/components/survey/ListComponent";
+import { listItem } from "@/components/dummy";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ProgressBar } from "@/components/Survey/ProgressBar";
+import { ProgressBar } from "@/components/survey/ProgressBar";
 import useUserStore from "@/store/useUserStore";
 export default function Survey() {
   const [select, setSelect] = useState<string | null>(null);
