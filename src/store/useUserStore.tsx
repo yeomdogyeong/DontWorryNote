@@ -1,13 +1,20 @@
 import { create } from "zustand";
+import { SubjectType } from "../types/common";
 
 interface UserState {
   users: { score: number };
   increaseScore: (points: number) => void;
   removeScore: () => void;
+  userType: SubjectType;
 }
 
-const useUserStore = create<UserState>((set) => ({
+const initialState = {
   users: { score: 0 },
+  userType: SubjectType.gaemi,
+};
+
+const useUserStore = create<UserState>((set) => ({
+  ...initialState,
   increaseScore: (points: number) =>
     set((state) => ({
       users: { ...state.users, score: state.users.score + points },

@@ -4,6 +4,13 @@ import slogan from "../../public/slogan.png";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import "../app/styles/animation.css";
+import google from "../../public/google.png";
+import kakao from "../../public/kakao.png";
+
+import { SubjectType } from "@/types/common";
+import { BasicButton } from "@/components/button/BasicButton";
+import { PostButton } from "@/components/button/PostButton";
+
 export default function Home() {
   const router = useRouter();
   const handleNextPage = () => {

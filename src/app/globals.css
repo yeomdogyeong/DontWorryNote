@@ -8,3 +8,9 @@
   line-height: 140%;
   letter-spacing: -0.015em;
 }
+
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
