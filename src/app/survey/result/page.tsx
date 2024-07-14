@@ -11,7 +11,7 @@ function page() {
   const [resultIdx, setResultIdx] = useState<ResultKey | undefined>();
   const router = useRouter();
   const handleMakeProfile = () => {
-    router.push("/main");
+    router.push("/survey/profile");
   };
 
   useEffect(() => {
