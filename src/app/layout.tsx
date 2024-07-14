@@ -1,6 +1,8 @@
-import { Footer } from "@/components/Footer";
+"use client";
+import { OverlayProvider } from "@toss/use-overlay";
+
 import "./globals.css";
-import { Header } from "@/components/Header";
+
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -22,9 +24,11 @@ export default function RootLayout({
         ></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
-        <div className="max-w-[500px] w-full h-full bg-white">{children}</div>
-      </body>
+      <OverlayProvider>
+        <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
+          <div className="max-w-[500px] w-full h-full bg-white">{children}</div>
+        </body>
+      </OverlayProvider>
     </html>
   );
 }

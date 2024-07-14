@@ -9,8 +9,8 @@
   letter-spacing: -0.015em;
 }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
 }

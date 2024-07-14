@@ -25,7 +25,7 @@ export default function BottomNavigation() {
   }, [userType]) as string;
 
   return (
-    <div className="bg-white h-[52px] p-[4px 32px] flex-center fixed bottom-0 space-between w-full">
+    <div className="bg-white h-[52px] flex-center fixed bottom-0 space-between w-full">
       <div
         className="flex-center flex-col flex-1"
         onClick={() => router.push(HOME_PATH)}
