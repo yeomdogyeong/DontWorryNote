@@ -1,9 +1,9 @@
-import { AuthButton } from "@/components/Button/AuthButton";
-import { BasicButton } from "@/components/Button/BasicButton";
+import { AuthButton } from "@/components/button/AuthButton";
+import { BasicButton } from "@/components/button/BasicButton";
 import Image from "next/image";
 import google from "../../public/google.png";
 import kakao from "../../public/kakao.png";
-import { PostButton } from "@/components/Button/PostButton";
+import { PostButton } from "@/components/button/PostButton";
 import { SubjectType } from "@/types/common";
 
 export default function Home() {

@@ -10,6 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        gray: {
+          50: "#F7F7FB",
+          100: "#F1F1F5",
+          200: "#E5E5EB",
+          300: "#CCCCCC",
+          400: "#BBBBBB",
+          500: "#999999",
+          600: "#767676",
+          700: "#505050",
+          800: "#333333",
+          900: "#111111",
+        },
         white: "#ffffff",
         purple: "#3f3cbb",
         midnight: "#121063",

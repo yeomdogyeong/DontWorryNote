@@ -1,9 +1,9 @@
 "use client";
-import { OptionDialog } from "@/components/Dialog/OptionDialog";
-import AskDialog from "@/components/Dialog/AskDialog";
-import { ToastDialog } from "@/components/Dialog/ToastDialog";
+import { OptionDialog } from "@/components/dialog/OptionDialog";
+import AskDialog from "@/components/dialog/AskDialog";
+import { ToastDialog } from "@/components/dialog/ToastDialog";
 import React, { useState } from "react";
-import { PostEditDialog } from "@/components/Dialog/PostEditDialog";
+import { PostEditDialog } from "@/components/dialog/PostEditDialog";
 export default function Tap() {
   const [isModalOpen, setModalOpen] = useState(false);
 

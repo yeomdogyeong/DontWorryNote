@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
-import { ResultBar } from "@/components/Survey/ResultBar";
-import { surveyList } from "@/components/Dummy";
+import { ResultBar } from "@/components/survey/ResultBar";
+import { surveyList } from "@/components/dummy";
 import { useRouter } from "next/navigation";
 function page() {
   const { users } = useUserStore();

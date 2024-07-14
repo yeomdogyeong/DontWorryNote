@@ -1,9 +1,9 @@
-import { Burning } from "../Icon/Burning";
-import { Drawing } from "../Icon/Drawing";
-import { Family } from "../Icon/Family";
-import { Muscle } from "../Icon/Muscle";
-import { School } from "../Icon/School";
-import { Sleep } from "../Icon/Sleep";
+import { Burning } from "../icon/Burning";
+import { Drawing } from "../icon/Drawing";
+import { Family } from "../icon/Family";
+import { Muscle } from "../icon/Muscle";
+import { School } from "../icon/School";
+import { Sleep } from "../icon/Sleep";
 import baejjange1 from "../../../public/baejjange3.png";
 import baejjange2 from "../../../public/baejjange1.png";
 import minibaejjange from "../../../public/Ellipse1.png";
