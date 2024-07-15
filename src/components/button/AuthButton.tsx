@@ -16,6 +16,7 @@ export const AuthButton = ({
 }: AuthButtonType) => {
   return (
     <button
+      onClick={onClick}
       className={`tracking-wide flex justify-center items-center rounded-xl w-[400px] max-w-[80vw] h-[70px] max-h-[8vh] ${
         bgColor === "kakao" ? "bg-kakaoYellow" : "bg-gray-100 border-2"
       }`}
