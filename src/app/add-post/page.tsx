@@ -65,7 +65,7 @@ export default function AddPostPage() {
     []
   );
   return (
-    <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
+    <div className="flex flex-col items-center justify-start h-full">
       <Header
         title="게시글 작성"
         rightButton={

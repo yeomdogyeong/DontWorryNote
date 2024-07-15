@@ -1,4 +1,9 @@
-export default function RightArrowIcon() {
+interface Props {
+  color?: string;
+}
+export default function RightArrowIcon(props: Props) {
+  const { color = "#111111" } = props;
+
   return (
     <svg
       width="20"
@@ -9,7 +14,7 @@ export default function RightArrowIcon() {
     >
       <path
         d="M6.66683 3.33342L13.3335 10.0001L6.66683 16.6667"
-        stroke="#111111"
+        stroke={color}
         stroke-width="1.66667"
         stroke-linecap="round"
         stroke-linejoin="round"
