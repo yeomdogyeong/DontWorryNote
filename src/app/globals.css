@@ -12,6 +12,10 @@ body {
   @apply text-gray-900;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @layer components {
   .flex-center {
     @apply flex items-center justify-center;

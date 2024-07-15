@@ -1,6 +1,6 @@
 "use client";
 
-import { useAlertOverlay } from "@/components/alert/AlertOverlay";
+import { useAlertOverlay } from "@/components/overlay/alert/AlertOverlay";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
 import { useCallback } from "react";
 
