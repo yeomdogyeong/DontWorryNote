@@ -9,16 +9,17 @@ import SimpleSlider from "@/components/slider/SimpleSlider";
 import { useRouter } from "next/navigation";
 function onBoarding() {
   const router = useRouter();
-  const kakaoId = "7a5edf2c24ec67a56b41616546a55128";
-  const redirect = "http://localhost:3000/login";
-  const state = "YOkGWlZl-USxfUShthXhDj0Y8oBtjpEeJTyIySO7Ndg%3D";
+  // const kakaoId = "7a5edf2c24ec67a56b41616546a55128";
+  // const redirect = "http://localhost:3000/login";
+  // const state = "YOkGWlZl-USxfUShthXhDj0Y8oBtjpEeJTyIySO7Ndg%3D";
   const handleKakao = () => {
     // router.push(
     //   "https://www.one-ul.com:8080/oauth2/authorization/google?redirect_uri=https://vercel-public-five.vercel.app/login/redirect"
     // );
     // router.push("https://gaezzange.duckdns.org/oauth2/authorization/kakao");
     router.push(
-      `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoId}&redirect_uri=${redirect}&response_type=code&state=${state}`
+      // `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoId}&redirect_uri=${redirect}&response_type=code&state=${state}`
+      `https://gaezzange.duckdns.org/oauth2/authorization/kakaol`
     );
     console.log("kakao!");
   };
