@@ -24,3 +24,28 @@ export type SurveyList = {
   result3: SurveyResult;
   result4: SurveyResult;
 };
+
+export enum PostType {
+  ROUTINE_SHARE = "ROUTINE_SHARE",
+  ROUTINE_AUTH = "ROUTINE_AUTH",
+  ROUTINE_QUESTION = "ROUTINE_QUESTION",
+  ROUTINE_DAILY = "ROUTINE_DAILY",
+  ETC = "ETC",
+}
+
+export const convertPostTypeValue = (type: PostType | null) => {
+  switch (type) {
+    case PostType.ROUTINE_AUTH:
+      return "루틴 인증";
+    case PostType.ROUTINE_DAILY:
+      return "일상";
+    case PostType.ETC:
+      return "기타";
+    case PostType.ROUTINE_QUESTION:
+      return "루틴 질문";
+    case PostType.ROUTINE_SHARE:
+      return "루틴 공유";
+    default:
+      return "카테고리 선택하기";
+  }
+};

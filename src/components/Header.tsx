@@ -2,13 +2,30 @@ import React from "react";
 
 import { LeftArrow } from "./icon/LeftArrow";
 import { useRouter } from "next/navigation";
-export const Header = () => {
+
+interface Props {
+  title?: string;
+  rightButton?: React.ReactNode;
+}
+
+export const Header = (props: Props) => {
+  const { title, rightButton } = props;
   const router = useRouter();
   return (
-    <button className="pl-[20px] flex  items-center w-[500px] max-w-full h-[52px]">
-      <div onClick={() => router.back()}>
-        <LeftArrow />
+    <div className="px-[20px] py-[12px] flex items-center w-full max-w-page h-[52px]">
+      <div className="flex flex-1 justify-start" onClick={() => router.back()}>
+        <button>
+          <LeftArrow />
+        </button>
       </div>
-    </button>
+      <div className="flex-1 flex-center font-[600] text-[18px]">{title}</div>
+      <div
+        className={`flex flex-1 justify-end ${
+          rightButton ? "cursor-pointer" : ""
+        }`}
+      >
+        {rightButton}
+      </div>
+    </div>
   );
 };
