@@ -1,19 +1,17 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import baejjange from "../../../../public/Ellipse1.png";
 import camera from "../../../../public/camera.png";
+import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
 export default function Main() {
   const [select, setSelect] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
+  const userColor = useUserColor();
   const { userType } = useUserStore();
-  const [userColor, setUserColor] = useState("mainGreen");
-
-  useEffect(() => {
-    setUserColor(userType);
-  }, [userColor]);
-
+  console.log("ty", userType);
+  console.log(userColor);
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       {/* <ProgressBar srcImg={onestep} /> */}
@@ -34,7 +32,7 @@ export default function Main() {
       </div>
       <div>
         <input
-          className="border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-mainGreen"
+          className={`border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-${userColor}`}
           placeholder="닉네임을 입력해주세요"
         />
         <div className="self-start mt-[8px] text-gray-600">
