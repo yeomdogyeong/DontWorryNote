@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import baejjange from "../../../../public/Ellipse1.png";
+import gaemi from "../../../../public/Ellipse2.png";
 import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
@@ -24,7 +25,11 @@ export default function Main() {
       </div>
       <div className="relative flex justify-center items-center mb-[24px]">
         <p>
-          <Image alt="user-img" src={baejjange} width={103} height={100} />
+          {userColor === "mainGreen" ? (
+            <Image alt="user-img" src={baejjange} width={103} height={100} />
+          ) : (
+            <Image alt="user-img" src={gaemi} width={103} height={100} />
+          )}
         </p>
         <p className="absolute bottom-0 right-0">
           <Image alt="user-img" src={camera} width={40} />
@@ -42,7 +47,7 @@ export default function Main() {
 
       <button
         className={`${
-          select ? "bg-mainGreen" : ""
+          select ? `bg-${userColor}` : ""
         } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <span
