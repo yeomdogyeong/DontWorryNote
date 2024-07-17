@@ -1,7 +1,7 @@
 import axios from "axios";
-export const userInstance = (baseURL, ...props) => {
+export const userInstance = (baseURL) => {
   const instance = axios.create({
-    baseURL: "https://gaezzange.duckdns.org",
+    baseURL: baseURL,
     headers: {
       "Content-type": "application/json",
     },
@@ -10,4 +10,6 @@ export const userInstance = (baseURL, ...props) => {
   return instance;
 };
 
-export const onBoarding = userInstance("/login/oauth2/code/kakaol");
+export const onBoarding = userInstance(
+  "https://gaezzange.duckdns.org/api/v1/auth/token"
+);

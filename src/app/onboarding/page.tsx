@@ -19,7 +19,7 @@ function onBoarding() {
     // router.push("https://gaezzange.duckdns.org/oauth2/authorization/kakao");
     router.push(
       // `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoId}&redirect_uri=${redirect}&response_type=code&state=${state}`
-      `https://gaezzange.duckdns.org/oauth2/authorization/kakaol`
+      `https://gaezzange.duckdns.org/oauth2/authorization/kakao`
     );
     console.log("kakao!");
   };
