@@ -10,7 +10,7 @@ import minibaejjange from "../../../public/Ellipse1.png";
 import minigaemi from "../../../public/Ellipse2.png";
 import gaemi from "../../../public/gaemi1.png";
 import gaemi2 from "../../../public/gaemi2.png";
-import { SurveyList } from "@/types/common";
+import { SubjectType, SurveyList } from "@/types/common";
 export const listItem = [
   {},
   {
@@ -196,7 +196,7 @@ export const surveyList: SurveyList[] = [
       score1: 2,
       score2: 8,
       srcBg: "baejjange",
-      status: "baejjange",
+      status: SubjectType.baejjange,
     },
     result2: {
       title: "균형잡힌 베짱이",
@@ -207,7 +207,7 @@ export const surveyList: SurveyList[] = [
       score1: 4,
       score2: 6,
       srcBg: "baejjange",
-      status: "baejjange",
+      status: SubjectType.baejjange,
     },
     result3: {
       title: "균형잡힌 개미",
@@ -218,7 +218,7 @@ export const surveyList: SurveyList[] = [
       score1: 4,
       score2: 6,
       srcBg: "gaemi",
-      status: "gaemi",
+      status: SubjectType.gaemi,
     },
     result4: {
       title: "부지런한 개미",
@@ -229,7 +229,7 @@ export const surveyList: SurveyList[] = [
       score1: 8,
       score2: 2,
       srcBg: "gaemi",
-      status: "gaemi",
+      status: SubjectType.gaemi,
     },
   },
 ];

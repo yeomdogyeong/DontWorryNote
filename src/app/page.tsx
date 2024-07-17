@@ -30,7 +30,9 @@ export default function Home() {
           height={33}
           className="mb-[16px]"
         />
-        <div className="text-gray-600">개짱이: 나를 찾아가는 루틴 여정</div>
+        <div className="text-gray-600 font-semibold">
+          개짱이: 나를 찾아가는 루틴 여정
+        </div>
       </div>
     </main>
   );

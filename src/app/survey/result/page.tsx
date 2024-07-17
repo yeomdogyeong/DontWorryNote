@@ -6,7 +6,7 @@ import { ResultBar } from "@/components/survey/ResultBar";
 import { surveyList } from "@/components/dummy";
 import { useRouter } from "next/navigation";
 function page() {
-  const { users } = useUserStore();
+  const { users, setStatus, userType } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";
   const [resultIdx, setResultIdx] = useState<ResultKey | undefined>();
   const router = useRouter();
@@ -104,7 +104,13 @@ function page() {
       </div>
       {resultIdx && (
         <button
-          onClick={handleMakeProfile}
+          onClick={() => {
+            handleMakeProfile();
+            if (surveyList[0][resultIdx]?.status) {
+              setStatus(surveyList[0][resultIdx].status);
+            }
+            console.log(userType);
+          }}
           className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"

@@ -15,7 +15,7 @@ export type SurveyResult = {
   score1: number;
   score2: number;
   srcBg: string;
-  status: "baejjange" | "gaemi";
+  status: SubjectType;
 };
 
 export type SurveyList = {
