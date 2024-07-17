@@ -12,7 +12,6 @@ export default function Main() {
 
   useEffect(() => {
     setUserColor(userType);
-    console.log(userType);
   }, [userColor]);
 
   return (
