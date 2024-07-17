@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect } from "react";
-import { userApiInstance } from "../../components/api/index";
+import { onBoarding, userInstance } from "../../components/api/index";
 function page() {
   const params = useSearchParams();
   const code = params.get("code");
@@ -19,7 +19,7 @@ function page() {
     console.log("code", code, "state", state);
     const fetchData = async () => {
       try {
-        const response = await userApiInstance.get("/", {
+        const response = await onBoarding({
           params: { code: code, state: state },
         });
         console.log("Response:", response.data);
