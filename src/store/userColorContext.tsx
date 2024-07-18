@@ -9,7 +9,6 @@ export const UserColorProvider = ({ children }: any) => {
   const [userColor, setUserColor] = useState("");
   const { userType } = useUserStore();
   useEffect(() => {
-    console.log("mmmm", userType);
     // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
 
     if (userType === "baejjange") {
@@ -17,7 +16,6 @@ export const UserColorProvider = ({ children }: any) => {
     } else if (userType === "gaemi") {
       setUserColor("mainBlack");
     }
-    console.log(userType);
   }, [userType]);
 
   return (
