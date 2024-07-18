@@ -27,8 +27,8 @@ export default function RootLayout({
       </head>
       <OverlayProvider>
         <UserColorProvider>
-          <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
-            <div className="max-w-[500px] w-full h-max-content bg-white ">
+          <body className="w-full h-full flex flex-col h-max items-center justify-center bg-[#403e3e]">
+            <div className="max-w-[500px] w-full h-max bg-white ">
               {children}
             </div>
           </body>

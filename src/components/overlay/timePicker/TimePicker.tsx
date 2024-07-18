@@ -19,11 +19,9 @@ export default function TimePicker(props: TimePickerProps) {
   const { onConfirm, onClose, value } = props;
   const userType = useUserStore((state) => state.userType);
 
-  const [time, setTime] = useState<Dayjs | null>(dayjs(value));
-
-  const [currentDate, setCurrentDate] = useState(dayjs());
-  const [selectedDate, setSelectedDate] = useState(value);
-
+  const [time, setTime] = useState<Dayjs | null>(
+    value ? dayjs(value) : dayjs()
+  );
   const [selected, setSelected] = useState("AM");
 
   const handleToggle = (selected: "AM" | "PM") => {
@@ -47,7 +45,7 @@ export default function TimePicker(props: TimePickerProps) {
           </button>
         </div>
         <div className="flex-center mt-[16px] h-[78px] font-[600] text-[56px]">
-          03:00
+          {time?.format("hh:mm")}
         </div>
         <div className="mt-[8px] flex justify-center items-center">
           <div className="flex bg-gray-100 h-[44px] rounded-full">
@@ -96,7 +94,7 @@ export default function TimePicker(props: TimePickerProps) {
                   borderColor: "#111111",
                 },
               }}
-              views={["hours"]}
+              views={["hours", "minutes"]}
             />
           </LocalizationProvider>
         </div>

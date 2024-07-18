@@ -30,14 +30,17 @@ export default function BottomNavigation() {
         className="flex-center flex-col flex-1"
         onClick={() => router.push(HOME_PATH)}
       >
-        <HomeIcon fill={HOME_PATH === pathname} color={color} />
+        <HomeIcon
+          fill={HOME_PATH === pathname}
+          color={HOME_PATH === pathname ? color : undefined}
+        />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === HOME_PATH
               ? userType === SubjectType.baejjange
-                ? "#2FA464"
-                : "#353C49"
-              : "#999999"
+                ? "text-[#2FA464]"
+                : "text-[#353C49]"
+              : "text-[#767676]"
           }`}
         >
           홈
@@ -47,14 +50,17 @@ export default function BottomNavigation() {
         className="flex-center flex-col items-center flex-1"
         onClick={() => router.push(FEED_PATH)}
       >
-        <FeedIcon fill={FEED_PATH === pathname} color={color} />
+        <FeedIcon
+          fill={FEED_PATH === pathname}
+          color={FEED_PATH === pathname ? color : undefined}
+        />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === FEED_PATH
               ? userType === SubjectType.baejjange
-                ? "#2FA464"
-                : "#353C49"
-              : "#999999"
+                ? "text-[#2FA464]"
+                : "text-[#353C49]"
+              : "text-[#767676]"
           }`}
         >
           피드
@@ -64,14 +70,17 @@ export default function BottomNavigation() {
         className="flex-center flex-col items-center flex-1"
         onClick={() => router.push(ADD_ROUTINE_PATH)}
       >
-        <AddRoutineIcon fill={ADD_ROUTINE_PATH === pathname} color={color} />
+        <AddRoutineIcon
+          fill={ADD_ROUTINE_PATH === pathname}
+          color={ADD_ROUTINE_PATH === pathname ? color : undefined}
+        />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === ADD_ROUTINE_PATH
               ? userType === SubjectType.baejjange
-                ? "#2FA464"
-                : "#353C49"
-              : "#999999"
+                ? "text-[#2FA464]"
+                : "text-[#353C49]"
+              : "text-[#767676]"
           }`}
         >
           루틴추가
@@ -81,14 +90,17 @@ export default function BottomNavigation() {
         className="flex-center flex-col items-center flex-1"
         onClick={() => router.push(REPORT_PATH)}
       >
-        <ReportIcon fill={REPORT_PATH === pathname} color={color} />
+        <ReportIcon
+          fill={REPORT_PATH === pathname}
+          color={REPORT_PATH === pathname ? color : undefined}
+        />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === REPORT_PATH
               ? userType === SubjectType.baejjange
-                ? "#2FA464"
-                : "#353C49"
-              : "#999999"
+                ? "text-[#2FA464]"
+                : "text-[#353C49]"
+              : "text-[#767676]"
           }`}
         >
           통계
@@ -98,14 +110,17 @@ export default function BottomNavigation() {
         className="flex-center flex-col items-center flex-1"
         onClick={() => router.push(MY_PAGE_PATH)}
       >
-        <MyPageIcon fill={MY_PAGE_PATH === pathname} color={color} />
+        <MyPageIcon
+          fill={MY_PAGE_PATH === pathname}
+          color={MY_PAGE_PATH === pathname ? color : undefined}
+        />
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === MY_PAGE_PATH
               ? userType === SubjectType.baejjange
-                ? "#2FA464"
-                : "#353C49"
-              : "#999999"
+                ? "text-[#2FA464]"
+                : "text-[#353C49]"
+              : "text-[#767676]"
           }`}
         >
           마이페이지
