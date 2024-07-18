@@ -10,6 +10,8 @@ import RightArrowIcon from "@/components/icon/RightArrowIcon";
 import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCategoryModal/AddPostCategoryModalOverlay";
 import { useAddRoutineCateogoryModalOverlay } from "@/components/overlay/addRoutineCategoryModal/AddRoutineCategoryModalOverlay";
 import { useCalendarOverlay } from "@/components/overlay/calendar/CalendarOverlay";
+import CheckIcon from "@/components/icon/CheckIcon";
+import { useTimePickerOverlay } from "@/components/overlay/timePicker/TimePickerOverlay";
 
 interface FileType extends File {
   url: string;
@@ -22,6 +24,8 @@ export default function AddPostPage() {
   const [files, setFiles] = useState<FileType>();
 
   const { active } = useAddRoutineCateogoryModalOverlay();
+  const { active: timePickerActive } = useTimePickerOverlay();
+
   const { active: startDateActive } = useCalendarOverlay();
   const { active: endDateActive } = useCalendarOverlay();
   const handleStartDateClick = useCallback(() => {
@@ -36,6 +40,16 @@ export default function AddPostPage() {
       value: new Date().toDateString(),
     });
   }, [endDateActive]);
+
+  const handleAllDayClick = useCallback(() => {}, []);
+  const handleAddClick = useCallback(() => {}, []);
+
+  const onTimeClick = useCallback(() => {
+    timePickerActive({
+      onConfirm: async () => {},
+      value: "",
+    });
+  }, [timePickerActive]);
 
   const handlePostType = useCallback(() => {
     active({
@@ -77,7 +91,7 @@ export default function AddPostPage() {
   return (
     <div className="flex flex-col items-center justify-start h-full">
       <Header title="루틴 추가하기" />
-      <div className="flex flex-col mt-[24px] px-[20px] w-full">
+      <div className="flex flex-col mt-[24px] mb-[32px] px-[20px] w-full h-full">
         <div className="text-gray-700">루틴 성향</div>
         <div className="mt-[12px] flex gap-[8px] w-full">
           <div
@@ -124,12 +138,12 @@ export default function AddPostPage() {
           <button className="border-[1px] rounded-[8px] ml-[8px] h-[48px] w-[48px] shrink-0"></button>
         </div>
         <input
-          className="mt-[16px] py-[14px] px-[16px] border-[1px] rounded-[8px] w-full h-[48px]"
+          className="mt-[8px] py-[14px] px-[16px] border-[1px] rounded-[8px] w-full h-[48px]"
           placeholder="루틴에 대한 다짐이나 설명 등을 적어주세요"
         />
 
         <div className="mt-[24px] text-gray-700">기간 작성하기</div>
-        <div className="mt-[8px] flex items-center">
+        <div className="mt-[10px] flex items-center">
           <button
             onClick={handleStartDateClick}
             className="border-[1px] rounded-[8px] w-full h-[48px]"
@@ -139,6 +153,51 @@ export default function AddPostPage() {
             onClick={handleEndDateClick}
             className="border-[1px] rounded-[8px] w-full h-[48px]"
           ></button>
+        </div>
+
+        <div className="flex items-center gap-[8px] mt-[8px] h-[48px]">
+          <button onClick={handleAllDayClick}>
+            <CheckIcon fill />
+          </button>
+          <div>매일 이 루틴을 반복할 거에요!</div>
+        </div>
+        <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[8px]">
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            월
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            화
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            수
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            목
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            금
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            토
+          </div>
+          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+            일
+          </div>
+        </div>
+        <div
+          onClick={onTimeClick}
+          className="flex justify-between h-[48px] mt-[8px] py-[14px] px-[16px] border-[1px] rounded-[8px] w-full h-[48px]"
+        >
+          <div>시작 시간</div>
+          <div>00:00</div>
+        </div>
+        <div
+          className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${
+            type === SubjectType.gaemi ? "bg-mainBlack" : "bg-mainGreen"
+          }`}
+          onClick={handleAddClick}
+        >
+          루틴 추가하기
         </div>
       </div>
     </div>
