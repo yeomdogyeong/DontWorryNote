@@ -1,9 +1,12 @@
+"use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+
 export const userInstance = (baseURL) => {
   const instance = axios.create({
     baseURL: baseURL,
     headers: {
-      "Content-Type": "application/json",
+      "Content-type": "application/json",
     },
     withCredentials: true,
   });
@@ -23,15 +26,25 @@ export const userInstance = (baseURL) => {
     }
   );
 
-  instance.interceptors.response.use(function (response) {
-    return response;
-  }),
+  instance.interceptors.response.use(
+    function (response) {
+      const newToken = response.headers["Authorization"];
+      console.log("res", response);
+      console.log("newToken", newToken);
+      if (newToken) {
+        localStorage.setItem("tokenKey", newToken);
+      }
+      return response;
+    },
     function (error) {
       if (error.response && error.response.status === 401) {
+        const router = useRouter();
         alert("토큰이 만료되었습니다.");
+        router.push("/onboarding");
       }
       return Promise.reject(error);
-    };
+    }
+  );
 
   return instance;
 };

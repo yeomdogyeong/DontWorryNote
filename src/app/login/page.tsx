@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect } from "react";
-import { onBoarding, userInstance } from "../../components/api/index";
+import { onBoarding } from "../../components/api/index";
 function page() {
   const params = useSearchParams();
   const tokenKey = params.get("tokenKey");
