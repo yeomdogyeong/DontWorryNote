@@ -2,12 +2,11 @@
 
 import { Header } from "@/components/Header";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import gaemiImg from "../../../public/small_gaemi.png";
 import baejjangeImg from "../../../public/small_baejjange.png";
 import Image from "next/image";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
-import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCategoryModal/AddPostCategoryModalOverlay";
 import { useAddRoutineCateogoryModalOverlay } from "@/components/overlay/addRoutineCategoryModal/AddRoutineCategoryModalOverlay";
 import { useCalendarOverlay } from "@/components/overlay/calendar/CalendarOverlay";
 import CheckIcon from "@/components/icon/CheckIcon";
@@ -89,9 +88,9 @@ export default function AddPostPage() {
     []
   );
   return (
-    <div className="flex flex-col items-center justify-start h-full">
+    <div className="flex flex-col items-center justify-start h-full ">
       <Header title="루틴 추가하기" />
-      <div className="flex flex-col mt-[24px] mb-[32px] px-[20px] w-full h-full">
+      <div className="flex flex-col mt-[24px] pb-[32px] px-[20px] w-full h-max bg-white">
         <div className="text-gray-700">루틴 성향</div>
         <div className="mt-[12px] flex gap-[8px] w-full">
           <div
