@@ -3,19 +3,31 @@ import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect } from "react";
 import { onBoarding } from "../../components/api/index";
+import base64 from "base-64";
 function page() {
   const params = useSearchParams();
   const tokenKey = params.get("tokenKey");
-  const state = params.get("state");
-  const local = "http://localhost:3000";
-  const serverUrl = "https://gaezzange.duckdns.org";
+  const userToken = localStorage.getItem("tokenKey");
   const router = useRouter();
-  //   axios.get(serverUrl, {
-  //     params: { code: code, state: state },
-  //     withCredentials: true,
-  //   });
-  //   console.log(code);
-  //localhost:3000/login?code=0bifG3MkkilLnrhf8E6sbU18lM-LSik6AOzLknFzAkpXakPVNJjzAgAAAAQKPCRaAAABkLt22brUNEQ5evY1pg&state=x_5YeP1kmJxAoR04qJOKG-k99wi4iP0h9qhP_c9fMBc%3D
+
+  const handleTokenParsing = () => {
+    let payload = userToken?.substring(
+      userToken.indexOf(".") + 1,
+      userToken.lastIndexOf(".")
+    );
+    console.log("payload", payload);
+    if (payload) {
+      let dec = base64.decode(payload);
+      console.log(dec);
+      const parseDec = JSON.parse(dec);
+      if (parseDec.hasOwnProperty("userId")) {
+        router.push("/main");
+      } else {
+        router.push("/survey");
+      }
+    }
+  };
+
   useEffect(() => {
     console.log("tokenKey", tokenKey);
     const fetchData = async () => {
@@ -32,7 +44,7 @@ function page() {
 
     if (tokenKey) {
       fetchData();
-      //   router.push("/main");
+      handleTokenParsing();
     }
   }, [tokenKey]);
   return <div>ddd</div>;
