@@ -6,7 +6,7 @@ export const userInstance = (baseURL) => {
   const instance = axios.create({
     baseURL: baseURL,
     headers: {
-      "Content-type": "application/json",
+      "content-type": "application/json",
     },
     withCredentials: true,
   });
@@ -29,7 +29,9 @@ export const userInstance = (baseURL) => {
   instance.interceptors.response.use(
     function (response) {
       const newToken = response.headers["Authorization"];
+
       console.log("res", response);
+      console.log("res.headers", response.headers);
       console.log("newToken", newToken);
       if (newToken) {
         localStorage.setItem("tokenKey", newToken);

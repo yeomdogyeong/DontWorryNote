@@ -6,13 +6,18 @@ import gaemi from "../../../../public/Ellipse2.png";
 import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 export default function Main() {
   const [select, setSelect] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   const userColor = useUserColor();
   const { userType } = useUserStore();
+  const router = useRouter();
   console.log("ty", userType);
   console.log(userColor);
+  const handleToMain = () => {
+    router.push("/main");
+  };
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       {/* <ProgressBar srcImg={onestep} /> */}
@@ -51,6 +56,7 @@ export default function Main() {
         } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <span
+          onClick={handleToMain}
           className={`${
             select ? "text-white" : "text-gray-400"
           } flex justify-center items-center h-1/3 w-full text-lg`}
