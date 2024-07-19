@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect } from "react";
 import { onBoarding } from "../../components/api/index";
@@ -9,6 +9,7 @@ function page() {
   const state = params.get("state");
   const local = "http://localhost:3000";
   const serverUrl = "https://gaezzange.duckdns.org";
+  const router = useRouter();
   //   axios.get(serverUrl, {
   //     params: { code: code, state: state },
   //     withCredentials: true,
@@ -22,6 +23,7 @@ function page() {
         const response = await onBoarding({
           params: { tokenKey: tokenKey },
         });
+
         console.log("Response:", response.data);
       } catch (error) {
         console.error("Error:", error);
@@ -30,6 +32,7 @@ function page() {
 
     if (tokenKey) {
       fetchData();
+      //   router.push("/main");
     }
   }, [tokenKey]);
   return <div>ddd</div>;

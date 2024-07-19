@@ -11,6 +11,7 @@
   "dependencies": {
     "@toss/use-overlay": "^1.4.0",
     "axios": "^1.7.2",
+    "base-64": "^1.0.0",
     "dayjs": "^1.11.11",
     "next": "14.2.4",
     "react": "^18",

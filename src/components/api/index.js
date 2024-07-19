@@ -17,7 +17,7 @@ export const userInstance = (baseURL) => {
       const token = localStorage.getItem("tokenKey");
       // 요청의 header에 token 넣기
       if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
+        config.headers["authorization"] = `Bearer ${token}`;
       }
       return config;
     },
@@ -28,11 +28,11 @@ export const userInstance = (baseURL) => {
 
   instance.interceptors.response.use(
     function (response) {
-      const newToken = response.headers["Authorization"];
+      const newToken = response.headers["authorization"];
 
-      console.log("res", response);
-      console.log("res.headers", response.headers);
-      console.log("newToken", newToken);
+      // console.log("res", response);
+      // console.log("res.headers", response.headers);
+      // console.log("newToken", newToken);
       if (newToken) {
         localStorage.setItem("tokenKey", newToken);
       }
@@ -40,9 +40,9 @@ export const userInstance = (baseURL) => {
     },
     function (error) {
       if (error.response && error.response.status === 401) {
-        const router = useRouter();
+        // const router = useRouter();
         alert("토큰이 만료되었습니다.");
-        router.push("/onboarding");
+        // router.push("/onboarding");
       }
       return Promise.reject(error);
     }
