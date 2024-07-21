@@ -20,7 +20,7 @@ function page() {
     if (payload) {
       let dec = base64.decode(payload);
       const parseDec = JSON.parse(dec);
-      if (parseDec.hasOwnProperty("userId")) {
+      if (parseDec.hasOwnProperty("userAuthId")) {
         router.push(HOME_PATH);
       } else {
         router.push("/survey");

@@ -34,7 +34,7 @@ export default function HomePage() {
       </div>
 
       <div
-        className={`flex flex-col text-white self-start ml-4 border-2 p-4 mb-2 rounded-xl`}
+        className={`flex flex-col text-white self-start ml-7 border-2 p-4 mb-2 rounded-xl`}
       >
         <div>오늘도 행복한 하루를 보내세요. </div>
         <div>제가 옆에서 열심히 응원할게요!</div>
