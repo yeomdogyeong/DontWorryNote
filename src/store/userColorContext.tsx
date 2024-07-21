@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import useUserStore from "./useUserStore";
+import { SubjectType } from "@/types/common";
 
 // Context 생성
 const UserColorContext = createContext("");
@@ -11,9 +12,9 @@ export const UserColorProvider = ({ children }: any) => {
   useEffect(() => {
     // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
 
-    if (userType === "baejjange") {
+    if (userType === SubjectType.BAEJJANGE) {
       setUserColor("mainGreen");
-    } else if (userType === "gaemi") {
+    } else if (userType === SubjectType.GAEMI) {
       setUserColor("mainBlack");
     }
   }, [userType]);
