@@ -36,7 +36,7 @@ export default function MyPage() {
             className="border-[1px] rounded-full"
             width={56}
             height={56}
-            src={userType === SubjectType.baejjange ? baejjangeImg : gaemiImg}
+            src={userType === SubjectType.BAEJJANGE ? baejjangeImg : gaemiImg}
           />
           <div className="flex flex-col gap-[4px]">
             <div className="text-gray-900 font-[600] text-[18px]">
@@ -72,7 +72,7 @@ export default function MyPage() {
         <button
           onClick={() => router.push(ADD_ROUTINE_PATH)}
           className={`py-[12px] px-[20px] h-[83px] rounded-[12px] w-full flex items-center bg-gradient-to-r ${
-            userType === SubjectType.baejjange
+            userType === SubjectType.BAEJJANGE
               ? "from-[#2FA464] to-[#408977]"
               : "from-[#353C49] to-[#2D273C]"
           } `}
@@ -86,7 +86,7 @@ export default function MyPage() {
               width={66}
               height={59}
               src={
-                userType === SubjectType.baejjange
+                userType === SubjectType.BAEJJANGE
                   ? routine_baejjange
                   : routine_gaemi
               }

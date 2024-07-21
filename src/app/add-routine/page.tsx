@@ -17,7 +17,7 @@ interface FileType extends File {
 }
 
 export default function AddPostPage() {
-  const [type, setType] = useState(SubjectType.gaemi);
+  const [type, setType] = useState(SubjectType.GAEMI);
   const [postType, setPostType] = useState<PostType | null>(null);
   const [contents, setContents] = useState<string | undefined>(undefined);
   const [files, setFiles] = useState<FileType>();
@@ -95,22 +95,22 @@ export default function AddPostPage() {
         <div className="mt-[12px] flex gap-[8px] w-full">
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${
-              type === SubjectType.gaemi
+              type === SubjectType.GAEMI
                 ? "text-mainBlack bg-subBlack border-mainBlack"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.gaemi)}
+            onClick={() => setType(SubjectType.GAEMI)}
           >
             <Image src={gaemiImg} alt="gaemi" className="w-[24px] h-[24px]" />
             <div>개미 피드</div>
           </div>
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${
-              type === SubjectType.baejjange
+              type === SubjectType.BAEJJANGE
                 ? "text-mainGreen bg-subGreen border-mainGreen"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.baejjange)}
+            onClick={() => setType(SubjectType.BAEJJANGE)}
           >
             <Image
               src={baejjangeImg}
@@ -192,7 +192,7 @@ export default function AddPostPage() {
         </div>
         <div
           className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${
-            type === SubjectType.gaemi ? "bg-mainBlack" : "bg-mainGreen"
+            type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
           }`}
           onClick={handleAddClick}
         >

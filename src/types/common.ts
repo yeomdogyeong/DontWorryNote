@@ -2,8 +2,8 @@ import { StaticImageData } from "next/image";
 
 // export type SubjectType = "baejjange" | "gaemi";
 export enum SubjectType {
-  baejjange = "baejjange",
-  gaemi = "gaemi",
+  BAEJJANGE = "BAEJJANGE",
+  GAEMI = "GAEMI",
 }
 
 export type SurveyResult = {
