@@ -1,27 +1,23 @@
 import React from "react";
-
+import { RoutineBox } from "../routine/RoutineBox";
+import maingaemi from "../../../public/maingaemi.png";
+import Image from "next/image";
 export const OptionDialog = () => {
   return (
-    <div className="flex flex-col items-center absolute w-[400px] max-w-[80vw] h-[480px] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
-      <div className="self-start m-3 text-xl">Title</div>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-      <button className="flex items-center w-[360px] max-w-[70vw] h-[50px] rounded-lg bg-gray-200 p-4 m-2">
-        Option1
-      </button>
-    </div>
+    <>
+      <div className="absolute flex flex-col items-center w-[500px] h-[700px] max-h-[67vh] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
+        <div className="relative w-full">
+          <Image
+            src={maingaemi}
+            alt="userCharacter"
+            width={103}
+            height={125}
+            className="absolute top-[-115px] right-[30px]"
+          />
+        </div>
+        <div className="self-start m-3 text-xl">오늘의 할 일 목록</div>
+        <RoutineBox />
+      </div>
+    </>
   );
 };
