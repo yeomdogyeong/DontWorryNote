@@ -7,6 +7,7 @@ import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
+import { HOME_PATH } from "@/store/path";
 export default function Main() {
   const [select, setSelect] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
@@ -16,7 +17,7 @@ export default function Main() {
   console.log("ty", userType);
   console.log(userColor);
   const handleToMain = () => {
-    router.push("/main");
+    router.push(HOME_PATH);
   };
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
