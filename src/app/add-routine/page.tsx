@@ -1,8 +1,8 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
-import { useCallback, useState } from "react";
+import { SubjectType, convertEmojiImgSrc } from "@/types/common";
+import { useCallback, useMemo, useState } from "react";
 import gaemiImg from "../../../public/small_gaemi.png";
 import baejjangeImg from "../../../public/small_baejjange.png";
 import Image from "next/image";
@@ -12,50 +12,91 @@ import { useCalendarOverlay } from "@/components/overlay/calendar/CalendarOverla
 import CheckIcon from "@/components/icon/CheckIcon";
 import { useTimePickerOverlay } from "@/components/overlay/timePicker/TimePickerOverlay";
 import {
+  DaysOfWeekType,
   RoutineCategoryType,
   convertRoutineCategoryImgSrc,
   convertRoutineCategoryValue,
 } from "@/types/apis/routine";
+import { useAddEmojiModalOverlay } from "@/components/overlay/addEmoji/AddEmoji";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import dayjs from "dayjs";
 
-interface FileType extends File {
-  url: string;
-}
-
-export default function AddPostPage() {
+export default function AddRoutinePage() {
   const [type, setType] = useState(SubjectType.GAEMI);
   const [routineType, setRoutineType] = useState<RoutineCategoryType | null>(
     null
   );
   const [name, setName] = useState<string | undefined>(undefined);
-  const [description, setDescription] = useState<string | undefined>(undefined);
+  const [startedDate, setStartedDate] = useState(new Date().toDateString());
+  const [endedDate, setEndedDate] = useState<string | undefined>(undefined);
+  const [time, setTime] = useState("1970-01-01 06:00");
 
-  const [files, setFiles] = useState<FileType>();
+  const [selectedDay, setSelectedDay] = useState({
+    MONDAY: false,
+    TUSEDAY: false,
+    WEDNSDAY: false,
+    THURSDAY: false,
+    FRIDAY: false,
+    SATURDAY: false,
+    SUNDAY: false,
+  });
+
+  const [description, setDescription] = useState<string | undefined>(undefined);
+  const [emoji, setEmoji] = useState(15);
 
   const { active } = useAddRoutineCateogoryModalOverlay();
+  const { active: emojiActive } = useAddEmojiModalOverlay();
   const { active: timePickerActive } = useTimePickerOverlay();
 
   const { active: startDateActive } = useCalendarOverlay();
   const { active: endDateActive } = useCalendarOverlay();
   const handleStartDateClick = useCallback(() => {
     startDateActive({
-      onConfirm: async (value: string) => {},
-      value: new Date().toDateString(),
+      onConfirm: async (value: string) => setStartedDate(value),
+      value: startedDate,
     });
   }, [startDateActive]);
   const handleEndDateClick = useCallback(() => {
     endDateActive({
-      onConfirm: async (value: string) => {},
-      value: new Date().toDateString(),
+      onConfirm: async (value: string) => setEndedDate(value),
+      value: endedDate,
     });
   }, [endDateActive]);
 
-  const handleAllDayClick = useCallback(() => {}, []);
+  const isAllCheck = useMemo(
+    () => Object.values(selectedDay).every((v) => v === true),
+    [selectedDay]
+  );
+
+  const handleAllDayClick = useCallback(() => {
+    if (isAllCheck) {
+      setSelectedDay({
+        MONDAY: false,
+        TUSEDAY: false,
+        WEDNSDAY: false,
+        THURSDAY: false,
+        FRIDAY: false,
+        SATURDAY: false,
+        SUNDAY: false,
+      });
+    } else {
+      setSelectedDay({
+        MONDAY: true,
+        TUSEDAY: true,
+        WEDNSDAY: true,
+        THURSDAY: true,
+        FRIDAY: true,
+        SATURDAY: true,
+        SUNDAY: true,
+      });
+    }
+  }, [selectedDay]);
   const handleAddClick = useCallback(() => {}, []);
 
   const onTimeClick = useCallback(() => {
     timePickerActive({
-      onConfirm: async () => {},
-      value: "",
+      onConfirm: async (value: string) => setTime(value),
+      value: time,
     });
   }, [timePickerActive]);
 
@@ -158,10 +199,28 @@ export default function AddPostPage() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setName(e.target.value)
             }
-            className="py-[14px] pr-[16px] pl-[48px] border-[1px] rounded-[8px] w-full h-[48px]"
+            className="relative py-[14px] pr-[16px] pl-[48px] border-[1px] rounded-[8px] w-full h-[48px]"
             placeholder="루틴 이름을 입력해 주세요"
           />
-          <button className="border-[1px] rounded-[8px] ml-[8px] h-[48px] w-[48px] shrink-0"></button>
+
+          <Image
+            className="absolute ml-[16px]"
+            alt="emoji_img"
+            width={24}
+            height={24}
+            src={convertEmojiImgSrc(emoji) as StaticImport}
+          />
+          <button
+            className="flex-center border-[1px] rounded-[8px] ml-[8px] h-[48px] w-[48px] shrink-0"
+            onClick={() => emojiActive({ onClick: (v) => setEmoji(v) })}
+          >
+            <Image
+              alt="emoji_img"
+              width={24}
+              height={24}
+              src={convertEmojiImgSrc(emoji) as StaticImport}
+            />
+          </button>
         </div>
         <input
           value={description}
@@ -176,50 +235,158 @@ export default function AddPostPage() {
         <div className="mt-[10px] flex items-center">
           <button
             onClick={handleStartDateClick}
-            className="border-[1px] rounded-[8px] w-full h-[48px]"
-          ></button>
+            className="flex-center border-[1px] rounded-[8px] w-full h-[48px]"
+          >
+            {dayjs(startedDate).format("YY. MM. DD")}
+          </button>
           <div className="h-[20px] w-[9px] mx-[8px]">~</div>
           <button
             onClick={handleEndDateClick}
-            className="border-[1px] rounded-[8px] w-full h-[48px]"
-          ></button>
+            className="flex-center border-[1px] rounded-[8px] w-full h-[48px]"
+          >
+            {endedDate === undefined ? (
+              <div className="flex-center text-gray-400">계속 반복</div>
+            ) : (
+              dayjs(endedDate).format("YY. MM. DD")
+            )}
+          </button>
         </div>
 
         <div className="flex items-center gap-[8px] mt-[8px] h-[48px]">
           <button onClick={handleAllDayClick}>
-            <CheckIcon fill />
+            <CheckIcon
+              fill
+              fillColor={
+                isAllCheck
+                  ? type === SubjectType.BAEZZANGE
+                    ? "#2FA464"
+                    : "#353C49"
+                  : undefined
+              }
+            />
           </button>
           <div>매일 이 루틴을 반복할 거에요!</div>
         </div>
         <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[8px]">
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          <button
+            onClick={() =>
+              setSelectedDay({ ...selectedDay, MONDAY: !selectedDay.MONDAY })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.MONDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             월
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({ ...selectedDay, TUSEDAY: !selectedDay.TUSEDAY })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.TUSEDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             화
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({
+                ...selectedDay,
+                WEDNSDAY: !selectedDay.WEDNSDAY,
+              })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.WEDNSDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             수
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({
+                ...selectedDay,
+                THURSDAY: !selectedDay.THURSDAY,
+              })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.THURSDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             목
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({ ...selectedDay, FRIDAY: !selectedDay.FRIDAY })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.FRIDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             금
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({
+                ...selectedDay,
+                SATURDAY: !selectedDay.SATURDAY,
+              })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.SATURDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             토
-          </div>
-          <div className="flex-center w-full h-full border-[1px] rounded-[8px]">
+          </button>
+          <button
+            onClick={() =>
+              setSelectedDay({ ...selectedDay, SUNDAY: !selectedDay.SUNDAY })
+            }
+            className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
+              selectedDay.SUNDAY === true
+                ? type === SubjectType.BAEZZANGE
+                  ? "border-mainGreen text-mainGreen bg-subGreen"
+                  : "border-mainBlack text-mainBlack bg-subBlack"
+                : ""
+            }`}
+          >
             일
-          </div>
+          </button>
         </div>
         <div
           onClick={onTimeClick}
           className="flex justify-between h-[48px] mt-[8px] py-[14px] px-[16px] border-[1px] rounded-[8px] w-full h-[48px]"
         >
           <div>시작 시간</div>
-          <div>00:00</div>
+          <div>
+            {dayjs(time)
+              .format("A hh:mm")
+              .replace("AM", "오전")
+              .replace("PM", "오후")}
+          </div>
         </div>
         <div
           className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${

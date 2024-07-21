@@ -29,9 +29,13 @@ export default function TimePicker(props: TimePickerProps) {
   };
 
   const handleConfirm = useCallback(() => {
-    onConfirm(value);
+    onConfirm(
+      selected === "AM"
+        ? (time?.toString() as string)
+        : (time?.add(12, "hour").toString() as string)
+    );
     onClose();
-  }, [onClose, onConfirm, value]);
+  }, [onClose, onConfirm, value, time, selected]);
 
   return (
     <>
@@ -61,7 +65,9 @@ export default function TimePicker(props: TimePickerProps) {
               className={`flex-center  w-[56px] h-[44px] rounded-full  ${
                 selected === "PM" ? "bg-gray-900 text-white" : "text-gray-500"
               }`}
-              onClick={() => handleToggle("PM")}
+              onClick={() => {
+                handleToggle("PM");
+              }}
             >
               오후
             </button>
