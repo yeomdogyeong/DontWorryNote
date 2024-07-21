@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useUserColor } from "@/store/userColorContext";
 import { OptionDialog } from "@/components/dialog/OptionDialog";
 import { Loader } from "@/components/loader/Loader";
-
+import "./page.css";
 export default function HomePage() {
   const userColor = useUserColor();
   const [loading, setLoading] = useState(true);
@@ -33,7 +33,9 @@ export default function HomePage() {
         <div>오늘은 어떤 삶을 살아볼까요?</div>
       </div>
 
-      <div className="flex flex-col self-start ml-8">
+      <div
+        className={`flex flex-col text-white self-start ml-4 border-2 p-4 mb-2 rounded-xl`}
+      >
         <div>오늘도 행복한 하루를 보내세요. </div>
         <div>제가 옆에서 열심히 응원할게요!</div>
       </div>

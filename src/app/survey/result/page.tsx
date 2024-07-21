@@ -102,6 +102,7 @@ function page() {
           )}
         </div>
       </div>
+
       {resultIdx && (
         <button
           onClick={() => {

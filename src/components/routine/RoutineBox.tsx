@@ -6,7 +6,7 @@ export const RoutineBox = () => {
   return (
     <div className=" flex flex-col justify-between items-start w-[460px] h-[109px] max-w-[90vw] rounded-2xl bg-gray-50 p-4 m-2">
       <div className="mb-2">
-        <span className="border-2 rounded-xl p-1">개미루틴</span>
+        <span className="border-2 rounded-xl p-1 mr-2">개미루틴</span>
         <span className="border-2 rounded-xl p-1">2일째 진행중</span>
       </div>
       <div className="flex items-center">
