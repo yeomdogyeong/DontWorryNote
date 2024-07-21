@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const getWeekDates = () => {
   const today = new Date();
 
@@ -75,4 +77,13 @@ export const formatTimeDifference = (timestamp: number | string) => {
   } else {
     return "방금 전";
   }
+};
+
+export const DATE_FORMAT_YMDHMS = "YYYY-MM-DDTHH:mm:ss";
+
+export const now = (format?: string) => {
+  if (!format) {
+    format = DATE_FORMAT_YMDHMS;
+  }
+  return dayjs().format(format);
 };
