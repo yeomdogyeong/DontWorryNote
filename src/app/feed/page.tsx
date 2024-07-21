@@ -20,8 +20,7 @@ export default function FeedPage() {
     (searchParams.get("type") as SubjectType | undefined) ?? SubjectType.GAEMI
   );
   const [category, setCategory] = useState<PostType | "ALL">(
-    (searchParams.get("category") as PostType | undefined) ??
-      PostType.ROUTINE_SHARE
+    (searchParams.get("category") as PostType | undefined) ?? "ALL"
   );
 
   const lastRequestAt = useMemo(
@@ -68,7 +67,7 @@ export default function FeedPage() {
   );
 
   return (
-    <div className="h-full pb-[52px]">
+    <div className="h-max min-h-full pb-[52px]">
       <DefaultHeader title="피드" />
       <div className="ml-[20px] flex items-center gap-[20px] h-[50px]">
         <div
