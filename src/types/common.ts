@@ -27,7 +27,7 @@ export type SurveyList = {
 
 export enum PostType {
   ROUTINE_SHARE = "ROUTINE_SHARE",
-  ROUTINE_AUTH = "ROUTINE_AUTH",
+  ROUTINE_AUTHENTICATION = "ROUTINE_AUTHENTICATION",
   ROUTINE_QUESTION = "ROUTINE_QUESTION",
   ROUTINE_DAILY = "ROUTINE_DAILY",
   ETC = "ETC",
@@ -35,7 +35,7 @@ export enum PostType {
 
 export const convertPostTypeValue = (type: PostType | null) => {
   switch (type) {
-    case PostType.ROUTINE_AUTH:
+    case PostType.ROUTINE_AUTHENTICATION:
       return "루틴 인증";
     case PostType.ROUTINE_DAILY:
       return "일상";

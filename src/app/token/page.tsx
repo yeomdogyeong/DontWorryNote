@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect } from "react";
-import { onBoarding } from "../../components/api/index";
+import { onBoarding } from "../../apis/index";
 import base64 from "base-64";
 function page() {
   const params = useSearchParams();

@@ -32,7 +32,7 @@ export default function AddPostPage() {
         },
         {
           title: "루틴 인증",
-          onClick: async () => setPostType(PostType.ROUTINE_AUTH),
+          onClick: async () => setPostType(PostType.ROUTINE_AUTHENTICATION),
         },
         {
           title: "루틴 질문",

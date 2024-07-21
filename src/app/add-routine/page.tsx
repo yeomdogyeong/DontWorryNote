@@ -59,7 +59,7 @@ export default function AddPostPage() {
         },
         {
           title: "운동 및 셀프케어",
-          onClick: async () => setPostType(PostType.ROUTINE_AUTH),
+          onClick: async () => setPostType(PostType.ROUTINE_AUTHENTICATION),
         },
         {
           title: "생산적인 자기 계발",
