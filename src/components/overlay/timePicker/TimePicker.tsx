@@ -102,7 +102,7 @@ export default function TimePicker(props: TimePickerProps) {
         <button
           onClick={handleConfirm}
           className={`flex-center gap-[8px] mt-[24px] h-[48px] w-full rounded-[12px] text-white ${
-            userType === SubjectType.BAEJJANGE ? "bg-mainGreen" : "bg-mainBlack"
+            userType === SubjectType.BAEZZANGE ? "bg-mainGreen" : "bg-mainBlack"
           }`}
         >
           <CheckIcon />

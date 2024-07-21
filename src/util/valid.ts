@@ -1,5 +1,5 @@
 export const valid = (data: any) => {
-  if (data !== undefined && data !== null && !isNaN(data)) {
+  if (data !== undefined && data !== null) {
     return true;
   }
 

@@ -1,8 +1,9 @@
+import { RoutineCategoryType } from "./apis/routine";
 import { StaticImageData } from "next/image";
 
 // export type SubjectType = "baejjange" | "gaemi";
 export enum SubjectType {
-  BAEJJANGE = "BAEJJANGE",
+  BAEZZANGE = "BAEZZANGE",
   GAEMI = "GAEMI",
 }
 

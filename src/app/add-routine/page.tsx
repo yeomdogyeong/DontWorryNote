@@ -11,6 +11,11 @@ import { useAddRoutineCateogoryModalOverlay } from "@/components/overlay/addRout
 import { useCalendarOverlay } from "@/components/overlay/calendar/CalendarOverlay";
 import CheckIcon from "@/components/icon/CheckIcon";
 import { useTimePickerOverlay } from "@/components/overlay/timePicker/TimePickerOverlay";
+import {
+  RoutineCategoryType,
+  convertRoutineCategoryImgSrc,
+  convertRoutineCategoryValue,
+} from "@/types/apis/routine";
 
 interface FileType extends File {
   url: string;
@@ -18,8 +23,12 @@ interface FileType extends File {
 
 export default function AddPostPage() {
   const [type, setType] = useState(SubjectType.GAEMI);
-  const [postType, setPostType] = useState<PostType | null>(null);
-  const [contents, setContents] = useState<string | undefined>(undefined);
+  const [routineType, setRoutineType] = useState<RoutineCategoryType | null>(
+    null
+  );
+  const [name, setName] = useState<string | undefined>(undefined);
+  const [description, setDescription] = useState<string | undefined>(undefined);
+
   const [files, setFiles] = useState<FileType>();
 
   const { active } = useAddRoutineCateogoryModalOverlay();
@@ -55,38 +64,40 @@ export default function AddPostPage() {
       list: [
         {
           title: "업무 또는 학업",
-          onClick: async () => setPostType(PostType.ROUTINE_SHARE),
+          value: RoutineCategoryType.WORK_AND_STUDY,
+          onClick: async () =>
+            setRoutineType(RoutineCategoryType.WORK_AND_STUDY),
         },
         {
           title: "운동 및 셀프케어",
-          onClick: async () => setPostType(PostType.ROUTINE_AUTHENTICATION),
+          onClick: async () => setRoutineType(RoutineCategoryType.HEALTH),
+          value: RoutineCategoryType.HEALTH,
         },
         {
           title: "생산적인 자기 계발",
-          onClick: async () => setPostType(PostType.ROUTINE_QUESTION),
+          onClick: async () =>
+            setRoutineType(RoutineCategoryType.SEL_DEVELOPMENT),
+          value: RoutineCategoryType.SEL_DEVELOPMENT,
         },
         {
           title: "취미 및 여가활동",
-          onClick: async () => setPostType(PostType.ROUTINE_DAILY),
+          onClick: async () => setRoutineType(RoutineCategoryType.REST),
+          value: RoutineCategoryType.REST,
         },
         {
           title: "가족 및 친구와의 시간",
-          onClick: async () => setPostType(PostType.ETC),
+          onClick: async () => setRoutineType(RoutineCategoryType.MEETING),
+          value: RoutineCategoryType.MEETING,
         },
         {
           title: "휴식 및 수면",
-          onClick: async () => setPostType(PostType.ETC),
+          onClick: async () => setRoutineType(RoutineCategoryType.REST),
+          value: RoutineCategoryType.REST,
         },
       ],
     });
-  }, [active, setPostType]);
+  }, [active, setRoutineType]);
 
-  const handleContentsChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setContents(e.target.value);
-    },
-    []
-  );
   return (
     <div className="flex flex-col items-center justify-start h-full ">
       <Header title="루틴 추가하기" />
@@ -106,11 +117,11 @@ export default function AddPostPage() {
           </div>
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${
-              type === SubjectType.BAEJJANGE
+              type === SubjectType.BAEZZANGE
                 ? "text-mainGreen bg-subGreen border-mainGreen"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.BAEJJANGE)}
+            onClick={() => setType(SubjectType.BAEZZANGE)}
           >
             <Image
               src={baejjangeImg}
@@ -125,18 +136,38 @@ export default function AddPostPage() {
           onClick={handlePostType}
           className="mt-[8px] px-[13px] py-[16px] flex justify-between items-center border-[1px] rounded-[8px] w-full h-[48px]"
         >
-          <div>{convertPostTypeValue(postType)}</div>
+          <div className="flex gap-[8px]">
+            {routineType !== null && (
+              <Image
+                width={24}
+                height={24}
+                alt=""
+                src={convertRoutineCategoryImgSrc(routineType)}
+              />
+            )}
+            <div className="flex-center">
+              {convertRoutineCategoryValue(routineType)}
+            </div>
+          </div>
           <RightArrowIcon />
         </button>
         <div className="mt-[24px] text-gray-700">루틴 이름</div>
         <div className="mt-[10px] flex items-center">
           <input
+            value={name}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
             className="py-[14px] pr-[16px] pl-[48px] border-[1px] rounded-[8px] w-full h-[48px]"
             placeholder="루틴 이름을 입력해 주세요"
           />
           <button className="border-[1px] rounded-[8px] ml-[8px] h-[48px] w-[48px] shrink-0"></button>
         </div>
         <input
+          value={description}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setDescription(e.target.value)
+          }
           className="mt-[8px] py-[14px] px-[16px] border-[1px] rounded-[8px] w-full h-[48px]"
           placeholder="루틴에 대한 다짐이나 설명 등을 적어주세요"
         />

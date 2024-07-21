@@ -12,7 +12,7 @@ export const UserColorProvider = ({ children }: any) => {
   useEffect(() => {
     // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
 
-    if (userType === SubjectType.BAEJJANGE) {
+    if (userType === SubjectType.BAEZZANGE) {
       setUserColor("mainGreen");
     } else if (userType === SubjectType.GAEMI) {
       setUserColor("mainBlack");

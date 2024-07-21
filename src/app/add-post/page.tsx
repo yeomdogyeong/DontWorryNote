@@ -89,11 +89,11 @@ export default function AddPostPage() {
           </div>
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${
-              type === SubjectType.BAEJJANGE
+              type === SubjectType.BAEZZANGE
                 ? "text-mainGreen bg-subGreen border-mainGreen"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.BAEJJANGE)}
+            onClick={() => setType(SubjectType.BAEZZANGE)}
           >
             <Image
               src={baejjangeImg}
