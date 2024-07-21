@@ -68,7 +68,7 @@ export default function FeedPage() {
   );
 
   return (
-    <div className="h-max pb-[52px]">
+    <div className="h-full pb-[52px]">
       <DefaultHeader title="피드" />
       <div className="ml-[20px] flex items-center gap-[20px] h-[50px]">
         <div
