@@ -2,12 +2,28 @@
 
 import { useAlertOverlay } from "@/components/overlay/alert/AlertOverlay";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useUserColor } from "@/store/userColorContext";
 import { OptionDialog } from "@/components/dialog/OptionDialog";
+import { Loader } from "@/components/loader/Loader";
 
 export default function HomePage() {
   const userColor = useUserColor();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (userColor) {
+      setLoading(false);
+    }
+  }, [userColor]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div
       className={`flex flex-col justify-center items-center bg-${userColor} h-[37vh] justify-around`}

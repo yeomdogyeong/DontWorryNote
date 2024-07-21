@@ -20,7 +20,7 @@ function onBoarding() {
         <SimpleSlider />
       </div>
 
-      <div className="">
+      <div className="mb-[70px]">
         <div className="mb-4">
           <AuthButton
             text="KaKao로 시작하기"
