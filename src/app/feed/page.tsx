@@ -3,32 +3,69 @@
 import { getFeeds } from "@/apis/feed/feed";
 import { DefaultHeader } from "@/components/DefaultHeader";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
+import FeedItem from "@/components/modules/feed/FeedItem";
 import { FEED_PATH } from "@/store/path";
-import { SubjectType } from "@/types/common";
+import { PostType, PostTypeArray, SubjectType } from "@/types/common";
+import { CACHE_TIME } from "@/util/common";
+import { now } from "@/util/date";
+import { valid } from "@/util/valid";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function FeedPage() {
-  const [feedType, setFeedType] = useState<SubjectType>(SubjectType.GAEMI);
   const searchParams = useSearchParams();
+
+  const [feedType, setFeedType] = useState<SubjectType>(
+    (searchParams.get("type") as SubjectType | undefined) ?? SubjectType.GAEMI
+  );
+  const [category, setCategory] = useState(
+    (searchParams.get("category") as PostType | undefined) ??
+      PostType.ROUTINE_SHARE
+  );
+
+  const lastRequestAt = useMemo(
+    () => searchParams.get("lastRequestAt"),
+    [searchParams]
+  ) as string | undefined;
+
   const router = useRouter();
 
+  useEffect(() => {}, []);
+
   const { data } = useQuery({
-    queryKey: ["todos"],
-    queryFn: () => getFeeds({ tendency: feedType }),
+    queryKey: ["getFeeds", category, feedType, lastRequestAt],
+    queryFn: () =>
+      getFeeds({ tendency: feedType, category, searchText: "안녕" }),
+    gcTime: CACHE_TIME,
+    enabled:
+      valid(searchParams.get("category")) &&
+      valid(searchParams.get("category")),
   });
 
-  console.log(data);
   useEffect(() => {
-    if (searchParams.get("type") === null) {
-      router.push(FEED_PATH + `?type=${SubjectType.GAEMI}`);
+    if (
+      searchParams.get("type") === null ||
+      searchParams.get("category") === null
+    ) {
+      router.replace(
+        FEED_PATH +
+          `?type=${SubjectType.GAEMI}&category=${
+            PostType.ROUTINE_SHARE
+          }&lastRequestAt=${now()}`
+      );
     }
   }, [searchParams, router]);
 
-  const handleFeedTypeClick = useCallback((type: SubjectType) => {
-    setFeedType(type);
-  }, []);
+  const handleFeedTypeClick = useCallback(
+    (type: SubjectType) => {
+      router.replace(
+        FEED_PATH + `?type=${type}&category=${category}&lastRequestAt=${now()}`
+      );
+      setFeedType(type);
+    },
+    [setFeedType, router]
+  );
 
   return (
     <div className="h-full">
@@ -57,10 +94,37 @@ export default function FeedPage() {
           )}
         </div>
       </div>
-      <div className="bg-[#F4F4F4] py-[16px] px-[20px] h-full">
-        <div className="h-[36px] flex gap-[8px] items-center overflow-x-auto"></div>
-        <div className="mt-[20px] flex flex-col gap-[12px]">
-          <div>mx-</div>
+      <div className="bg-[#F4F4F4] py-[16px] h-full">
+        <div className="h-[36px] flex gap-[8px] pl-[20px] items-center w-full overflow-x-auto">
+          {PostTypeArray.map((item) => {
+            return (
+              <div
+                key={item.value}
+                onClick={() => {
+                  router.replace(
+                    `${FEED_PATH}?type=${feedType}&category=${
+                      item.value
+                    }&lastRequestAt=${now()}`
+                  );
+                  setCategory(item.value);
+                }}
+                className={`${
+                  category === item.value
+                    ? feedType === SubjectType.BAEJJANGE
+                      ? "border-mainGreen bg-subGreen text-mainGreen"
+                      : "border-mainBlack bg-subBlack text-mainBlack"
+                    : "bg-white text-gray-800"
+                } flex-shrink-0 font-[400] text-gray-800 text-[13px] border-[1px] border-gray-200 rounded-[100px] h-[36px] flex-center px-[12px] py-[8px]`}
+              >
+                {item.name}
+              </div>
+            );
+          })}
+        </div>
+        <div className=" px-[20px]mt-[20px] flex flex-col gap-[12px]">
+          {data?.data.data.map((item) => {
+            return <FeedItem key={item.feedContent} {...item} />;
+          })}
         </div>
       </div>
       <BottomNavigation />

@@ -49,3 +49,26 @@ export const convertPostTypeValue = (type: PostType | null) => {
       return "카테고리 선택하기";
   }
 };
+
+export const PostTypeArray = [
+  {
+    value: PostType.ROUTINE_SHARE,
+    name: convertPostTypeValue(PostType.ROUTINE_SHARE),
+  },
+  {
+    value: PostType.ROUTINE_QUESTION,
+    name: convertPostTypeValue(PostType.ROUTINE_QUESTION),
+  },
+  {
+    value: PostType.ROUTINE_AUTHENTICATION,
+    name: convertPostTypeValue(PostType.ROUTINE_AUTHENTICATION),
+  },
+  {
+    value: PostType.ROUTINE_DAILY,
+    name: convertPostTypeValue(PostType.ROUTINE_DAILY),
+  },
+  {
+    value: PostType.ETC,
+    name: convertPostTypeValue(PostType.ETC),
+  },
+];

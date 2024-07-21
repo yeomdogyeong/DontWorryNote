@@ -15,5 +15,5 @@ export interface FeedItemType {
 export interface GetFeedRq {
   tendency: SubjectType;
   category?: PostType;
-  searchText?: "string";
+  searchText?: string;
 }
