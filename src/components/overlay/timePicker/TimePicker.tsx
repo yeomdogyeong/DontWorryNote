@@ -44,7 +44,7 @@ export default function TimePicker(props: TimePickerProps) {
             <CloseIcon />
           </button>
         </div>
-        <div className="flex-center mt-[16px] h-[78px] font-[600] text-[56px]">
+        <div className="flex-center mt-[16px] h-[78px] font-[600] text-[48px]">
           {time?.format("hh:mm")}
         </div>
         <div className="mt-[8px] flex justify-center items-center">
@@ -102,7 +102,7 @@ export default function TimePicker(props: TimePickerProps) {
         <button
           onClick={handleConfirm}
           className={`flex-center gap-[8px] mt-[24px] h-[48px] w-full rounded-[12px] text-white ${
-            userType === SubjectType.baejjange ? "bg-mainGreen" : "bg-mainBlack"
+            userType === SubjectType.BAEJJANGE ? "bg-mainGreen" : "bg-mainBlack"
           }`}
         >
           <CheckIcon />

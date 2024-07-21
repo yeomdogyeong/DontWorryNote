@@ -21,7 +21,7 @@ export default function BottomNavigation() {
   const pathname = usePathname();
   const userType = useUserStore((state) => state.userType);
   const color = useMemo(() => {
-    return userType === SubjectType.baejjange ? "#2FA464" : "#353C49";
+    return userType === SubjectType.BAEJJANGE ? "#2FA464" : "#353C49";
   }, [userType]) as string;
 
   return (
@@ -37,7 +37,7 @@ export default function BottomNavigation() {
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === HOME_PATH
-              ? userType === SubjectType.baejjange
+              ? userType === SubjectType.BAEJJANGE
                 ? "text-[#2FA464]"
                 : "text-[#353C49]"
               : "text-[#767676]"
@@ -57,7 +57,7 @@ export default function BottomNavigation() {
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === FEED_PATH
-              ? userType === SubjectType.baejjange
+              ? userType === SubjectType.BAEJJANGE
                 ? "text-[#2FA464]"
                 : "text-[#353C49]"
               : "text-[#767676]"
@@ -77,7 +77,7 @@ export default function BottomNavigation() {
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === ADD_ROUTINE_PATH
-              ? userType === SubjectType.baejjange
+              ? userType === SubjectType.BAEJJANGE
                 ? "text-[#2FA464]"
                 : "text-[#353C49]"
               : "text-[#767676]"
@@ -97,7 +97,7 @@ export default function BottomNavigation() {
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === REPORT_PATH
-              ? userType === SubjectType.baejjange
+              ? userType === SubjectType.BAEJJANGE
                 ? "text-[#2FA464]"
                 : "text-[#353C49]"
               : "text-[#767676]"
@@ -117,7 +117,7 @@ export default function BottomNavigation() {
         <div
           className={`h-[15px] font-[400] text-[11px] ${
             pathname === MY_PAGE_PATH
-              ? userType === SubjectType.baejjange
+              ? userType === SubjectType.BAEJJANGE
                 ? "text-[#2FA464]"
                 : "text-[#353C49]"
               : "text-[#767676]"

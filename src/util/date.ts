@@ -48,3 +48,31 @@ export const convertDayToText = (idx: number) => {
       return "일";
   }
 };
+
+export const formatTimeDifference = (timestamp: number | string) => {
+  const now = new Date();
+  const time = new Date(timestamp);
+  const diffMs = now.getTime() - time.getTime();
+  const diffSec = Math.floor(diffMs / 1000);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHour = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHour / 24);
+
+  if (diffDay > 0) {
+    const year = time.getFullYear();
+    const month = (time.getMonth() + 1).toString().padStart(2, "0");
+    const day = time.getDate().toString().padStart(2, "0");
+    const hours = time.getHours();
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "오후" : "오전";
+    const formattedHour = (hours % 12 || 12).toString().padStart(2, "0");
+
+    return `${year}. ${month}. ${day} ${ampm} ${formattedHour}시 ${minutes}분`;
+  } else if (diffHour > 0) {
+    return `${diffHour}시간 전`;
+  } else if (diffMin > 0) {
+    return `${diffMin}분 전`;
+  } else {
+    return "방금 전";
+  }
+};

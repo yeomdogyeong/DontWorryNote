@@ -86,7 +86,7 @@ export default function Calendar(props: CalendarProps) {
               } ${
                 day.isSame(selectedDate, "day")
                   ? `${
-                      userType === SubjectType.baejjange
+                      userType === SubjectType.BAEJJANGE
                         ? "bg-mainGreen"
                         : "bg-mainBlack"
                     } text-white rounded-full`
@@ -108,7 +108,7 @@ export default function Calendar(props: CalendarProps) {
           <button
             onClick={handleConfirm}
             className={`flex-center gap-[8px] h-[48px] w-full rounded-[12px] text-white ${
-              userType === SubjectType.baejjange
+              userType === SubjectType.BAEJJANGE
                 ? "bg-mainGreen"
                 : "bg-mainBlack"
             }`}

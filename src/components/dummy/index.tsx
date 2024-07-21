@@ -196,7 +196,7 @@ export const surveyList: SurveyList[] = [
       score1: 2,
       score2: 8,
       srcBg: "baejjange",
-      status: SubjectType.baejjange,
+      status: SubjectType.BAEJJANGE,
     },
     result2: {
       title: "균형잡힌 베짱이",
@@ -207,7 +207,7 @@ export const surveyList: SurveyList[] = [
       score1: 4,
       score2: 6,
       srcBg: "baejjange",
-      status: SubjectType.baejjange,
+      status: SubjectType.BAEJJANGE,
     },
     result3: {
       title: "균형잡힌 개미",
@@ -218,7 +218,7 @@ export const surveyList: SurveyList[] = [
       score1: 4,
       score2: 6,
       srcBg: "gaemi",
-      status: SubjectType.gaemi,
+      status: SubjectType.GAEMI,
     },
     result4: {
       title: "부지런한 개미",
@@ -229,7 +229,7 @@ export const surveyList: SurveyList[] = [
       score1: 8,
       score2: 2,
       srcBg: "gaemi",
-      status: SubjectType.gaemi,
+      status: SubjectType.GAEMI,
     },
   },
 ];

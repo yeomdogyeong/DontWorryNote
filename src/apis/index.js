@@ -54,3 +54,5 @@ export const userInstance = (baseURL) => {
 export const onBoarding = userInstance(
   "https://gaezzange.duckdns.org/api/v1/auth/token"
 );
+
+export const Axios = userInstance("https://gaezzange.duckdns.org/api");

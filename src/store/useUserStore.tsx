@@ -11,7 +11,7 @@ interface UserState {
 
 const initialState = {
   users: { score: 0 },
-  userType: SubjectType.baejjange,
+  userType: SubjectType.BAEJJANGE,
 };
 
 const useUserStore = create<UserState>((set) => ({
