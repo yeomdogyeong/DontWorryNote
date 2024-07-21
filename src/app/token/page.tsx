@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { onBoarding } from "../../apis/index";
 import base64 from "base-64";
+import { HOME_PATH } from "@/store/path";
 function page() {
   const params = useSearchParams();
   const tokenKey = params.get("tokenKey");
@@ -18,10 +19,9 @@ function page() {
     console.log("payload", payload);
     if (payload) {
       let dec = base64.decode(payload);
-      console.log(dec);
       const parseDec = JSON.parse(dec);
       if (parseDec.hasOwnProperty("userId")) {
-        router.push("/main");
+        router.push(HOME_PATH);
       } else {
         router.push("/survey");
       }

@@ -1,17 +1,25 @@
 "use client";
 
+import { getFeeds } from "@/apis/feed/feed";
 import { DefaultHeader } from "@/components/DefaultHeader";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
 import { FEED_PATH } from "@/store/path";
 import { SubjectType } from "@/types/common";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function FeedPage() {
-  const [feedType, setFeedType] = useState(SubjectType.GAEMI);
+  const [feedType, setFeedType] = useState<SubjectType>(SubjectType.GAEMI);
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const { data } = useQuery({
+    queryKey: ["todos"],
+    queryFn: () => getFeeds({ tendency: feedType }),
+  });
+
+  console.log(data);
   useEffect(() => {
     if (searchParams.get("type") === null) {
       router.push(FEED_PATH + `?type=${SubjectType.GAEMI}`);
@@ -49,8 +57,8 @@ export default function FeedPage() {
           )}
         </div>
       </div>
-      <div className="bg-[#F4F4F4] px-[20px] h-full">
-        <div className="mt-[16px] ml-[20px] h-[36px] flex gap-[8px] items-center overflow-x-auto"></div>
+      <div className="bg-[#F4F4F4] py-[16px] px-[20px] h-full">
+        <div className="h-[36px] flex gap-[8px] items-center overflow-x-auto"></div>
         <div className="mt-[20px] flex flex-col gap-[12px]">
           <div>mx-</div>
         </div>
