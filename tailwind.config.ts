@@ -32,7 +32,7 @@ const config: Config = {
         bermuda: "#78dcca",
         mainGreen: "#2FA464",
         mainBlack: "#353C49",
-        subGreen: "#F4FFF9",
+        subGreen: "#E9FFF3",
         subBlack: "#EFF4FF",
         positive: "#21C389",
         negative: "#FF4D4D",

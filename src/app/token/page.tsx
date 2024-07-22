@@ -19,7 +19,9 @@ function page() {
     console.log("payload", payload);
     if (payload) {
       let dec = base64.decode(payload);
+
       const parseDec = JSON.parse(dec);
+      console.log("dec", parseDec);
       if (parseDec.hasOwnProperty("userAuthId")) {
         router.push(HOME_PATH);
       } else {
