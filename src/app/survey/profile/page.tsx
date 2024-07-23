@@ -53,21 +53,43 @@ export default function Main() {
         </div>
       </div>
       {uploadImg ? (
-        <div>
-          {" "}
-          <Image src={uploadImg} alt="user-upload-img" />
+        <div className="w-[103px] h-[100px] rounded-full overflow-hidden flex justify-center items-center border-2 border-gray-100">
+          <input
+            type="file"
+            id="fileInput"
+            className="hidden"
+            accept="image/*"
+            onChange={changeUserImg}
+          />
+          <label htmlFor="fileInput">
+            <Image
+              src={uploadImg}
+              alt="user-upload-img"
+              width={103}
+              height={100}
+            />
+          </label>
         </div>
       ) : (
         <div className="relative flex justify-center items-center mb-[24px] cursor-pointer">
-          {userColor === "mainGreen" ? (
-            <Image alt="user-img" src={baejjange} width={103} height={100} />
-          ) : (
-            <Image alt="user-img" src={gaemi} width={103} height={100} />
-          )}
+          <input
+            type="file"
+            id="fileInput"
+            className="hidden"
+            accept="image/*"
+            onChange={changeUserImg}
+          />
+          <label htmlFor="fileInput">
+            {userColor === "mainGreen" ? (
+              <Image alt="user-img" src={baejjange} width={103} height={100} />
+            ) : (
+              <Image alt="user-img" src={gaemi} width={103} height={100} />
+            )}
 
-          <p className="absolute bottom-0 right-0">
-            <Image alt="user-img" src={camera} width={40} />
-          </p>
+            <p className="absolute bottom-0 right-0">
+              <Image alt="user-img" src={camera} width={40} />
+            </p>
+          </label>
         </div>
       )}
 
