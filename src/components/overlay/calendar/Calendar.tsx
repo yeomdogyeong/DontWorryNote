@@ -7,14 +7,14 @@ import { useCallback, useMemo, useState } from "react";
 export interface CalendarProps {
   onClose(): Promise<void>;
   onConfirm(value: string): Promise<void>;
-  value: string;
+  value?: string;
 }
 
 export default function Calendar(props: CalendarProps) {
   const { onConfirm, onClose, value = new Date().toDateString() } = props;
   const userType = useUserStore((state) => state.userType);
 
-  const [currentDate, setCurrentDate] = useState(dayjs());
+  const [currentDate, setCurrentDate] = useState(dayjs(value));
   const [selectedDate, setSelectedDate] = useState(value);
   const startOfMonth = currentDate.startOf("month");
   const endOfMonth = currentDate.endOf("month");
@@ -22,9 +22,9 @@ export default function Calendar(props: CalendarProps) {
   const endDate = endOfMonth.endOf("week");
 
   const handleConfirm = useCallback(() => {
-    onConfirm(value);
+    onConfirm(selectedDate as string);
     onClose();
-  }, [onClose, onConfirm, value]);
+  }, [onClose, onConfirm, value, selectedDate]);
 
   const days = useMemo(() => {
     const dates = [];
@@ -86,7 +86,7 @@ export default function Calendar(props: CalendarProps) {
               } ${
                 day.isSame(selectedDate, "day")
                   ? `${
-                      userType === SubjectType.BAEJJANGE
+                      userType === SubjectType.BAEZZANGE
                         ? "bg-mainGreen"
                         : "bg-mainBlack"
                     } text-white rounded-full`
@@ -108,7 +108,7 @@ export default function Calendar(props: CalendarProps) {
           <button
             onClick={handleConfirm}
             className={`flex-center gap-[8px] h-[48px] w-full rounded-[12px] text-white ${
-              userType === SubjectType.BAEJJANGE
+              userType === SubjectType.BAEZZANGE
                 ? "bg-mainGreen"
                 : "bg-mainBlack"
             }`}

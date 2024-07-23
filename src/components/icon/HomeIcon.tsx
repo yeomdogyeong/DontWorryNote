@@ -22,15 +22,15 @@ export default function HomeIcon(props: Props) {
           d="M4.15625 10.3636L14.1562 4L24.1562 10.3636V24H4.15625V10.3636Z"
           fill={color}
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M11.1562 16.3333H17.1562"
           stroke="white"
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
       </svg>
     );
@@ -46,15 +46,15 @@ export default function HomeIcon(props: Props) {
       <path
         d="M4.5 10.3636L14.5 4L24.5 10.3636V24H4.5V10.3636Z"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.5 16.3335H17.5"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

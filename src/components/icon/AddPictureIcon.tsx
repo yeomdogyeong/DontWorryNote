@@ -14,15 +14,15 @@ export default function AddPictureIcon() {
       <path
         d="M20 5H4V19H20V5Z"
         stroke="#767676"
-        stroke-width="1.5"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
       />
       <path
         d="M9 11L4 16V19H20V16L16 13L13 15L9 11Z"
         stroke="#767676"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

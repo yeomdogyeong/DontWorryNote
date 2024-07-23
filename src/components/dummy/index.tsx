@@ -196,7 +196,7 @@ export const surveyList: SurveyList[] = [
       score1: 2,
       score2: 8,
       srcBg: "baejjange",
-      status: SubjectType.BAEJJANGE,
+      status: SubjectType.BAEZZANGE,
     },
     result2: {
       title: "균형잡힌 베짱이",
@@ -207,7 +207,7 @@ export const surveyList: SurveyList[] = [
       score1: 4,
       score2: 6,
       srcBg: "baejjange",
-      status: SubjectType.BAEJJANGE,
+      status: SubjectType.BAEZZANGE,
     },
     result3: {
       title: "균형잡힌 개미",

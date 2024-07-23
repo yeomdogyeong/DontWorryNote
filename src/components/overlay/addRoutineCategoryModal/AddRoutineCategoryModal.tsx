@@ -1,7 +1,13 @@
 import CloseIcon from "@/components/icon/CloseIcon";
+import {
+  RoutineCategoryType,
+  convertRoutineCategoryImgSrc,
+} from "@/types/apis/routine";
+import Image from "next/image";
 
 export interface AddRoutineCateogoryModalListItem {
   title: string;
+  value: RoutineCategoryType;
   onClick(): Promise<void>;
   className?: string;
 }
@@ -34,9 +40,15 @@ export default function AddRoutineCateogoryModal(
                   await onClose?.();
                 }}
                 key={idx}
-                className={`${item.className} flex-center text-gray-800 bg-gray-50 p-[16px] rounded-[8px]`}
+                className={`${item.className} flex items-center gap-[8px] text-gray-800 bg-gray-50 p-[16px] rounded-[8px]`}
               >
-                {item.title}
+                <Image
+                  alt="category-img"
+                  src={convertRoutineCategoryImgSrc(item.value)}
+                  width={28}
+                  height={28}
+                />
+                <div> {item.title}</div>
               </button>
             ))}
           </div>

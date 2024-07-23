@@ -19,9 +19,8 @@ export default function FeedPage() {
   const [feedType, setFeedType] = useState<SubjectType>(
     (searchParams.get("type") as SubjectType | undefined) ?? SubjectType.GAEMI
   );
-  const [category, setCategory] = useState(
-    (searchParams.get("category") as PostType | undefined) ??
-      PostType.ROUTINE_SHARE
+  const [category, setCategory] = useState<PostType | "ALL">(
+    (searchParams.get("category") as PostType | undefined) ?? "ALL"
   );
 
   const lastRequestAt = useMemo(
@@ -31,16 +30,16 @@ export default function FeedPage() {
 
   const router = useRouter();
 
-  useEffect(() => {}, []);
-
   const { data } = useQuery({
     queryKey: ["getFeeds", category, feedType, lastRequestAt],
     queryFn: () =>
-      getFeeds({ tendency: feedType, category, searchText: "안녕" }),
+      getFeeds({
+        tendency: feedType,
+        category: category === "ALL" ? undefined : category,
+      }),
     gcTime: CACHE_TIME,
     enabled:
-      valid(searchParams.get("category")) &&
-      valid(searchParams.get("category")),
+      valid(searchParams.get("type")) && valid(searchParams.get("category")),
   });
 
   useEffect(() => {
@@ -68,7 +67,7 @@ export default function FeedPage() {
   );
 
   return (
-    <div className="h-full">
+    <div className="h-max min-h-full pb-[52px]">
       <DefaultHeader title="피드" />
       <div className="ml-[20px] flex items-center gap-[20px] h-[50px]">
         <div
@@ -83,20 +82,20 @@ export default function FeedPage() {
           )}
         </div>
         <div
-          onClick={() => handleFeedTypeClick(SubjectType.BAEJJANGE)}
+          onClick={() => handleFeedTypeClick(SubjectType.BAEZZANGE)}
           className={`relative flex-center text-gray-500 font-[700] text-[20px] h-full ${
-            feedType === SubjectType.BAEJJANGE ? "text-gray-900" : ""
+            feedType === SubjectType.BAEZZANGE ? "text-gray-900" : ""
           }`}
         >
           베짱이 피드
-          {feedType === SubjectType.BAEJJANGE && (
+          {feedType === SubjectType.BAEZZANGE && (
             <div className="absolute w-full bottom-0 h-[3px] bg-gray-900" />
           )}
         </div>
       </div>
       <div className="bg-[#F4F4F4] py-[16px] h-full">
-        <div className="h-[36px] flex gap-[8px] pl-[20px] items-center w-full overflow-x-auto">
-          {PostTypeArray.map((item) => {
+        <div className="h-[36px] flex gap-[8px] px-[20px] items-center w-full overflow-x-auto">
+          {[{ name: "전체", value: "ALL" }, ...PostTypeArray].map((item) => {
             return (
               <div
                 key={item.value}
@@ -106,11 +105,11 @@ export default function FeedPage() {
                       item.value
                     }&lastRequestAt=${now()}`
                   );
-                  setCategory(item.value);
+                  setCategory(item.value as PostType | "ALL");
                 }}
                 className={`${
                   category === item.value
-                    ? feedType === SubjectType.BAEJJANGE
+                    ? feedType === SubjectType.BAEZZANGE
                       ? "border-mainGreen bg-subGreen text-mainGreen"
                       : "border-mainBlack bg-subBlack text-mainBlack"
                     : "bg-white text-gray-800"
@@ -121,7 +120,7 @@ export default function FeedPage() {
             );
           })}
         </div>
-        <div className=" px-[20px]mt-[20px] flex flex-col gap-[12px]">
+        <div className="px-[20px] mt-[20px] flex flex-col gap-[12px]">
           {data?.data.data.map((item) => {
             return <FeedItem key={item.feedContent} {...item} />;
           })}

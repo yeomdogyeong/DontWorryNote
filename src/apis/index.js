@@ -34,7 +34,7 @@ export const userInstance = (baseURL) => {
       // console.log("res.headers", response.headers);
       // console.log("newToken", newToken);
       if (newToken) {
-        localStorage.setItem("tokenKey", newToken);
+        localStorage.setItem("tokenKey", newToken.split("Bearer ")[1]);
       }
       return response;
     },

@@ -25,14 +25,14 @@ export default function MyPageIcon(props: Props) {
           ry="4"
           fill={color}
           stroke={color}
-          stroke-width="1.5"
+          strokeWidth="1.5"
         />
         <path
           d="M5.625 19C5.625 16.7909 7.41586 15 9.625 15H19.625C21.8341 15 23.625 16.7909 23.625 19V24H5.625V19Z"
           fill={color}
           stroke={color}
-          stroke-width="1.5"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
         />
       </svg>
     );
@@ -51,13 +51,13 @@ export default function MyPageIcon(props: Props) {
         rx="4"
         ry="4"
         stroke={color}
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <path
         d="M5.625 19C5.625 16.7909 7.41586 15 9.625 15H19.625C21.8341 15 23.625 16.7909 23.625 19V24H5.625V19Z"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
       />
     </svg>
   );

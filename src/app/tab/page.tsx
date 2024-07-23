@@ -15,7 +15,7 @@ export default function Tap() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       {/* <OptionDialog /> */}
-      <PostButton bgColor={SubjectType.BAEJJANGE} />
+      <PostButton bgColor={SubjectType.BAEZZANGE} />
       <PostButton bgColor={SubjectType.GAEMI} />
       <BasicButton text="dogyeong" bgColor="baejjange" />
       <BasicButton text="dogyeong" bgColor="gaemi" />
