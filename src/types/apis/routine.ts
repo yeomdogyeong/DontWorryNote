@@ -6,7 +6,7 @@ import routine_4 from "../../../public/routine_4.png";
 import routine_5 from "../../../public/routine_5.png";
 import routine_6 from "../../../public/routine_6.png";
 
-export interface PostRoutineRs {
+export interface PostRoutineRq {
   tendency: SubjectType;
   category: RoutineCategoryType;
   name: string;
@@ -20,7 +20,7 @@ export interface PostRoutineRs {
     second: number;
     nano: number;
   };
-  daysOfWeek: DaysOfWeekType;
+  daysOfWeek: DaysOfWeekType[];
 }
 
 export enum DaysOfWeekType {

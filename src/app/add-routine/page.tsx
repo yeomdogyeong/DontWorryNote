@@ -20,8 +20,12 @@ import {
 import { useAddEmojiModalOverlay } from "@/components/overlay/addEmoji/AddEmoji";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import dayjs from "dayjs";
+import { postRoutine } from "@/apis/routine/routine";
+import { useRouter } from "next/navigation";
+import { HOME_PATH } from "@/store/path";
 
 export default function AddRoutinePage() {
+  const router = useRouter();
   const [type, setType] = useState(SubjectType.GAEMI);
   const [routineType, setRoutineType] = useState<RoutineCategoryType | null>(
     null
@@ -91,7 +95,42 @@ export default function AddRoutinePage() {
       });
     }
   }, [selectedDay]);
-  const handleAddClick = useCallback(() => {}, []);
+  const handleAddClick = useCallback(async () => {
+    await postRoutine({
+      tendency: type,
+      category: routineType as RoutineCategoryType,
+      name: name as string,
+      description: description as string,
+      emoji: emoji,
+      startedDate: dayjs(startedDate).format("YYYY-MM-DD"),
+      endedDate: dayjs(endedDate).format("YYYY-MM-DD"),
+      executionTime: {
+        hour: Number(dayjs(time).format("HH")),
+        minute: Number(dayjs(time).format("mm")),
+        second: 0,
+        nano: 0,
+      },
+      daysOfWeek: Object.entries(selectedDay).reduce((prev, cur) => {
+        if (cur[1] === true) {
+          prev.push(cur[0] as DaysOfWeekType);
+        }
+
+        return prev;
+      }, [] as DaysOfWeekType[]),
+    });
+
+    router.push(HOME_PATH);
+  }, [
+    type,
+    routineType,
+    startedDate,
+    endedDate,
+    name,
+    time,
+    description,
+    selectedDay,
+    emoji,
+  ]);
 
   const onTimeClick = useCallback(() => {
     timePickerActive({
