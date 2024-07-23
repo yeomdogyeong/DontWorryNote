@@ -28,18 +28,28 @@ export default function FeedPage() {
     [searchParams]
   ) as string | undefined;
 
+  const queryKey = useMemo(
+    () => ["getFeeds", category, feedType, lastRequestAt],
+    [category, feedType, lastRequestAt]
+  );
+
+  const isEnabled = useMemo(
+    () =>
+      valid(searchParams.get("type")) && valid(searchParams.get("category")),
+    [searchParams]
+  );
+
   const router = useRouter();
 
   const { data } = useQuery({
-    queryKey: ["getFeeds", category, feedType, lastRequestAt],
+    queryKey: queryKey,
     queryFn: () =>
       getFeeds({
         tendency: feedType,
         category: category === "ALL" ? undefined : category,
       }),
     gcTime: CACHE_TIME,
-    enabled:
-      valid(searchParams.get("type")) && valid(searchParams.get("category")),
+    enabled: isEnabled,
   });
 
   useEffect(() => {

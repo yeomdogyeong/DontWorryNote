@@ -16,7 +16,7 @@ type StoreState = UserState & UserActions;
 
 const useStore = create<StoreState>((set) => ({
   users: { score: 0 },
-  userType: SubjectType.BAEJJANGE,
+  userType: SubjectType.BAEZZANGE,
 
   increaseScore: (points: number) =>
     set((state) => ({
