@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import baejjange from "../../../../public/Ellipse1.png";
 import gaemi from "../../../../public/Ellipse2.png";
 import camera from "../../../../public/camera.png";
@@ -14,11 +14,34 @@ export default function Main() {
   const userColor = useUserColor();
   const { userType } = useUserStore();
   const router = useRouter();
+  const [uploadImg, setUploadImg] = useState<string>("");
+  const [uploadFile, setUploadFile] = useState<Blob | string>("");
   console.log("ty", userType);
   console.log(userColor);
   const handleToMain = () => {
     router.push(HOME_PATH);
   };
+
+  const changeUserImg = (e: ChangeEvent<HTMLInputElement>) => {
+    //유저가 누를때 파일의 0번째 있는걸 가져와서 해당 이미지에 놓을거
+    const files = e.target.files;
+    console.log(files);
+    if (files && files.length > 0) {
+      const file = files[0];
+      setUploadFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        // 이미지를 처리하는 코드
+        if (reader.result) {
+          setUploadImg(reader.result.toString());
+        }
+      };
+    } else {
+      console.log("파일이 선택되지 않았습니다.");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
       {/* <ProgressBar srcImg={onestep} /> */}
@@ -29,18 +52,25 @@ export default function Main() {
           <p className="text-2xl font-bold">어떤 프로필로 활동할까요?</p>
         </div>
       </div>
-      <div className="relative flex justify-center items-center mb-[24px]">
-        <p>
+      {uploadImg ? (
+        <div>
+          {" "}
+          <Image src={uploadImg} alt="user-upload-img" />
+        </div>
+      ) : (
+        <div className="relative flex justify-center items-center mb-[24px] cursor-pointer">
           {userColor === "mainGreen" ? (
             <Image alt="user-img" src={baejjange} width={103} height={100} />
           ) : (
             <Image alt="user-img" src={gaemi} width={103} height={100} />
           )}
-        </p>
-        <p className="absolute bottom-0 right-0">
-          <Image alt="user-img" src={camera} width={40} />
-        </p>
-      </div>
+
+          <p className="absolute bottom-0 right-0">
+            <Image alt="user-img" src={camera} width={40} />
+          </p>
+        </div>
+      )}
+
       <div>
         <input
           className={`border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-${userColor}`}
