@@ -12,10 +12,11 @@ const PUBLIC_PATH = ["/", "/token", "/survey", "/survey/profile"];
 export default function GlobalContextWrapper(props: Props) {
   const { children } = props;
   const pathname = usePathname();
-  const { setInitializeState, setIsSignedIn } = useMyStore(
+  const { setInitializeState, setIsSignedIn, isSignedIn } = useMyStore(
     useShallow((state) => ({
       setInitializeState: state.setInitializeState,
       setIsSignedIn: state.setIsSignedIn,
+      isSignedIn: state.isSignedIn,
     }))
   );
 
@@ -26,7 +27,7 @@ export default function GlobalContextWrapper(props: Props) {
 
     const requestMyInfo = async () => {
       const userToken = localStorage.getItem("tokenKey");
-      if (userToken) {
+      if (userToken && !isSignedIn) {
         const { data } = await getUserMyInfo();
         setInitializeState({
           ...data.data,
@@ -37,6 +38,6 @@ export default function GlobalContextWrapper(props: Props) {
     };
 
     requestMyInfo();
-  });
+  }, []);
   return <>{children}</>;
 }

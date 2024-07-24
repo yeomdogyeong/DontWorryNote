@@ -1,4 +1,5 @@
 import CheckIcon from "@/components/icon/CheckIcon";
+import useMyStore from "@/store/useMyStore";
 import useUserStore from "@/store/useUserStore";
 import { SubjectType } from "@/types/common";
 import dayjs from "dayjs";
@@ -12,7 +13,7 @@ export interface CalendarProps {
 
 export default function Calendar(props: CalendarProps) {
   const { onConfirm, onClose, value = new Date().toDateString() } = props;
-  const userType = useUserStore((state) => state.userType);
+  const userType = useMyStore((state) => state.tendency);
 
   const [currentDate, setCurrentDate] = useState(dayjs(value));
   const [selectedDate, setSelectedDate] = useState(value);

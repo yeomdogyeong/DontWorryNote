@@ -2,7 +2,6 @@
 
 import { DefaultHeader } from "@/components/DefaultHeader";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
-import useUserStore from "@/store/useUserStore";
 import { SubjectType } from "@/types/common";
 import Image from "next/image";
 import gaemiImg from "../../../public/small_gaemi.png";
@@ -20,11 +19,25 @@ import {
 import { convertDayToText, getWeekDates } from "@/util/date";
 import { useMemo } from "react";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
+import useMyStore from "@/store/useMyStore";
+import { useShallow } from "zustand/react/shallow";
 
 export default function MyPage() {
   const router = useRouter();
-  const userType = useUserStore((state) => state.userType);
+  const { userType, nickname, profileImagePath, isSignedIn } = useMyStore(
+    useShallow((state) => ({
+      userType: state.tendency,
+      nickname: state.nickname,
+      profileImagePath: state.profileImagePath,
+      isSignedIn: state.isSignedIn,
+    }))
+  );
   const weekDates = useMemo(() => getWeekDates(), []);
+
+  console.log(isSignedIn);
+  if (!isSignedIn) {
+    return <></>;
+  }
 
   return (
     <div className="h-full">
@@ -36,11 +49,17 @@ export default function MyPage() {
             className="border-[1px] rounded-full"
             width={56}
             height={56}
-            src={userType === SubjectType.BAEZZANGE ? baejjangeImg : gaemiImg}
+            src={
+              profileImagePath
+                ? profileImagePath
+                : userType === SubjectType.BAEZZANGE
+                ? baejjangeImg
+                : gaemiImg
+            }
           />
           <div className="flex flex-col gap-[4px]">
             <div className="text-gray-900 font-[600] text-[18px]">
-              닉네임변경필요
+              {nickname}
             </div>
             <div className="text-gray-600 font-[400]">
               개짱이와 함께 활기찬 하루 보내세요!

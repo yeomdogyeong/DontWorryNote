@@ -11,12 +11,13 @@ import { postUserOnboarding } from "@/apis/user/user";
 import { postFile } from "@/apis/file/file";
 import { FileType } from "@/types/apis/file";
 import { HOME_PATH } from "@/store/path";
+import useMyStore from "@/store/useMyStore";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   const userColor = useUserColor();
-  const { userType } = useUserStore();
+  const userType = useMyStore((state) => state.tendency);
   const router = useRouter();
   const [uploadImg, setUploadImg] = useState<string>("");
   const [uploadFile, setUploadFile] = useState<Blob | string>("");

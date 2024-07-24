@@ -11,15 +11,15 @@ import {
   MY_PAGE_PATH,
   REPORT_PATH,
 } from "../../store/path";
-import useUserStore from "../../store/useUserStore";
 import { SubjectType } from "../../types/common";
 
 import { useRouter, usePathname } from "next/navigation";
+import useMyStore from "@/store/useMyStore";
 
 export default function BottomNavigation() {
   const router = useRouter();
   const pathname = usePathname();
-  const userType = useUserStore((state) => state.userType);
+  const userType = useMyStore((state) => state.tendency);
   const color = useMemo(() => {
     return userType === SubjectType.BAEZZANGE ? "#2FA464" : "#353C49";
   }, [userType]) as string;

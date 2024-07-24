@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     unoptimized: true,
-    domains: ["gaezzange.duckdns.org"],
+    domains: ["gaezzange.s3.ap-northeast-2.amazonaws.com"],
   },
 };
 export default nextConfig;

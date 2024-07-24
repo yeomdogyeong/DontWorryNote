@@ -8,6 +8,7 @@ import CloseIcon from "@/components/icon/CloseIcon";
 
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import useMyStore from "@/store/useMyStore";
 
 export interface TimePickerProps {
   onClose(): Promise<void>;
@@ -17,7 +18,7 @@ export interface TimePickerProps {
 
 export default function TimePicker(props: TimePickerProps) {
   const { onConfirm, onClose, value } = props;
-  const userType = useUserStore((state) => state.userType);
+  const userType = useMyStore((state) => state.tendency);
 
   const [time, setTime] = useState<Dayjs | null>(
     value ? dayjs(value) : dayjs()
