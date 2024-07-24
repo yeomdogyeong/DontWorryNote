@@ -22,6 +22,7 @@ import useMyStore from "@/store/useMyStore";
 import { useShallow } from "zustand/react/shallow";
 import { useQuery } from "@tanstack/react-query";
 import { getRoutines } from "@/apis/routine/routine";
+import dayjs from "dayjs";
 
 export default function MyPage() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function MyPage() {
     }))
   );
   const weekDates = useMemo(() => getWeekDates(), []);
+
   const { data } = useQuery({
     queryKey: ["getRoutines"],
     queryFn: () => getRoutines(weekDates[0], weekDates[6]),
@@ -89,8 +91,28 @@ export default function MyPage() {
         <div className="mt-[12px] flex-center">
           {weekDates.map((date, idx) => {
             return (
-              <div key={idx} className="flex-center flex-1">
-                {convertDayToText(idx)}
+              <div
+                key={idx}
+                className={`flex-center flex-1 flex-col rounded-[12px] h-[66px] ${
+                  dayjs(date).date() === dayjs(new Date()).date()
+                    ? userType === SubjectType.GAEMI
+                      ? "bg-mainBlack"
+                      : "bg-mainGreen"
+                    : ""
+                }`}
+              >
+                <div className="flex-center bg-gray-100 w-[24px] h-[24px] text-[12px] text-gray-400 rounded-[4px]">
+                  {dayjs(date).date()}
+                </div>
+                <div
+                  className={`mt-[8px] text-[12px] ${
+                    dayjs(date).date() === dayjs(new Date()).date()
+                      ? "text-white"
+                      : ""
+                  }`}
+                >
+                  {convertDayToText(idx)}
+                </div>
               </div>
             );
           })}

@@ -188,11 +188,19 @@ export default function FeedDetailPage() {
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="border-gray-200 border-[1px] flex-center w-full px-[16px] py-[10px] rounded-[8px]"
+          className={`border-gray-200 border-[1px] flex-center w-full px-[16px] py-[10px] rounded-[8px] focus:outline-none ${
+            data?.data.data.tendency === SubjectType.BAEZZANGE
+              ? "focus:border-mainGreen"
+              : "focus:border-mainBlack"
+          }`}
           placeholder="댓글을 작성해보세요"
         />
         <button
-          className="shrink-0 rounded-[8px] w-[60px] flex-center h-[40px]"
+          className={`shrink-0 rounded-[8px] w-[60px] flex-center h-[40px] text-white ${
+            data?.data.data.tendency === SubjectType.BAEZZANGE
+              ? "bg-mainGreen"
+              : "bg-mainBlack"
+          }`}
           onClick={async () => {
             await postFeedComment(feedId as number, {
               commentContent: comment,
