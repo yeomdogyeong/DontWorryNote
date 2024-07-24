@@ -10,13 +10,17 @@ const UserColorContext = createContext("");
 export const UserColorProvider = ({ children }: any) => {
   const [userColor, setUserColor] = useState("");
   const userType = useMyStore((state) => state.tendency);
+  const storedUserScore = localStorage.getItem("userScore");
+  const userScore =
+    storedUserScore !== null ? parseInt(storedUserScore, 10) : null;
   useEffect(() => {
     // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
-
-    if (userType === SubjectType.BAEZZANGE) {
+    if (userScore !== null && userScore > 4) {
+      userType === SubjectType.GAEMI;
       setUserColor("mainGreen");
-    } else if (userType === SubjectType.GAEMI) {
+    } else {
       setUserColor("mainBlack");
+      userType === SubjectType.BAEZZANGE;
     }
   }, [userType]);
 

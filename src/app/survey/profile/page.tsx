@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import baejjange from "../../../../public/Ellipse1.png";
 import gaemi from "../../../../public/Ellipse2.png";
 import camera from "../../../../public/camera.png";
@@ -57,6 +57,10 @@ export default function Main() {
     setUserNickname(e.target.value);
     console.log(e.target.value);
   };
+
+  useEffect(() => {
+    console.log("usercolor", userColor);
+  });
 
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">

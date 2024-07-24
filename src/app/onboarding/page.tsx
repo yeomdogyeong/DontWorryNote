@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
 import Image from "next/image";
@@ -9,6 +9,10 @@ import SimpleSlider from "@/components/slider/SimpleSlider";
 import { useRouter } from "next/navigation";
 function onBoarding() {
   const router = useRouter();
+
+  // useEffect(() => {
+  //   localStorage.removeItem("tokenKey");
+  // }, []);
 
   const handleKakao = () => {
     router.push(`https://gaezzange.duckdns.org/oauth2/authorization/kakao`);
