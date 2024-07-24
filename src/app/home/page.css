@@ -1,0 +1,33 @@
+.speech-bubble {
+  position: relative;
+  background: #00aabb;
+  border-radius: 0.4em;
+  padding: 10px;
+  color: white;
+  width: fit-content;
+  margin-left: auto; /* Aligns the bubble to the right */
+  margin-right: 20px; /* Adjusts the right margin as needed */
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  right: -10px; /* Positions the tip to the right */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #00aabb;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -5px;
+}
+
+.speech-bubble-container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-left: 8px;
+  position: relative;
+}
