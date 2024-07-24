@@ -2,11 +2,12 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-export const userInstance = (baseURL) => {
+export const userInstance = (baseURL, headers) => {
   const instance = axios.create({
     baseURL: baseURL,
     headers: {
       "content-type": "application/json",
+      ...headers,
     },
     withCredentials: true,
   });
@@ -57,3 +58,6 @@ export const onBoarding = userInstance(
 );
 
 export const Axios = userInstance("https://gaezzange.duckdns.org/api");
+export const FileRequest = userInstance("https://gaezzange.duckdns.org/api", {
+  "Content-Type": "multipart/form-data",
+});

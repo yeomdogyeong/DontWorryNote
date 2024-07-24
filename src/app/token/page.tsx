@@ -16,14 +16,12 @@ function page() {
       userToken.indexOf(".") + 1,
       userToken.lastIndexOf(".")
     );
-    console.log("payload", payload);
     if (payload) {
       let dec = base64.decode(payload);
 
       const parseDec = JSON.parse(dec);
-      console.log("dec", parseDec);
-      if (parseDec.hasOwnProperty("userAuthId")) {
-        router.push(HOME_PATH);
+      if (parseDec.hasOwnProperty("userId")) {
+        router.push("/survey");
       } else {
         router.push("/survey");
       }
@@ -31,7 +29,6 @@ function page() {
   };
 
   useEffect(() => {
-    console.log("tokenKey", tokenKey);
     const fetchData = async () => {
       try {
         const response = await onBoarding({

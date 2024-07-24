@@ -8,6 +8,9 @@ import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
 import { postUserOnboarding } from "@/apis/user/user";
+import { postFile } from "@/apis/file/file";
+import { FileType } from "@/types/apis/file";
+import { HOME_PATH } from "@/store/path";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
@@ -19,15 +22,14 @@ export default function Main() {
   const [uploadFile, setUploadFile] = useState<Blob | string>("");
 
   const handleToMain = async () => {
-    console.log(uploadFile);
-    const formData = new FormData();
-    await formData.append("nickname", "닉네임1");
-    await formData.append("tendency", userType);
+    const { data } = await postFile(FileType.USER_IMAGE, uploadFile);
 
-    await formData.append("profileImagePath", uploadFile);
-
-    await postUserOnboarding(formData);
-    // router.push(HOME_PATH);
+    await postUserOnboarding({
+      nickname: "test22",
+      tendency: userType,
+      profileImagePath: data.data.path,
+    });
+    router.push(HOME_PATH);
   };
 
   const changeUserImg = (e: ChangeEvent<HTMLInputElement>) => {
