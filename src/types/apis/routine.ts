@@ -14,12 +14,7 @@ export interface PostRoutineRq {
   emoji: number;
   startedDate: string;
   endedDate?: string;
-  executionTime?: {
-    hour: number;
-    minute: number;
-    second: number;
-    nano: number;
-  };
+  executionTime?: string;
   daysOfWeek: DaysOfWeekType[];
 }
 

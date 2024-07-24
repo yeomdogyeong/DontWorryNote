@@ -19,6 +19,7 @@ export default function FeedItem(props: Props) {
     feedCommentCount,
     feedLikeCount,
     category,
+    feedCreatedAt,
   } = props;
 
   const router = useRouter();
@@ -45,19 +46,21 @@ export default function FeedItem(props: Props) {
   return (
     <div className="bg-white rounded-[12px] px-[20px] pt-[28px] pb-[8px] shadow-[0_4px_10px_0px_rgba(0,40,100,0.06)]">
       <div className="flex h-[37px]">
-        {/* <Image
+        <Image
           src={profileImagePath}
           width={32}
           height={32}
           alt="profile_image"
-        /> */}
+        />
         <div className="ml-[12px]">
           <div className="font-[600]">{nickname}</div>
-          {/* <div>{formatTimeDifference()}</div> */}
+          <div className="text-[12px] text-gray-500">
+            {formatTimeDifference(feedCreatedAt)}
+          </div>
         </div>
         <div
           className={`ml-auto flex-center w-[72px] h-[30px] rounded-[80px] ${
-            type === SubjectType.BAEZZANGE
+            type === SubjectType.GAEMI
               ? "text-mainBlack bg-subBlack"
               : "text-mainGreen bg-subGreen"
           }`}
@@ -69,13 +72,13 @@ export default function FeedItem(props: Props) {
       <div className="mt-[16px] w-full h-[200px] relative">
         <Image
           className="rounded-[8px]"
-          src={process.env.NEXT_PUBLIC_URL + feedImagePath}
+          src={feedImagePath}
           alt="feed-image"
           layout="fill"
-          objectFit="contain"
+          objectFit="cover"
         />
       </div>
-      <div className="flex items-center text-[12px] font-[400] text-gray-600">
+      <div className="mt-[24px] flex items-center text-[12px] font-[400] text-gray-600">
         <div>{likeText}</div>
         <div className="ml-auto">댓글 {feedCommentCount}개</div>
       </div>

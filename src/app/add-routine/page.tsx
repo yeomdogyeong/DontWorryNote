@@ -37,8 +37,8 @@ export default function AddRoutinePage() {
 
   const [selectedDay, setSelectedDay] = useState({
     MONDAY: false,
-    TUSEDAY: false,
-    WEDNSDAY: false,
+    TUESDAY: false,
+    WEDNESDAY: false,
     THURSDAY: false,
     FRIDAY: false,
     SATURDAY: false,
@@ -76,8 +76,8 @@ export default function AddRoutinePage() {
     if (isAllCheck) {
       setSelectedDay({
         MONDAY: false,
-        TUSEDAY: false,
-        WEDNSDAY: false,
+        TUESDAY: false,
+        WEDNESDAY: false,
         THURSDAY: false,
         FRIDAY: false,
         SATURDAY: false,
@@ -86,8 +86,8 @@ export default function AddRoutinePage() {
     } else {
       setSelectedDay({
         MONDAY: true,
-        TUSEDAY: true,
-        WEDNSDAY: true,
+        TUESDAY: true,
+        WEDNESDAY: true,
         THURSDAY: true,
         FRIDAY: true,
         SATURDAY: true,
@@ -103,13 +103,8 @@ export default function AddRoutinePage() {
       description: description as string,
       emoji: emoji,
       startedDate: dayjs(startedDate).format("YYYY-MM-DD"),
-      endedDate: dayjs(endedDate).format("YYYY-MM-DD"),
-      executionTime: {
-        hour: Number(dayjs(time).format("HH")),
-        minute: Number(dayjs(time).format("mm")),
-        second: 0,
-        nano: 0,
-      },
+      endedDate: endedDate ? dayjs(endedDate).format("YYYY-MM-DD") : undefined,
+      executionTime: dayjs(time).format("HH:mm:00"),
       daysOfWeek: Object.entries(selectedDay).reduce((prev, cur) => {
         if (cur[1] === true) {
           prev.push(cur[0] as DaysOfWeekType);
@@ -323,10 +318,10 @@ export default function AddRoutinePage() {
           </button>
           <button
             onClick={() =>
-              setSelectedDay({ ...selectedDay, TUSEDAY: !selectedDay.TUSEDAY })
+              setSelectedDay({ ...selectedDay, TUESDAY: !selectedDay.TUESDAY })
             }
             className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
-              selectedDay.TUSEDAY === true
+              selectedDay.TUESDAY === true
                 ? type === SubjectType.BAEZZANGE
                   ? "border-mainGreen text-mainGreen bg-subGreen"
                   : "border-mainBlack text-mainBlack bg-subBlack"
@@ -339,11 +334,11 @@ export default function AddRoutinePage() {
             onClick={() =>
               setSelectedDay({
                 ...selectedDay,
-                WEDNSDAY: !selectedDay.WEDNSDAY,
+                WEDNESDAY: !selectedDay.WEDNESDAY,
               })
             }
             className={`flex-center w-full h-full border-[1px] rounded-[8px] ${
-              selectedDay.WEDNSDAY === true
+              selectedDay.WEDNESDAY === true
                 ? type === SubjectType.BAEZZANGE
                   ? "border-mainGreen text-mainGreen bg-subGreen"
                   : "border-mainBlack text-mainBlack bg-subBlack"

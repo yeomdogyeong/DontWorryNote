@@ -10,6 +10,7 @@ export interface FeedItemType {
   feedImagePath: string;
   feedLikeCount: number;
   feedCommentCount: number;
+  feedCreatedAt: string;
 }
 
 export interface GetFeedRq {
