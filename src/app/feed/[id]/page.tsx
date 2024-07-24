@@ -1,5 +1,6 @@
 "use client";
 
+import { postFeedComment } from "@/apis/comment/comment";
 import { deleteFeed, getFeed, postFeedByIdLikeToggle } from "@/apis/feed/feed";
 import { Header } from "@/components/Header";
 import CommentIcon from "@/components/icon/CommentIcon";
@@ -17,12 +18,14 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { produce } from "immer";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 export default function FeedDetailPage() {
   const searchParams = useParams();
   const { userId } = useMyStore();
   const router = useRouter();
+
+  const [comment, setComment] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -32,7 +35,7 @@ export default function FeedDetailPage() {
   );
   const queryKey = useMemo(() => ["getFeed", feedId], []);
 
-  const { data, isFetched } = useQuery({
+  const { data, isFetched, refetch } = useQuery({
     queryKey: queryKey,
     queryFn: () => getFeed(feedId as number),
     gcTime: CACHE_TIME,
@@ -171,8 +174,7 @@ export default function FeedDetailPage() {
       </div>
       <div className="h-[8px] bg-[#F4F4F4]" />
       <div className="px-[20px] pt-[24px] pb-[40px] ">
-        <div className="text-gray-700">댓글 {data?.data.data.commentCount}</div>
-        <div className="mt-[16px]">
+        <div>
           {data?.data.data.commentForm &&
           data?.data.data.commentForm.length > 0 ? (
             <div className="flex-center text-gray-500">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
@@ -182,6 +184,25 @@ export default function FeedDetailPage() {
         </div>
       </div>
       <div className="h-[8px] bg-[#F4F4F4]" />
+      <div className="fixed bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
+        <input
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          className="border-gray-200 border-[1px] flex-center w-full px-[16px] py-[10px] rounded-[8px]"
+          placeholder="댓글을 작성해보세요"
+        />
+        <button
+          className="shrink-0 rounded-[8px] w-[60px] flex-center h-[40px]"
+          onClick={async () => {
+            await postFeedComment(feedId as number, {
+              commentContent: comment,
+            });
+            refetch();
+          }}
+        >
+          등록
+        </button>
+      </div>
     </div>
   );
 }
