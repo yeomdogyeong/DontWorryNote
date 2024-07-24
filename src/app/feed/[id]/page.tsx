@@ -6,6 +6,7 @@ import CommentIcon from "@/components/icon/CommentIcon";
 import LikeIcon from "@/components/icon/LikeIcon";
 import MoreIcon from "@/components/icon/MoreIcon";
 import { useActionSheetOverlay } from "@/components/overlay/actionSheet/ActionSheetOverlay";
+import { FEED_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
 import { GetFeedDetailRs } from "@/types/apis/feed";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
@@ -47,7 +48,12 @@ export default function FeedDetailPage() {
   const onMoreBtnClick = useCallback(() => {
     active({
       list: [
-        { title: "게시글 편집", onClick: async () => {} },
+        {
+          title: "게시글 편집",
+          onClick: async () => {
+            router.push(FEED_PATH + `/${feedId}/edit`);
+          },
+        },
         {
           title: "게시글 삭제",
           className: "text-negative",
