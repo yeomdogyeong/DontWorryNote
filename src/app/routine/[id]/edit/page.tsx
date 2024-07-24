@@ -3,8 +3,8 @@
 import { Header } from "@/components/Header";
 import { SubjectType, convertEmojiImgSrc } from "@/types/common";
 import { useCallback, useMemo, useState } from "react";
-import gaemiImg from "../../../public/small_gaemi.png";
-import baejjangeImg from "../../../public/small_baejjange.png";
+import gaemiImg from "../../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../../public/small_baejjange.png";
 import Image from "next/image";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
 import { useAddRoutineCateogoryModalOverlay } from "@/components/overlay/addRoutineCategoryModal/AddRoutineCategoryModalOverlay";
@@ -24,7 +24,7 @@ import { postRoutine } from "@/apis/routine/routine";
 import { useRouter } from "next/navigation";
 import { HOME_PATH } from "@/store/path";
 
-export default function AddRoutinePage() {
+export default function RoutineEditPage() {
   const router = useRouter();
   const [type, setType] = useState(SubjectType.GAEMI);
   const [routineType, setRoutineType] = useState<RoutineCategoryType | null>(
@@ -103,7 +103,7 @@ export default function AddRoutinePage() {
       description: description as string,
       emoji: emoji,
       startedDate: dayjs(startedDate).format("YYYY-MM-DD"),
-      endedDate: endedDate ? dayjs(endedDate).format("YYYY-MM-DD") : undefined,
+      endedDate: endedDate ? dayjs(endedDate).format("YYYY-MM-DD") : null,
       executionTime: dayjs(time).format("HH:mm:00"),
       daysOfWeek: Object.entries(selectedDay).reduce((prev, cur) => {
         if (cur[1] === true) {

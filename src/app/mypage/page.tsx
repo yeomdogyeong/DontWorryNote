@@ -21,6 +21,8 @@ import { useMemo } from "react";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
 import useMyStore from "@/store/useMyStore";
 import { useShallow } from "zustand/react/shallow";
+import { useQuery } from "@tanstack/react-query";
+import { getRoutines } from "@/apis/routine/routine";
 
 export default function MyPage() {
   const router = useRouter();
@@ -33,8 +35,14 @@ export default function MyPage() {
     }))
   );
   const weekDates = useMemo(() => getWeekDates(), []);
+  const { data } = useQuery({
+    queryKey: ["getRoutines"],
+    queryFn: () => getRoutines(weekDates[0], weekDates[6]),
+    enabled: weekDates.length > 0,
+  });
 
-  console.log(isSignedIn);
+  console.log(data);
+
   if (!isSignedIn) {
     return <></>;
   }

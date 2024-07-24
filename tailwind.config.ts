@@ -33,7 +33,7 @@ const config: Config = {
         mainGreen: "#2FA464",
         mainBlack: "#353C49",
         subGreen: "#E9FFF3",
-        subBlack: "#EFF4FF",
+        subBlack: "#E8F0FF",
         positive: "#21C389",
         negative: "#FF4D4D",
         kakaoYellow: "#FAE100",

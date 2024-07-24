@@ -2,26 +2,44 @@
 
 import { Header } from "@/components/Header";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
-import { useCallback, useRef, useState } from "react";
-import gaemiImg from "../../../public/small_gaemi.png";
-import baejjangeImg from "../../../public/small_baejjange.png";
+import { useCallback, useMemo, useRef, useState } from "react";
+import gaemiImg from "../../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../../public/small_baejjange.png";
 import Image from "next/image";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
 import AddPictureIcon from "@/components/icon/AddPictureIcon";
 import ImageCloseIcon from "@/components/icon/ImageCloseIcon";
 import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCategoryModal/AddPostCategoryModalOverlay";
+import { useQuery } from "@tanstack/react-query";
+import { getFeed } from "@/apis/feed/feed";
+import { useParams, useRouter } from "next/navigation";
+import { valid } from "@/util/valid";
 
 interface FileType extends File {
   url: string;
 }
 
-export default function AddPostPage() {
+export default function PostEditPage() {
   const [type, setType] = useState(SubjectType.GAEMI);
   const [postType, setPostType] = useState<PostType | null>(null);
   const [contents, setContents] = useState<string | undefined>(undefined);
   const [files, setFiles] = useState<FileType>();
+  const searchParams = useParams();
+  const router = useRouter();
+
+  const feedId = useMemo(
+    () => (searchParams.id ? Number(searchParams.id) : undefined),
+    []
+  );
 
   const { active } = useAddPostCateogoryModalOverlay();
+  const queryKey = useMemo(() => ["getFeed"], []);
+
+  const { data, isFetched } = useQuery({
+    queryKey: queryKey,
+    queryFn: () => getFeed(feedId as number),
+    enabled: valid(feedId),
+  });
 
   const handlePostType = useCallback(() => {
     active({
