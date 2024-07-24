@@ -21,12 +21,12 @@ export default function Main() {
   const router = useRouter();
   const [uploadImg, setUploadImg] = useState<string>("");
   const [uploadFile, setUploadFile] = useState<Blob | string>("");
-
+  const [userNickname, setUserNickname] = useState<string>("");
   const handleToMain = async () => {
     const { data } = await postFile(FileType.USER_IMAGE, uploadFile);
 
     await postUserOnboarding({
-      nickname: "test22",
+      nickname: userNickname,
       tendency: userType,
       profileImagePath: data.data.path,
     });
@@ -51,6 +51,11 @@ export default function Main() {
     } else {
       console.log("파일이 선택되지 않았습니다.");
     }
+  };
+
+  const handleUserName = (e: any) => {
+    setUserNickname(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
@@ -108,6 +113,8 @@ export default function Main() {
         <input
           className={`border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-${userColor}`}
           placeholder="닉네임을 입력해주세요"
+          value={userNickname}
+          onChange={handleUserName}
         />
         <div className="self-start mt-[8px] text-gray-600">
           6자리 이내, 문자/숫자 가능, 특수문자/기호 입력불가
