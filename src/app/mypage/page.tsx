@@ -12,7 +12,6 @@ import routine_baejjange from "../../../public/routine-baejjange.png";
 import { useRouter } from "next/navigation";
 import {
   ADD_ROUTINE_PATH,
-  MY_PAGE_ACTIVITY_PATH,
   MY_PAGE_EDIT_PATH,
   MY_PAGE_ROUTINE_PATH,
 } from "@/store/path";
@@ -136,7 +135,7 @@ export default function MyPage() {
           <RightArrowIcon color="#999999" />
         </button>
         <button
-          onClick={() => router.push(MY_PAGE_ACTIVITY_PATH)}
+          onClick={() => alert("준비 중 입니다.")}
           className="w-full h-[52px] h-[52px] border-t-[1px] flex items-center justify-between font-[400] text-gray-900"
         >
           <div>내 활동 확인하기</div>
