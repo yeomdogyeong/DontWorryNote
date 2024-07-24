@@ -6,14 +6,17 @@ import routine_4 from "../../../public/routine_4.png";
 import routine_5 from "../../../public/routine_5.png";
 import routine_6 from "../../../public/routine_6.png";
 
-export interface PostRoutineRq {
+export interface PostRoutineRq extends Omit<RoutineItem, "routineId"> {}
+
+export interface RoutineItem {
+  routineId: number;
   tendency: SubjectType;
   category: RoutineCategoryType;
   name: string;
   description: string;
   emoji: number;
   startedDate: string;
-  endedDate?: string;
+  endedDate: string | null;
   executionTime?: string;
   daysOfWeek: DaysOfWeekType[];
 }

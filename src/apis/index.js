@@ -44,7 +44,8 @@ export const userInstance = (baseURL, headers) => {
       if (error.response && error.response.status === 401) {
         // const router = useRouter();
         alert("토큰이 만료되었습니다.");
-        // router.push("/onboarding");
+        localStorage.removeItem("tokenKey");
+        window.location.href = "/onboarding";
       }
       return Promise.reject(error);
     }
