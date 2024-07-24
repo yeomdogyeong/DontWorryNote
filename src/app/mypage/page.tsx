@@ -75,7 +75,10 @@ export default function MyPage() {
         </div>
         <button
           className="flex-center rounded-[8px] px-[4px] py-[8px] text-gray-600 border-[1px] text-[12px] h-[25px] w-[70px]"
-          onClick={() => router.push(MY_PAGE_EDIT_PATH)}
+          onClick={() => {
+            alert("준비 중 입니다.");
+            //router.push(MY_PAGE_EDIT_PATH)
+          }}
         >
           프로필 변경
         </button>
