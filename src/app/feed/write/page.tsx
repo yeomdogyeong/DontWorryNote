@@ -11,16 +11,18 @@ import AddPictureIcon from "@/components/icon/AddPictureIcon";
 import ImageCloseIcon from "@/components/icon/ImageCloseIcon";
 import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCategoryModal/AddPostCategoryModalOverlay";
 import { postFeed } from "@/apis/feed/feed";
-
-interface FileType extends File {
-  url: string;
-}
+import { postFile } from "@/apis/file/file";
+import { FileType } from "@/types/apis/file";
+import { useRouter } from "next/navigation";
+import { FEED_PATH } from "@/store/path";
 
 export default function AddPostPage() {
+  const router = useRouter();
   const [type, setType] = useState(SubjectType.GAEMI);
   const [postType, setPostType] = useState<PostType | null>(null);
   const [contents, setContents] = useState<string | undefined>(undefined);
-  const [files, setFiles] = useState<FileType>();
+  const [file, setFile] = useState<File>();
+  const [url, setUrl] = useState<string | null>(null);
 
   const { active } = useAddPostCateogoryModalOverlay();
 
@@ -56,19 +58,20 @@ export default function AddPostPage() {
     const file = event.currentTarget.files as FileList;
 
     const url = window.URL.createObjectURL(file[0]);
-    setFiles({ url, ...file[0] });
+    setUrl(url);
+    setFile(file[0]);
   };
 
-  const handleAddClick = useCallback(() => {
-    postFeed({
-      feedForm: {
-        tendency: type,
-        category: postType as PostType,
-        content: contents as string,
-      },
-      feedImage: "",
+  const handleAddClick = useCallback(async () => {
+    const { data } = await postFile(FileType.FEED_IMAGE, file);
+    await postFeed({
+      tendency: type,
+      category: postType as PostType,
+      content: contents as string,
+      feedImagePath: data.data.path,
     });
-  }, [type, postType, contents]);
+    router.push(FEED_PATH);
+  }, [file, type, postType, contents]);
 
   const handleContentsChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -146,18 +149,21 @@ export default function AddPostPage() {
             hidden
           />
         </button>
-        {files && (
+        {url && (
           <div className="w-[88px] h-[88px] relative">
             <Image
               alt="post-img"
               width={80}
               height={80}
               className="absolute bottom-0 left-0 rounded-[8px]"
-              src={files.url}
+              src={url}
             />
             <button
               className="absolute right-0 top-0"
-              onClick={() => setFiles(undefined)}
+              onClick={() => {
+                setFile(undefined);
+                setUrl(null);
+              }}
             >
               <ImageCloseIcon />
             </button>
