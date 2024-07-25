@@ -52,7 +52,6 @@ export default function FeedItem(props: Props) {
     queryClient.setQueryData(queryKey, (prevData: any) => {
       if (!prevData) return prevData;
       //NOTE: 추후 업로드 할 때, 기록 안막을 시 수정 필요
-      console.log(prevData);
       return produce(prevData, (draft: any) => {
         draft.data.data.forEach((data: FeedItemType) => {
           if (data.feedId === feedId) {
@@ -62,11 +61,11 @@ export default function FeedItem(props: Props) {
         });
       });
     });
-  }, [feedId, isLike]);
+  }, [feedId, isLike, queryClient, queryKey]);
 
   const handleComment = useCallback(() => {
     router.push(`${FEED_PATH}/${feedId}`);
-  }, []);
+  }, [feedId, router]);
 
   return (
     <div className="bg-white rounded-[12px] px-[20px] pt-[28px] pb-[8px] shadow-[0_4px_10px_0px_rgba(0,40,100,0.06)]">

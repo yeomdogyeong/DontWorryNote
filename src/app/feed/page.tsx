@@ -74,7 +74,7 @@ export default function FeedPage() {
       );
       setFeedType(type);
     },
-    [setFeedType, router]
+    [setFeedType, router, category]
   );
 
   return (

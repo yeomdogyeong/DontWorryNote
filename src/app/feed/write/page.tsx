@@ -71,7 +71,7 @@ export default function AddPostPage() {
       feedImagePath: data.data.path,
     });
     router.push(FEED_PATH);
-  }, [file, type, postType, contents]);
+  }, [file, type, postType, contents, router]);
 
   const handleContentsChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -80,7 +80,7 @@ export default function AddPostPage() {
     []
   );
   return (
-    <div className="flex flex-col items-center justify-start h-full">
+    <div className="flex flex-col items-center justify-start h-max min-h-full bg-white">
       <Header
         title="게시글 작성"
         rightButton={
@@ -92,7 +92,7 @@ export default function AddPostPage() {
           </button>
         }
       />
-      <div className="flex flex-col py-[24px] px-[20px] w-full">
+      <div className="flex flex-col py-[24px] px-[20px] w-full h-max">
         <div className="flex gap-[8px] w-full">
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${

@@ -2,12 +2,12 @@
 import React from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
-import Image from "next/image";
 import google from "../../../public/google.png";
 import kakao from "../../../public/kakao.png";
 import SimpleSlider from "@/components/slider/SimpleSlider";
 import { useRouter } from "next/navigation";
-function onBoarding() {
+
+function OnBoardingPage() {
   const router = useRouter();
 
   const handleKakao = () => {
@@ -37,4 +37,4 @@ function onBoarding() {
   );
 }
 
-export default onBoarding;
+export default OnBoardingPage;

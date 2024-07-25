@@ -59,13 +59,13 @@ export default function RoutineEditPage() {
       onConfirm: async (value: string) => setStartedDate(value),
       value: startedDate,
     });
-  }, [startDateActive]);
+  }, [startDateActive, startedDate]);
   const handleEndDateClick = useCallback(() => {
     endDateActive({
       onConfirm: async (value: string) => setEndedDate(value),
       value: endedDate,
     });
-  }, [endDateActive]);
+  }, [endDateActive, endedDate]);
 
   const isAllCheck = useMemo(
     () => Object.values(selectedDay).every((v) => v === true),
@@ -94,7 +94,7 @@ export default function RoutineEditPage() {
         SUNDAY: true,
       });
     }
-  }, [selectedDay]);
+  }, [isAllCheck]);
   const handleAddClick = useCallback(async () => {
     await postRoutine({
       tendency: type,
@@ -116,6 +116,7 @@ export default function RoutineEditPage() {
 
     router.push(HOME_PATH);
   }, [
+    router,
     type,
     routineType,
     startedDate,
@@ -132,7 +133,7 @@ export default function RoutineEditPage() {
       onConfirm: async (value: string) => setTime(value),
       value: time,
     });
-  }, [timePickerActive]);
+  }, [timePickerActive, time]);
 
   const handlePostType = useCallback(() => {
     active({

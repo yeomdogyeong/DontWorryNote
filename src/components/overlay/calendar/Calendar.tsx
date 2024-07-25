@@ -25,7 +25,7 @@ export default function Calendar(props: CalendarProps) {
   const handleConfirm = useCallback(() => {
     onConfirm(selectedDate as string);
     onClose();
-  }, [onClose, onConfirm, value, selectedDate]);
+  }, [onClose, onConfirm, selectedDate]);
 
   const days = useMemo(() => {
     const dates = [];
