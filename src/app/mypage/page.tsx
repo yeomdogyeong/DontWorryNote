@@ -32,28 +32,33 @@ export default function MyPage() {
       isSignedIn: state.isSignedIn,
     }))
   );
-  const [setData] = useState(new Set());
+  const [setDate, setSetDate] = useState(new Set());
   const weekDates = useMemo(() => getWeekDates(), []);
 
   const { data, isFetched } = useQuery({
     queryKey: ["getRoutineExecution"],
     queryFn: () => getRoutineExecution(weekDates[0], weekDates[6]),
-    enabled: weekDates.length > 0,
+    enabled: weekDates.length > 0 && isSignedIn,
   });
 
   useEffect(() => {
     if (isFetched) {
+      const newSet = new Set();
       data?.data.data.forEach((v) => {
         v.executionDates.forEach((date) => {
-          setData.add(date);
+          newSet.add(date);
         });
       });
+
+      setSetDate(newSet);
     }
-  }, [isFetched, data, setData]);
+  }, [isFetched, data?.data.data, setSetDate]);
 
   if (!isSignedIn) {
     return <></>;
   }
+
+  console.log(setDate);
 
   return (
     <div className="h-full">
@@ -109,7 +114,7 @@ export default function MyPage() {
                     : ""
                 }`}
               >
-                {setData.has(date) ? (
+                {setDate.has(date) ? (
                   <div className="flex-center">
                     <Image
                       src={
