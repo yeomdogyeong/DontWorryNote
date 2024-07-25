@@ -61,6 +61,7 @@ export default function MyPage() {
       <div className="h-[100px] px-[20px] pt-[16px] pb-[28px] flex justify-between">
         <div className="flex items-center gap-[12px]">
           <Image
+            style={{ height: 56 }}
             alt="profile-img"
             className="border-[1px] rounded-full"
             width={56}

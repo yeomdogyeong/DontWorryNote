@@ -205,6 +205,7 @@ export default function FeedDetailPage() {
             await postFeedComment(feedId as number, {
               commentContent: comment,
             });
+            setComment("");
             refetch();
           }}
         >
