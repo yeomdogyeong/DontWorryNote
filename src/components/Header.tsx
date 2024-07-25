@@ -12,7 +12,7 @@ export const Header = (props: Props) => {
   const { title, rightButton } = props;
   const router = useRouter();
   return (
-    <div className="px-[20px] py-[12px] flex items-center w-full max-w-page h-[52px]">
+    <div className="z-50 sticky bg-white top-0 px-[20px] py-[12px] flex items-center w-full max-w-page h-[52px]">
       <div className="flex flex-1 justify-start" onClick={() => router.back()}>
         <button>
           <LeftArrow />
