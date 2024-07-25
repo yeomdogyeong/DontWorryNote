@@ -80,7 +80,7 @@ export default function FeedPage() {
   return (
     <div className="h-max min-h-full pb-[52px]">
       <DefaultHeader title="피드" />
-      <div className="ml-[20px] flex items-center gap-[20px] h-[50px]">
+      <div className="z-30 px-[20px] flex items-center gap-[20px] h-[50px] sticky top-[56px] bg-white w-full">
         <div
           onClick={() => handleFeedTypeClick(SubjectType.GAEMI)}
           className={`relative flex-center text-gray-500 font-[700] text-[20px] h-full ${
@@ -104,7 +104,7 @@ export default function FeedPage() {
           )}
         </div>
       </div>
-      <div className="bg-[#F4F4F4] py-[16px] h-full">
+      <div className="bg-[#F4F4F4] py-[16px] h-max min-h-screen">
         <div className="h-[36px] flex gap-[8px] px-[20px] items-center w-full overflow-x-auto">
           {[{ name: "전체", value: "ALL" }, ...PostTypeArray].map((item) => {
             return (

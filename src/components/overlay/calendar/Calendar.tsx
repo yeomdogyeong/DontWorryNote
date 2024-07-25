@@ -47,9 +47,9 @@ export default function Calendar(props: CalendarProps) {
 
   return (
     <>
-      <div className="absolute top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
+      <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
 
-      <div className="w-[335px] h-[418px] flex flex-col pt-[16px] px-[20px] pb-[8px] rounded-[12px] bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed z-[100] w-[335px] h-[418px] flex flex-col pt-[16px] px-[20px] pb-[8px] rounded-[12px] bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center justify-between h-[64px]">
           <button
             onClick={handlePrevMonth}

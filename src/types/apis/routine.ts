@@ -22,6 +22,8 @@ export interface RoutineItemType {
   daysOfWeek: DaysOfWeekType[];
 }
 
+export interface GetRoutineRs extends RoutineItemType {}
+
 export enum DaysOfWeekType {
   MONDAY = "MONDAY",
   TUESDAY = "TUESDAY",
