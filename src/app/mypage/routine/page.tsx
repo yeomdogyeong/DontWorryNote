@@ -53,7 +53,9 @@ export default function RoutinePage() {
               }}
               key={item.routine.routineId}
               {...item.routine}
-              isExecution={false}
+              isExecution={item.executionDates.some((date) => {
+                return date === formatDate;
+              })}
             />
           ))
         ) : (
