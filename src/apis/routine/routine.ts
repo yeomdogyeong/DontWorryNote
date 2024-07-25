@@ -1,6 +1,6 @@
 import { ApiResponse } from "@/types/apis/common";
 import { Axios } from "..";
-import { PostRoutineRq } from "@/types/apis/routine";
+import { GetRoutineRs, PostRoutineRq } from "@/types/apis/routine";
 
 export const postRoutine = (rq: PostRoutineRq) => {
   return Axios.post<ApiResponse<null>>(`/v1/routine`, {
@@ -19,7 +19,7 @@ export const deleteRoutine = (routineId: number) => {
 };
 
 export const getRoutine = (routineId: number) => {
-  return Axios.get<ApiResponse<null>>(`/v1/routine/${routineId}`);
+  return Axios.get<ApiResponse<GetRoutineRs>>(`/v1/routine/${routineId}`);
 };
 
 export const getRoutines = (startDate: string, endDate: string) => {
