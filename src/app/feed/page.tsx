@@ -104,7 +104,7 @@ export default function FeedPage() {
           )}
         </div>
       </div>
-      <div className="bg-[#F4F4F4] py-[16px] h-full">
+      <div className="bg-[#F4F4F4] py-[16px] h-max min-h-screen">
         <div className="h-[36px] flex gap-[8px] px-[20px] items-center w-full overflow-x-auto">
           {[{ name: "전체", value: "ALL" }, ...PostTypeArray].map((item) => {
             return (
