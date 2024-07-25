@@ -29,7 +29,7 @@ export default function PostEditPage() {
 
   const feedId = useMemo(
     () => (searchParams.id ? Number(searchParams.id) : undefined),
-    []
+    [searchParams]
   );
 
   const { active } = useAddPostCateogoryModalOverlay();

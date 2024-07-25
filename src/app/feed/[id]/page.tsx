@@ -9,7 +9,6 @@ import MoreIcon from "@/components/icon/MoreIcon";
 import { useActionSheetOverlay } from "@/components/overlay/actionSheet/ActionSheetOverlay";
 import { FEED_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
-import { GetFeedDetailRs } from "@/types/apis/feed";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
 import { CACHE_TIME } from "@/util/common";
 import { formatTimeDifference } from "@/util/date";
@@ -31,9 +30,9 @@ export default function FeedDetailPage() {
 
   const feedId = useMemo(
     () => (searchParams.id ? Number(searchParams.id) : undefined),
-    []
+    [searchParams]
   );
-  const queryKey = useMemo(() => ["getFeed", feedId], []);
+  const queryKey = useMemo(() => ["getFeed", feedId], [feedId]);
 
   const { data, isFetched, refetch } = useQuery({
     queryKey: queryKey,
@@ -71,7 +70,7 @@ export default function FeedDetailPage() {
         },
       ],
     });
-  }, []);
+  }, [feedId, active, router]);
 
   const likeText = useMemo(() => {
     if (data && data?.data.data.likeCount > 0) {
@@ -91,7 +90,7 @@ export default function FeedDetailPage() {
         draftData.likeCount += data?.data.data.isLike === true ? -1 : 1;
       });
     });
-  }, [feedId, data]);
+  }, [feedId, data, queryKey, queryClient]);
 
   if (!isFetched) {
     return <></>;

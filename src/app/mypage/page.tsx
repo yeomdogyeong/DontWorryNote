@@ -49,7 +49,7 @@ export default function MyPage() {
         });
       });
     }
-  }, [isFetched]);
+  }, [isFetched, data, setData]);
 
   if (!isSignedIn) {
     return <></>;

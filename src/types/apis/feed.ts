@@ -41,10 +41,8 @@ export interface GetFeedRq {
 }
 
 export interface PostFeedRq {
-  feedForm: {
-    tendency: SubjectType;
-    category: PostType;
-    content: string;
-  };
-  feedImage: string;
+  tendency: SubjectType;
+  category: PostType;
+  content: string;
+  feedImagePath: string;
 }

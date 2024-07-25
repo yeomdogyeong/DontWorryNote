@@ -1,5 +1,4 @@
 import CheckIcon from "@/components/icon/CheckIcon";
-import useUserStore from "@/store/useUserStore";
 import { SubjectType } from "@/types/common";
 import dayjs, { Dayjs } from "dayjs";
 import { useCallback, useState } from "react";
@@ -36,7 +35,7 @@ export default function TimePicker(props: TimePickerProps) {
         : (time?.add(12, "hour").toString() as string)
     );
     onClose();
-  }, [onClose, onConfirm, value, time, selected]);
+  }, [onClose, onConfirm, time, selected]);
 
   return (
     <>

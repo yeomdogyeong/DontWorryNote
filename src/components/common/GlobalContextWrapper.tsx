@@ -38,6 +38,6 @@ export default function GlobalContextWrapper(props: Props) {
     };
 
     requestMyInfo();
-  }, []);
+  }, [isSignedIn, pathname, setInitializeState, setIsSignedIn]);
   return <>{children}</>;
 }

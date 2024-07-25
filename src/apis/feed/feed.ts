@@ -30,7 +30,5 @@ export const putFeed = (feedId: number, rq: PostFeedRq) => {
 };
 
 export const postFeed = (rq: PostFeedRq) => {
-  return Axios.post<ApiResponse<null>>(`/v1/feed`, rq, {
-    headers: { "Content-Type": "application/octet-stream" },
-  });
+  return Axios.post<ApiResponse<null>>(`/v1/feed`, rq);
 };
