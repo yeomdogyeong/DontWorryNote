@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/Header";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import gaemiImg from "../../../../../public/small_gaemi.png";
 import baejjangeImg from "../../../../../public/small_baejjange.png";
 import Image from "next/image";
@@ -11,21 +11,21 @@ import AddPictureIcon from "@/components/icon/AddPictureIcon";
 import ImageCloseIcon from "@/components/icon/ImageCloseIcon";
 import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCategoryModal/AddPostCategoryModalOverlay";
 import { useQuery } from "@tanstack/react-query";
-import { getFeed } from "@/apis/feed/feed";
+import { getFeed, putFeed } from "@/apis/feed/feed";
 import { useParams, useRouter } from "next/navigation";
 import { valid } from "@/util/valid";
-
-interface FileType extends File {
-  url: string;
-}
+import { postFile } from "@/apis/file/file";
+import { FEED_PATH } from "@/store/path";
+import { FileType } from "@/types/apis/file";
 
 export default function PostEditPage() {
   const [type, setType] = useState(SubjectType.GAEMI);
   const [postType, setPostType] = useState<PostType | null>(null);
   const [contents, setContents] = useState<string | undefined>(undefined);
-  const [files, setFiles] = useState<FileType>();
-  const searchParams = useParams();
+  const [file, setFile] = useState<File>();
+  const [url, setUrl] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useParams();
 
   const feedId = useMemo(
     () => (searchParams.id ? Number(searchParams.id) : undefined),
@@ -40,6 +40,15 @@ export default function PostEditPage() {
     queryFn: () => getFeed(feedId as number),
     enabled: valid(feedId),
   });
+
+  useEffect(() => {
+    if (isFetched) {
+      setType(data?.data.data.feedTendency as SubjectType);
+      setPostType(data?.data.data.category as PostType);
+      setContents(data?.data.data.feedContent);
+      setUrl(data?.data.data.feedImagePath as string);
+    }
+  }, [isFetched]);
 
   const handlePostType = useCallback(() => {
     active({
@@ -73,8 +82,34 @@ export default function PostEditPage() {
     const file = event.currentTarget.files as FileList;
 
     const url = window.URL.createObjectURL(file[0]);
-    setFiles({ url, ...file[0] });
+    setUrl(url);
+    setFile(file[0]);
   };
+
+  const handleAddClick = useCallback(async () => {
+    if (file) {
+      const { data } = await postFile(FileType.FEED_IMAGE, file);
+      await putFeed(feedId as number, {
+        tendency: type,
+        category: postType as PostType,
+        content: contents as string,
+        feedImagePath: data.data.path,
+      });
+      router.replace(`${FEED_PATH}/${feedId}`);
+      return;
+    }
+
+    await putFeed(feedId as number, {
+      tendency: type,
+      category: postType as PostType,
+      content: contents as string,
+      feedImagePath: url?.split(
+        "https://gaezzange.s3.ap-northeast-2.amazonaws.com/"
+      )[1] as string,
+    });
+
+    router.replace(`${FEED_PATH}/${feedId}`);
+  }, [file, type, postType, contents, router]);
 
   const handleContentsChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -87,7 +122,10 @@ export default function PostEditPage() {
       <Header
         title="게시글 작성"
         rightButton={
-          <button className="text-mainGreen font-[600] text-[16px]">
+          <button
+            onClick={handleAddClick}
+            className="text-mainGreen font-[600] text-[16px]"
+          >
             완료
           </button>
         }
@@ -149,18 +187,21 @@ export default function PostEditPage() {
             hidden
           />
         </button>
-        {files && (
+        {url && (
           <div className="w-[88px] h-[88px] relative">
             <Image
               alt="post-img"
               width={80}
               height={80}
               className="absolute bottom-0 left-0 rounded-[8px]"
-              src={files.url}
+              src={url as string}
             />
             <button
               className="absolute right-0 top-0"
-              onClick={() => setFiles(undefined)}
+              onClick={() => {
+                setFile(undefined);
+                setUrl(null);
+              }}
             >
               <ImageCloseIcon />
             </button>

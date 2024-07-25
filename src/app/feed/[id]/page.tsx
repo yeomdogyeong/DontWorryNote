@@ -110,6 +110,7 @@ export default function FeedDetailPage() {
       <div className="px-[20px] py-[12px]">
         <div className="flex h-[37px]">
           <Image
+            style={{ height: 32 }}
             src={data?.data.data.profileImagePath ?? ""}
             width={32}
             height={32}
