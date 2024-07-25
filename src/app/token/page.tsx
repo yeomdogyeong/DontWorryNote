@@ -30,6 +30,7 @@ function page() {
       let dec = base64.decode(payload);
 
       const parseDec = JSON.parse(dec);
+      console.log(parseDec);
       if (parseDec.hasOwnProperty("userId")) {
         const { data } = await getUserMyInfo();
         setInitializeState({
