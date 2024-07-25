@@ -13,8 +13,8 @@ export default function ActionSheet(props: ActionSheetProps) {
   const { list, onClose } = props;
   return (
     <>
-      <div className="fixed top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
-      <div className="fixed bg-white w-full max-w-page bottom-0">
+      <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
+      <div className="fixed z-[100] bg-white w-full max-w-page bottom-0">
         {list.map((item, idx) => (
           <div
             onClick={async () => {

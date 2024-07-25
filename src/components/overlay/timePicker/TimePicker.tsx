@@ -39,9 +39,9 @@ export default function TimePicker(props: TimePickerProps) {
 
   return (
     <>
-      <div className="absolute top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
+      <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
 
-      <div className="w-full h-[576px] flex flex-col pt-[12px] px-[20px] pb-[8px] rounded-t-[12px] bg-white fixed bottom-0">
+      <div className="fixed z-[100] w-full h-[576px] flex flex-col pt-[12px] px-[20px] pb-[8px] rounded-t-[12px] bg-white bottom-0">
         <div className="flex items-center justify-between h-[60px]">
           <div className="font-[600] text-[20px]">시간 선택하기</div>
           <button onClick={onClose}>

@@ -14,8 +14,8 @@ export default function AddEmojiModal(props: AddEmojiModalProps) {
 
   return (
     <>
-      <div className="absolute top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
-      <div className="absolute bottom-0 absolute left-1/2 transform -translate-x-1/2 max-w-page w-full">
+      <div className="z-[100] fixed top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
+      <div className="z-[100] fixed bottom-0 left-1/2 transform -translate-x-1/2 max-w-page w-full">
         <div className="h-[496px] rounded-t-[20px] bg-white">
           <div className="flex items-center justify-between pt-[28px] px-[20px] pb-[16px]">
             <div className="font-[600] text-[20px]">이모지 선택하기</div>
