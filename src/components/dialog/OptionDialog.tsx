@@ -17,7 +17,7 @@ export const OptionDialog = () => {
   }, []);
   return (
     <>
-      <div className="absolute flex flex-col items-center w-[500px] h-[700px] max-h-[67vh] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
+      <div className="absolute flex flex-col items-center w-[500px] h-[700px] max-h-[73vh] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
         <div className="relative w-full">
           <Image
             src={tendency === "GAEMI" ? maingaemi : mainbaejjange}

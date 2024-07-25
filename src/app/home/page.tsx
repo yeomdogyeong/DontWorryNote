@@ -37,7 +37,7 @@ export default function HomePage() {
       </div>
 
       <div
-        className={` flex flex-col text-white self-start text-base sm:text-xl w-[200px] sm:w-[276px] ml-7 border-none p-4 mb-[30px] rounded-xl ${
+        className={` flex flex-col text-white self-start text-base sm:text-xl w-[200px] sm:w-[276px] ml-7 border-none p-4 mb-[85px] rounded-xl ${
           tendency === "GAEMI" ? "bg-[#505866]" : "bg-[#649C7D]"
         }`}
       >
