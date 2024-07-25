@@ -72,6 +72,7 @@ export default function FeedItem(props: Props) {
       <div className="flex h-[37px]">
         {profileImagePath && (
           <Image
+            style={{ height: 32 }}
             src={profileImagePath}
             width={32}
             height={32}
