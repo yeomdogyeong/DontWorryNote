@@ -11,23 +11,23 @@ import { CACHE_TIME } from "@/util/common";
 import { now } from "@/util/date";
 import { valid } from "@/util/valid";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function FeedPage() {
-  const searchParams = useSearchParams();
+  const params = useParams();
 
   const [feedType, setFeedType] = useState<SubjectType>(
-    (searchParams.get("type") as SubjectType | undefined) ?? SubjectType.GAEMI
+    (params.type as SubjectType | undefined) ?? SubjectType.GAEMI
   );
   const [category, setCategory] = useState<PostType | "ALL">(
-    (searchParams.get("category") as PostType | undefined) ?? "ALL"
+    (params.category as PostType | undefined) ?? "ALL"
   );
 
-  const lastRequestAt = useMemo(
-    () => searchParams.get("lastRequestAt"),
-    [searchParams]
-  ) as string | undefined;
+  console.log(params);
+  const lastRequestAt = useMemo(() => params.lastRequestAt, [params]) as
+    | string
+    | undefined;
 
   const queryKey = useMemo(
     () => ["getFeeds", category, feedType, lastRequestAt],
@@ -35,9 +35,8 @@ export default function FeedPage() {
   );
 
   const isEnabled = useMemo(
-    () =>
-      valid(searchParams.get("type")) && valid(searchParams.get("category")),
-    [searchParams]
+    () => valid(params.type) && valid(params.category),
+    [params]
   );
 
   const router = useRouter();
@@ -54,10 +53,7 @@ export default function FeedPage() {
   });
 
   useEffect(() => {
-    if (
-      searchParams.get("type") === null ||
-      searchParams.get("category") === null
-    ) {
+    if (!params.hasOwnProperty("type") || !params.hasOwnProperty("category")) {
       router.replace(
         FEED_PATH +
           `?type=${SubjectType.GAEMI}&category=${
@@ -65,7 +61,7 @@ export default function FeedPage() {
           }&lastRequestAt=${now()}`
       );
     }
-  }, [searchParams, router]);
+  }, [router]);
 
   const handleFeedTypeClick = useCallback(
     (type: SubjectType) => {
