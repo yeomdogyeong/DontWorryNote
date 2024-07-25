@@ -11,7 +11,8 @@ import routine_gae from "../../../../public/routine-gaemi.png";
 import { SubjectType } from "@/types/common";
 import { useCalendarOverlay } from "@/components/overlay/calendar/CalendarOverlay";
 import { useQuery } from "@tanstack/react-query";
-import { getRoutines } from "@/apis/routine/routine";
+import { getRoutineExecution } from "@/apis/routine-execution/routine-execution";
+import RoutineItem from "@/components/modules/routine/RoutineItem";
 
 export default function RoutinePage() {
   const userType = useMyStore((state) => state.tendency);
@@ -20,9 +21,9 @@ export default function RoutinePage() {
   const [date, setDate] = useState(dayjs(new Date().toUTCString()));
   const formatDate = useMemo(() => date.format("YYYY-MM-DD"), [date]);
 
-  const { data, isFetched } = useQuery({
-    queryKey: ["routines", formatDate],
-    queryFn: () => getRoutines(formatDate, formatDate),
+  const { data, refetch } = useQuery({
+    queryKey: ["routineExecution", formatDate],
+    queryFn: () => getRoutineExecution(formatDate, formatDate),
   });
 
   const onDateClick = () => {
@@ -43,17 +44,32 @@ export default function RoutinePage() {
         </div>
         <ChevronDownIcon />
       </div>
-      <div className="h-full bg-[#F4F4F4] flex flex-col items-center">
-        <Image
-          className="pt-[104px] opacity-[.5]"
-          alt="empty_img"
-          width={138}
-          height={96}
-          src={userType === SubjectType.GAEMI ? routine_gae : routine_bae}
-        />
-        <div className="mt-[12px] text-gray-600">
-          이 날은 진행했던 루틴이 없네요!
-        </div>
+      <div className="h-max min-h-full bg-[#F4F4F4] flex flex-col items-center px-[20px] py-[14px] gap-[8px]">
+        {data && data?.data.data.length > 0 ? (
+          data?.data.data.map((item) => (
+            <RoutineItem
+              refetch={() => {
+                refetch();
+              }}
+              key={item.routine.routineId}
+              {...item.routine}
+              isExecution={false}
+            />
+          ))
+        ) : (
+          <>
+            <Image
+              className="pt-[104px] opacity-[.5]"
+              alt="empty_img"
+              width={138}
+              height={96}
+              src={userType === SubjectType.GAEMI ? routine_gae : routine_bae}
+            />
+            <div className="mt-[12px] text-gray-600">
+              이 날은 진행했던 루틴이 없네요!
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
