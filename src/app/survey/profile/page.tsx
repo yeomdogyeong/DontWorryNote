@@ -7,7 +7,7 @@ import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
-import { postUserOnboarding } from "@/apis/user/user";
+import { getUserMyInfo, postUserOnboarding } from "@/apis/user/user";
 import { postFile } from "@/apis/file/file";
 import { FileType } from "@/types/apis/file";
 import { HOME_PATH } from "@/store/path";
@@ -15,6 +15,7 @@ import useMyStore from "@/store/useMyStore";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
+  const setInitializeState = useMyStore((state) => state.setInitializeState);
   const [isFocused, setIsFocused] = useState(false);
   const userColor = useUserColor();
   const userType = useMyStore((state) => state.tendency);
@@ -29,6 +30,11 @@ export default function Main() {
       nickname: userNickname,
       tendency: userType,
       profileImagePath: data.data.path,
+    });
+
+    const { data: infoData } = await getUserMyInfo();
+    setInitializeState({
+      ...infoData.data,
     });
     router.push(HOME_PATH);
   };

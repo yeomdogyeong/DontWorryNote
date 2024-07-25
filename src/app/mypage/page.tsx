@@ -12,7 +12,6 @@ import routine_baejjange from "../../../public/routine-baejjange.png";
 import { useRouter } from "next/navigation";
 import {
   ADD_ROUTINE_PATH,
-  MY_PAGE_ACTIVITY_PATH,
   MY_PAGE_EDIT_PATH,
   MY_PAGE_ROUTINE_PATH,
 } from "@/store/path";
@@ -21,6 +20,9 @@ import { useMemo } from "react";
 import RightArrowIcon from "@/components/icon/RightArrowIcon";
 import useMyStore from "@/store/useMyStore";
 import { useShallow } from "zustand/react/shallow";
+import { useQuery } from "@tanstack/react-query";
+import { getRoutines } from "@/apis/routine/routine";
+import dayjs from "dayjs";
 
 export default function MyPage() {
   const router = useRouter();
@@ -34,7 +36,14 @@ export default function MyPage() {
   );
   const weekDates = useMemo(() => getWeekDates(), []);
 
-  console.log(isSignedIn);
+  const { data } = useQuery({
+    queryKey: ["getRoutines"],
+    queryFn: () => getRoutines(weekDates[0], weekDates[6]),
+    enabled: weekDates.length > 0,
+  });
+
+  console.log(data);
+
   if (!isSignedIn) {
     return <></>;
   }
@@ -68,7 +77,10 @@ export default function MyPage() {
         </div>
         <button
           className="flex-center rounded-[8px] px-[4px] py-[8px] text-gray-600 border-[1px] text-[12px] h-[25px] w-[70px]"
-          onClick={() => router.push(MY_PAGE_EDIT_PATH)}
+          onClick={() => {
+            alert("준비 중 입니다.");
+            //router.push(MY_PAGE_EDIT_PATH)
+          }}
         >
           프로필 변경
         </button>
@@ -79,8 +91,28 @@ export default function MyPage() {
         <div className="mt-[12px] flex-center">
           {weekDates.map((date, idx) => {
             return (
-              <div key={idx} className="flex-center flex-1">
-                {convertDayToText(idx)}
+              <div
+                key={idx}
+                className={`flex-center flex-1 flex-col rounded-[12px] h-[66px] ${
+                  dayjs(date).date() === dayjs(new Date()).date()
+                    ? userType === SubjectType.GAEMI
+                      ? "bg-mainBlack"
+                      : "bg-mainGreen"
+                    : ""
+                }`}
+              >
+                <div className="flex-center bg-gray-100 w-[24px] h-[24px] text-[12px] text-gray-400 rounded-[4px]">
+                  {dayjs(date).date()}
+                </div>
+                <div
+                  className={`mt-[8px] text-[12px] ${
+                    dayjs(date).date() === dayjs(new Date()).date()
+                      ? "text-white"
+                      : ""
+                  }`}
+                >
+                  {convertDayToText(idx)}
+                </div>
               </div>
             );
           })}
@@ -128,7 +160,7 @@ export default function MyPage() {
           <RightArrowIcon color="#999999" />
         </button>
         <button
-          onClick={() => router.push(MY_PAGE_ACTIVITY_PATH)}
+          onClick={() => alert("준비 중 입니다.")}
           className="w-full h-[52px] h-[52px] border-t-[1px] flex items-center justify-between font-[400] text-gray-900"
         >
           <div>내 활동 확인하기</div>

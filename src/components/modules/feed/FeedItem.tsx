@@ -1,16 +1,23 @@
+import { postFeedByIdLikeToggle } from "@/apis/feed/feed";
 import CommentIcon from "@/components/icon/CommentIcon";
 import LikeIcon from "@/components/icon/LikeIcon";
 import { FEED_PATH } from "@/store/path";
 import { FeedItemType } from "@/types/apis/feed";
 import { SubjectType, convertPostTypeValue } from "@/types/common";
 import { formatTimeDifference } from "@/util/date";
+import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
+import { produce } from "immer";
+import { ApiResponse } from "@/types/apis/common";
 
-interface Props extends FeedItemType {}
+interface Props extends FeedItemType {
+  queryKey: (string | undefined)[];
+}
 
 export default function FeedItem(props: Props) {
+  const queryClient = useQueryClient();
   const {
     profileImagePath,
     nickname,
@@ -20,6 +27,9 @@ export default function FeedItem(props: Props) {
     feedLikeCount,
     category,
     feedCreatedAt,
+    isLike,
+    feedId,
+    queryKey,
   } = props;
 
   const router = useRouter();
@@ -37,10 +47,25 @@ export default function FeedItem(props: Props) {
     return "처음으로 응원해보세요!";
   }, [feedLikeCount]);
 
-  const handleLike = useCallback(() => {}, []);
+  const handleLike = useCallback(async () => {
+    await postFeedByIdLikeToggle(feedId);
+    queryClient.setQueryData(queryKey, (prevData: any) => {
+      if (!prevData) return prevData;
+      //NOTE: 추후 업로드 할 때, 기록 안막을 시 수정 필요
+      console.log(prevData);
+      return produce(prevData, (draft: any) => {
+        draft.data.data.forEach((data: FeedItemType) => {
+          if (data.feedId === feedId) {
+            data.isLike = !isLike;
+            data.feedLikeCount += isLike === true ? -1 : 1;
+          }
+        });
+      });
+    });
+  }, [feedId, isLike]);
 
   const handleComment = useCallback(() => {
-    router.push(FEED_PATH);
+    router.push(`${FEED_PATH}/${feedId}`);
   }, []);
 
   return (
@@ -84,7 +109,15 @@ export default function FeedItem(props: Props) {
       </div>
       <div className="mt-[9px] border-t-[1px] h-[46px] flex">
         <button className="flex-center w-full" onClick={handleLike}>
-          <LikeIcon />
+          <LikeIcon
+            color={
+              isLike
+                ? type === SubjectType.GAEMI
+                  ? "#353C49"
+                  : "#2FA464"
+                : undefined
+            }
+          />
         </button>
         <button className="flex-center w-full" onClick={handleComment}>
           <CommentIcon />

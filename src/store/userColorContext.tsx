@@ -17,9 +17,9 @@ export const UserColorProvider = ({ children }: any) => {
     // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
     if (userScore !== null && userScore > 4) {
       userType === SubjectType.GAEMI;
-      setUserColor("mainGreen");
-    } else {
       setUserColor("mainBlack");
+    } else {
+      setUserColor("mainGreen");
       userType === SubjectType.BAEZZANGE;
     }
   }, [userType]);

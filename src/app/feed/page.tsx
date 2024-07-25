@@ -3,8 +3,9 @@
 import { getFeeds } from "@/apis/feed/feed";
 import { DefaultHeader } from "@/components/DefaultHeader";
 import BottomNavigation from "@/components/bottomNavigation/BottomNavigation";
+import WriteIcon from "@/components/icon/WriteIcon";
 import FeedItem from "@/components/modules/feed/FeedItem";
-import { FEED_PATH } from "@/store/path";
+import { ADD_POST_PATH, FEED_PATH } from "@/store/path";
 import { PostType, PostTypeArray, SubjectType } from "@/types/common";
 import { CACHE_TIME } from "@/util/common";
 import { now } from "@/util/date";
@@ -132,9 +133,17 @@ export default function FeedPage() {
         </div>
         <div className="px-[20px] mt-[20px] flex flex-col gap-[12px]">
           {data?.data.data.map((item) => {
-            return <FeedItem key={item.feedContent} {...item} />;
+            return <FeedItem key={item.feedId} queryKey={queryKey} {...item} />;
           })}
         </div>
+        <button
+          onClick={() => router.push(ADD_POST_PATH)}
+          className={`fixed right-[20px] bottom-[68px] flex-center w-[52px] h-[52px] rounded-full ${
+            feedType === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
+          }`}
+        >
+          <WriteIcon />
+        </button>
       </div>
       <BottomNavigation />
     </div>

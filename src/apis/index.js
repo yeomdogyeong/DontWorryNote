@@ -43,8 +43,8 @@ function userInstance(baseURL, headers) {
 
       if (error.response && error.response.status === 401) {
         alert("토큰이 만료되었습니다.");
-        // 해당 부분 무한루프타서 일단 주석처리
-        // window.location.href = "/onboarding";
+        localStorage.removeItem("tokenKey");
+        window.location.href = "/onboarding";
       }
       return Promise.reject(error);
     }

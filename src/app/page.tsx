@@ -4,17 +4,27 @@ import slogan from "../../public/slogan.png";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import "../app/styles/animation.css";
-import google from "../../public/google.png";
-import kakao from "../../public/kakao.png";
-
-import { SubjectType } from "@/types/common";
-import { BasicButton } from "@/components/button/BasicButton";
-import { PostButton } from "@/components/button/PostButton";
+import useMyStore from "@/store/useMyStore";
+import { getUserMyInfo } from "@/apis/user/user";
+import { HOME_PATH } from "@/store/path";
 
 export default function Home() {
   const router = useRouter();
-  const handleNextPage = () => {
-    setTimeout(() => router.push("/onboarding"), 3000);
+  const { isSignedIn, setIsSignedIn, setInitializeState } = useMyStore(
+    (state) => state
+  );
+  const handleNextPage = async () => {
+    const userToken = localStorage.getItem("tokenKey");
+    if (userToken && !isSignedIn) {
+      const { data } = await getUserMyInfo();
+      setInitializeState({
+        ...data.data,
+      });
+      setTimeout(() => router.push(HOME_PATH), 2000);
+    } else {
+      setIsSignedIn(false);
+      setTimeout(() => router.push("/onboarding"), 2000);
+    }
   };
 
   useEffect(() => {
