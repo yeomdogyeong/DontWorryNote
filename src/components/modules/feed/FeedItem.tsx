@@ -7,7 +7,7 @@ import { SubjectType, convertPostTypeValue } from "@/types/common";
 import { formatTimeDifference } from "@/util/date";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { produce } from "immer";
 import { ApiResponse } from "@/types/apis/common";
@@ -34,8 +34,11 @@ export default function FeedItem(props: Props) {
 
   const router = useRouter();
 
-  const params = useParams();
-  const type = useMemo(() => params.type, [params]) as SubjectType;
+  const searchParams = useSearchParams();
+  const type = useMemo(
+    () => searchParams.get("type"),
+    [searchParams]
+  ) as SubjectType;
 
   const likeText = useMemo(() => {
     if (feedLikeCount > 0) {
