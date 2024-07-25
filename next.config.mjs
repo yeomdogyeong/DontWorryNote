@@ -6,5 +6,8 @@ const nextConfig = {
     unoptimized: true,
     domains: ["gaezzange.s3.ap-northeast-2.amazonaws.com"],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 export default nextConfig;

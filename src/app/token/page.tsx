@@ -1,5 +1,5 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { onBoarding } from "../../apis/index";
 import base64 from "base-64";
@@ -8,8 +8,8 @@ import useMyStore from "@/store/useMyStore";
 import { useShallow } from "zustand/react/shallow";
 import { getUserMyInfo } from "@/apis/user/user";
 function TokenPage() {
-  const params = useParams();
-  const tokenKey = params.tokenKey;
+  const params = useSearchParams();
+  const tokenKey = params.get("tokenKey");
   const router = useRouter();
 
   const { setInitializeState } = useMyStore(
