@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 interface Props extends RoutineItemType {
   isExecution: boolean;
+  formatDate: string;
   refetch: () => void;
 }
 
@@ -28,6 +29,7 @@ export default function RoutineItem(props: Props) {
     name,
     emoji,
     isExecution,
+    formatDate,
     routineId,
     refetch,
   } = props;
@@ -101,15 +103,9 @@ export default function RoutineItem(props: Props) {
           <button
             onClick={async () => {
               if (isExecution) {
-                await deleteRoutineExecution(
-                  routineId,
-                  dayjs(new Date().toUTCString()).format("YYYY-MM-DD")
-                );
+                await deleteRoutineExecution(routineId, formatDate);
               } else {
-                await postRoutineExecution(
-                  routineId,
-                  dayjs(new Date().toUTCString()).format("YYYY-MM-DD")
-                );
+                await postRoutineExecution(routineId, formatDate);
               }
               refetch();
             }}

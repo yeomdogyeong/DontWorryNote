@@ -56,6 +56,7 @@ export default function RoutinePage() {
               isExecution={item.executionDates.some((date) => {
                 return date === formatDate;
               })}
+              formatDate={formatDate}
             />
           ))
         ) : (
