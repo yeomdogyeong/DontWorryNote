@@ -8,6 +8,9 @@ import { useUserColor } from "@/store/userColorContext";
 import routineBaezzange from "../../../public/routine-baejjange.png";
 import routineGaemi from "../../../public/routine-gaemi.png";
 import useMyStore from "@/store/useMyStore";
+import RoutineItem from "../modules/routine/RoutineItem";
+import { convertEmojiImgSrc, SubjectType } from "@/types/common";
+import { DaysOfWeekType, RoutineCategoryType } from "@/types/apis/routine";
 export const OptionDialog = () => {
   const userColor = useUserColor();
   const [isRoutineBoxVisible, setIsRoutineBoxVisible] = useState(false);
@@ -15,6 +18,21 @@ export const OptionDialog = () => {
   useEffect(() => {
     setIsRoutineBoxVisible(false);
   }, []);
+
+  const dummyRoutineItem = {
+    routineId: 1,
+    tendency: SubjectType.GAEMI,
+    category: RoutineCategoryType.HEALTH,
+    name: "Morning Jog",
+    description: "Jogging for 30 minutes",
+    emoji: 1,
+    startedDate: "2023-07-01",
+    endedDate: null,
+    executionTime: "07:00",
+    userId: 123,
+    daysOfWeek: [DaysOfWeekType.FRIDAY],
+  };
+
   return (
     <>
       <div className="absolute flex flex-col items-center w-[500px] h-[700px] max-h-[73vh] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
@@ -30,6 +48,14 @@ export const OptionDialog = () => {
           />
         </div>
         <div className="self-start m-3 text-xl">오늘의 할 일 목록</div>
+
+        <RoutineItem
+          {...dummyRoutineItem}
+          isExecution={true}
+          formatDate="2023-07-27"
+          refetch={() => console.log("Refetch called")}
+        />
+
         <div className="flex flex-col items-center justify-center h-full">
           <div className="flex flex-col items-center justify-center opacity-50">
             {isRoutineBoxVisible ? (
