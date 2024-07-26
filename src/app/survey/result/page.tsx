@@ -5,7 +5,8 @@ import useUserStore from "@/store/useUserStore";
 import { ResultBar } from "@/components/survey/ResultBar";
 import { surveyList } from "@/components/dummy";
 import { useRouter } from "next/navigation";
-function page() {
+
+function ResultPage() {
   const { users, setStatus, userType } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";
   const [resultIdx, setResultIdx] = useState<ResultKey | undefined>();
@@ -125,4 +126,4 @@ function page() {
   );
 }
 
-export default page;
+export default ResultPage;

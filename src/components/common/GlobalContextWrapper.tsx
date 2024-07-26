@@ -1,7 +1,6 @@
 import { getUserMyInfo } from "@/apis/user/user";
 import useMyStore from "@/store/useMyStore";
 import { usePathname } from "next/navigation";
-import path from "path";
 import { PropsWithChildren, useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
 

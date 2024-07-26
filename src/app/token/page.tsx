@@ -7,7 +7,7 @@ import { HOME_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
 import { useShallow } from "zustand/react/shallow";
 import { getUserMyInfo } from "@/apis/user/user";
-function page() {
+function TokenPage() {
   const params = useSearchParams();
   const tokenKey = params.get("tokenKey");
   const router = useRouter();
@@ -64,4 +64,4 @@ function page() {
   return <div></div>;
 }
 
-export default page;
+export default TokenPage;

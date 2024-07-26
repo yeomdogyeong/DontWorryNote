@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/Header";
 import { SubjectType, convertEmojiImgSrc } from "@/types/common";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import gaemiImg from "../../../../../public/small_gaemi.png";
 import baejjangeImg from "../../../../../public/small_baejjange.png";
 import Image from "next/image";
@@ -20,12 +20,15 @@ import {
 import { useAddEmojiModalOverlay } from "@/components/overlay/addEmoji/AddEmoji";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import dayjs from "dayjs";
-import { postRoutine } from "@/apis/routine/routine";
-import { useRouter } from "next/navigation";
+import { getRoutine, postRoutine, putRoutine } from "@/apis/routine/routine";
+import { useParams, useRouter } from "next/navigation";
 import { HOME_PATH } from "@/store/path";
+import { useQuery } from "@tanstack/react-query";
+import { valid } from "@/util/valid";
 
 export default function RoutineEditPage() {
   const router = useRouter();
+  const params = useParams();
   const [type, setType] = useState(SubjectType.GAEMI);
   const [routineType, setRoutineType] = useState<RoutineCategoryType | null>(
     null
@@ -48,6 +51,53 @@ export default function RoutineEditPage() {
   const [description, setDescription] = useState<string | undefined>(undefined);
   const [emoji, setEmoji] = useState(15);
 
+  const routineId = useMemo(
+    () => (params.id ? Number(params.id) : undefined),
+    [params]
+  );
+
+  const { data, isFetched, refetch } = useQuery({
+    queryKey: ["getRoutine", routineId],
+    queryFn: () => getRoutine(routineId as number),
+    enabled: valid(routineId),
+  });
+
+  useEffect(() => {
+    if (isFetched) {
+      setType(data?.data.data.tendency as SubjectType);
+      setDescription(data?.data.data.description);
+      setName(data?.data.data.name);
+      setEmoji(data?.data.data.emoji as number);
+      setRoutineType(data?.data.data.category as RoutineCategoryType);
+      setSelectedDay({
+        MONDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.MONDAY
+        ) as boolean,
+        TUESDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.TUESDAY
+        ) as boolean,
+        WEDNESDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.WEDNESDAY
+        ) as boolean,
+        THURSDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.THURSDAY
+        ) as boolean,
+        FRIDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.FRIDAY
+        ) as boolean,
+        SATURDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.SATURDAY
+        ) as boolean,
+        SUNDAY: data?.data.data.daysOfWeek.some(
+          (v) => v === DaysOfWeekType.SUNDAY
+        ) as boolean,
+      });
+      setStartedDate(data?.data.data.startedDate as string);
+      setEndedDate(data?.data.data.endedDate as string | undefined);
+      setTime(("1970-01-01 " + data?.data.data.executionTime) as string);
+    }
+  }, [isFetched]);
+
   const { active } = useAddRoutineCateogoryModalOverlay();
   const { active: emojiActive } = useAddEmojiModalOverlay();
   const { active: timePickerActive } = useTimePickerOverlay();
@@ -59,13 +109,13 @@ export default function RoutineEditPage() {
       onConfirm: async (value: string) => setStartedDate(value),
       value: startedDate,
     });
-  }, [startDateActive]);
+  }, [startDateActive, , startedDate]);
   const handleEndDateClick = useCallback(() => {
     endDateActive({
       onConfirm: async (value: string) => setEndedDate(value),
       value: endedDate,
     });
-  }, [endDateActive]);
+  }, [endDateActive, endedDate]);
 
   const isAllCheck = useMemo(
     () => Object.values(selectedDay).every((v) => v === true),
@@ -94,9 +144,9 @@ export default function RoutineEditPage() {
         SUNDAY: true,
       });
     }
-  }, [selectedDay]);
+  }, [isAllCheck]);
   const handleAddClick = useCallback(async () => {
-    await postRoutine({
+    await putRoutine(routineId as number, {
       tendency: type,
       category: routineType as RoutineCategoryType,
       name: name as string,
@@ -114,8 +164,9 @@ export default function RoutineEditPage() {
       }, [] as DaysOfWeekType[]),
     });
 
-    router.push(HOME_PATH);
+    router.back();
   }, [
+    router,
     type,
     routineType,
     startedDate,
@@ -132,7 +183,7 @@ export default function RoutineEditPage() {
       onConfirm: async (value: string) => setTime(value),
       value: time,
     });
-  }, [timePickerActive]);
+  }, [timePickerActive, time]);
 
   const handlePostType = useCallback(() => {
     active({

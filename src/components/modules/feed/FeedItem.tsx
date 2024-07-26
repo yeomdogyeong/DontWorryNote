@@ -52,7 +52,6 @@ export default function FeedItem(props: Props) {
     queryClient.setQueryData(queryKey, (prevData: any) => {
       if (!prevData) return prevData;
       //NOTE: 추후 업로드 할 때, 기록 안막을 시 수정 필요
-      console.log(prevData);
       return produce(prevData, (draft: any) => {
         draft.data.data.forEach((data: FeedItemType) => {
           if (data.feedId === feedId) {
@@ -62,21 +61,24 @@ export default function FeedItem(props: Props) {
         });
       });
     });
-  }, [feedId, isLike]);
+  }, [feedId, isLike, queryClient, queryKey]);
 
   const handleComment = useCallback(() => {
     router.push(`${FEED_PATH}/${feedId}`);
-  }, []);
+  }, [feedId, router]);
 
   return (
     <div className="bg-white rounded-[12px] px-[20px] pt-[28px] pb-[8px] shadow-[0_4px_10px_0px_rgba(0,40,100,0.06)]">
       <div className="flex h-[37px]">
-        <Image
-          src={profileImagePath}
-          width={32}
-          height={32}
-          alt="profile_image"
-        />
+        {profileImagePath && (
+          <Image
+            style={{ height: 32 }}
+            src={profileImagePath}
+            width={32}
+            height={32}
+            alt="profile_image"
+          />
+        )}
         <div className="ml-[12px]">
           <div className="font-[600]">{nickname}</div>
           <div className="text-[12px] text-gray-500">
@@ -95,13 +97,15 @@ export default function FeedItem(props: Props) {
       </div>
       <div className="mt-[16px]">{feedContent}</div>
       <div className="mt-[16px] w-full h-[200px] relative">
-        <Image
-          className="rounded-[8px]"
-          src={feedImagePath}
-          alt="feed-image"
-          layout="fill"
-          objectFit="cover"
-        />
+        {feedImagePath && (
+          <Image
+            className="rounded-[8px]"
+            src={feedImagePath}
+            alt="feed-image"
+            layout="fill"
+            objectFit="cover"
+          />
+        )}
       </div>
       <div className="mt-[24px] flex items-center text-[12px] font-[400] text-gray-600">
         <div>{likeText}</div>

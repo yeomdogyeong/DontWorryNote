@@ -12,7 +12,8 @@ html {
   @apply text-gray-900;
 }
 
-.box {
+input:focus {
+  outline: none;
 }
 .box::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/

@@ -10,7 +10,7 @@ export const PostButton = ({ bgColor }: PostButtonType) => {
   return (
     <button
       className={`${
-        bgColor === "baejjange" ? "bg-mainGreen " : "bg-mainBlack "
+        bgColor === SubjectType.BAEZZANGE ? "bg-mainGreen " : "bg-mainBlack "
       } text-white font-bold py-2 px-4 rounded-full flex items-center justify-center w-12 h-12`}
     >
       <Image src={pencil} alt="logo" className="w-5 h-5" />

@@ -6,9 +6,9 @@ import routine_4 from "../../../public/routine_4.png";
 import routine_5 from "../../../public/routine_5.png";
 import routine_6 from "../../../public/routine_6.png";
 
-export interface PostRoutineRq extends Omit<RoutineItem, "routineId"> {}
+export interface PostRoutineRq extends Omit<RoutineItemType, "routineId"> {}
 
-export interface RoutineItem {
+export interface RoutineItemType {
   routineId: number;
   tendency: SubjectType;
   category: RoutineCategoryType;
@@ -18,8 +18,11 @@ export interface RoutineItem {
   startedDate: string;
   endedDate: string | null;
   executionTime?: string;
+  userId?: number;
   daysOfWeek: DaysOfWeekType[];
 }
+
+export interface GetRoutineRs extends RoutineItemType {}
 
 export enum DaysOfWeekType {
   MONDAY = "MONDAY",

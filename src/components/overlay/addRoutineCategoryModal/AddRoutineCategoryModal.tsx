@@ -23,8 +23,8 @@ export default function AddRoutineCateogoryModal(
   const { list, onClose } = props;
   return (
     <>
-      <div className="absolute top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
-      <div className="absolute bottom-0 absolute left-1/2 transform -translate-x-1/2 max-w-page w-full">
+      <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
+      <div className="fixed z-[100] bottom-0 left-1/2 transform -translate-x-1/2 max-w-page w-full">
         <div className="h-[496px] rounded-t-[20px] bg-white">
           <div className="flex items-center justify-between pt-[28px] px-[20px] pb-[16px]">
             <div className="font-[600] text-[20px]">카테고리 선택하기</div>
