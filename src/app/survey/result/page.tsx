@@ -31,10 +31,10 @@ function ResultPage() {
     }
     console.log("resultIdx", resultIdx);
     localStorage.setItem("userScore", JSON.stringify(users.score));
-  }, [users.score]);
+  }, [users.score, resultIdx]);
 
   return (
-    <div className="flex-col w-full p-6 mt-4 flex justify-between items-center ">
+    <div className="flex-col w-full h-full p-6 mt-4 flex items-center ">
       <div className="self-start ml-2">
         <p className="text-lg font-thin text-gray-500">
           개짱이력(GJLS) 분석결과 회원님은
@@ -62,8 +62,8 @@ function ResultPage() {
             src={surveyList[0][resultIdx].srcImg}
             alt="baejjange"
             className={`mt-16 h-50 ${
-              resultIdx === "result1" ? "w-80" : "w-40"
-            }`}
+              resultIdx === "result1" ? "w-40" : "w-40"
+            } md:${resultIdx === "result1" ? "w-80" : "w-40"} `}
           />
         )}
         <div className="mt-6 bg-gray-100 flex justify-center items-center rounded-full w-[200px] h-[50px]">
@@ -113,7 +113,7 @@ function ResultPage() {
             }
             console.log(userType);
           }}
-          className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
+          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[90px]  text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"
               : "bg-mainBlack"
