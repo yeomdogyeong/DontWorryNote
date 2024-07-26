@@ -11,11 +11,12 @@ import useMyStore from "@/store/useMyStore";
 import RoutineItem from "../modules/routine/RoutineItem";
 import { convertEmojiImgSrc, SubjectType } from "@/types/common";
 import { DaysOfWeekType, RoutineCategoryType } from "@/types/apis/routine";
-export const OptionDialog = () => {
+export const OptionDialog = ({ data }: any) => {
   const userColor = useUserColor();
   const [isRoutineBoxVisible, setIsRoutineBoxVisible] = useState(false);
   const { tendency } = useMyStore();
   useEffect(() => {
+    console.log({ data });
     setIsRoutineBoxVisible(false);
   }, []);
 

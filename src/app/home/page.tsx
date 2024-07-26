@@ -8,10 +8,23 @@ import { OptionDialog } from "@/components/dialog/OptionDialog";
 import { Loader } from "@/components/loader/Loader";
 import "./page.css";
 import useMyStore from "@/store/useMyStore";
+import dayjs from "dayjs";
+import { useQuery } from "@tanstack/react-query";
+import { getRoutineExecution } from "@/apis/routine-execution/routine-execution";
 export default function HomePage() {
   const userColor = useUserColor();
   const [loading, setLoading] = useState(true);
   const { tendency } = useMyStore();
+  var now = dayjs();
+  now.format();
+  const todayDate = now.format("YYYY-MM-DD");
+
+  const query = useQuery({
+    //두 번째 인자를 기준으로 이전 데이터를 캐시할지 말지 결정
+    queryKey: ["routineExecution", todayDate],
+    queryFn: () => getRoutineExecution(todayDate, todayDate),
+  });
+
   useEffect(() => {
     if (userColor) {
       setLoading(false);
@@ -45,7 +58,7 @@ export default function HomePage() {
         <div>제가 옆에서 열심히 응원할게요!</div>
       </div>
 
-      <OptionDialog />
+      <OptionDialog data={query} />
 
       <BottomNavigation />
     </div>
