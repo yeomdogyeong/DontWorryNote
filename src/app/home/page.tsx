@@ -27,17 +27,17 @@ export default function HomePage() {
   }
   return (
     <div
-      className={`flex flex-col justify-center items-center ${
+      className={`flex flex-col justify-evenly ${
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
-      } h-[37vh] justify-around`}
+      } h-[30vh]`}
     >
-      <div className="text-[20px] text-white self-start ml-8 font-bold sm:text-2xl">
+      <div className="text-[20px]  text-white self-start ml-7 font-bold sm:text-2xl">
         <div className="mb-4">안녕하세요! 개짱이님</div>
         <div>오늘은 어떤 삶을 살아볼까요?</div>
       </div>
 
       <div
-        className={` flex flex-col text-white self-start text-base sm:text-xl w-[200px] sm:w-[276px] ml-7 border-none p-4 mb-[85px] rounded-xl ${
+        className={` flex flex-col text-white self-start text-base sm:text-xl w-[200px] sm:w-[260px] ml-7 border-none p-4  rounded-xl ${
           tendency === "GAEMI" ? "bg-[#505866]" : "bg-[#649C7D]"
         }`}
       >
