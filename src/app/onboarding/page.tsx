@@ -20,12 +20,12 @@ function OnBoardingPage() {
   };
   return (
     <main className="w-full h-full flex flex-col justify-center items-center p-8 bg-gray-50">
-      <div className="w-[440px] mt-[32px] mb-[102px]">
+      <div className="w-[380px] h-[400px] mt-[32px] mb-[102px]">
         <SimpleSlider />
       </div>
 
-      <div className="mb-[70px]">
-        <div className="mb-4">
+      <div className="w-full max-w-[440px] items-center flex flex-col justify-center">
+        <div className="mt-4">
           <AuthButton
             text="KaKao로 시작하기"
             bgColor="kakao"

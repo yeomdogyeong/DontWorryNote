@@ -30,17 +30,25 @@ export default function SimpleSlider() {
       srcImg: onboarding1,
     },
     {
+      text1: "나의 행복을 위해",
+      text2: "나만의 루틴을 만들어보세요",
       srcImg: onboarding2,
       subImg: onboarding21,
     },
     {
+      text1: "개짱이와 함께",
+      text2: "일상의 균형을 맞춰가요",
       srcImg: onboarding3,
       subImg: onboarding31,
     },
     {
+      text1: "루틴 통계 기록을 보고",
+      text2: "나의 성향을 알아가요",
       srcImg: onboarding4,
     },
     {
+      text1: "개미와 베짱이 유형에 맞춰",
+      text2: "나의 하루를 공유해요",
       srcImg: onboarding5,
     },
   ];
