@@ -19,13 +19,14 @@ export default function HomePage() {
   now.format();
   const todayDate = now.format("YYYY-MM-DD");
 
-  const query = useQuery({
+  const { data, refetch } = useQuery({
     //두 번째 인자를 기준으로 이전 데이터를 캐시할지 말지 결정
-    queryKey: ["routineExecution", todayDate],
+    queryKey: ["routineExecution"],
     queryFn: () => getRoutineExecution(todayDate, todayDate),
   });
 
   useEffect(() => {
+    // console.log('data.length', data && data.length)
     if (userColor) {
       setLoading(false);
     }
@@ -42,7 +43,7 @@ export default function HomePage() {
     <div
       className={`flex flex-col justify-evenly ${
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
-      } h-[30vh]`}
+      } h-[30vh] `}
     >
       <div className="text-[20px]  text-white self-start ml-7 font-bold sm:text-2xl">
         <div className="mb-4">안녕하세요! 개짱이님</div>
@@ -58,7 +59,7 @@ export default function HomePage() {
         <div>제가 옆에서 열심히 응원할게요!</div>
       </div>
 
-      <OptionDialog data={query} />
+      <OptionDialog />
 
       <BottomNavigation />
     </div>
