@@ -11,7 +11,7 @@ import onboarding31 from "../../../public/onboarding3-1.png";
 import onboarding4 from "../../../public/onboarding4.png";
 import onboarding5 from "../../../public/onboarding5.png";
 export default function SimpleSlider() {
-  var settings = {
+  const settings = {
     arrows: false,
     dots: true,
     infinite: true,

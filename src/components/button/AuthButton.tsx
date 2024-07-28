@@ -17,18 +17,19 @@ export const AuthButton = ({
   return (
     <button
       onClick={onClick}
-      className={`tracking-wide flex justify-center items-center rounded-xl w-[400px] max-w-[80vw] h-[70px] max-h-[8vh] ${
-        bgColor === "kakao" ? "bg-kakaoYellow" : "bg-gray-100 border-2"
+      className={`tracking-wide flex justify-center items-center rounded-xl w-[400px] max-w-[80vw] h-[56px] max-h-[8vh] ${
+        bgColor === "kakao" ? "bg-kakaoYellow" : "border-[1px]"
       }`}
     >
       <Image
         src={srcImg}
         alt="logo"
-        className="mr-2 w-7 h-6"
-        width={32}
-        height={32}
+        style={{ height: 20 }}
+        className="mr-[8px]"
+        width={20}
+        height={20}
       />
-      {text}
+      <div className="text-[16px]">{text}</div>
     </button>
   );
 };

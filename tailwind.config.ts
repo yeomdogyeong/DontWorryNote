@@ -36,7 +36,7 @@ const config: Config = {
         subBlack: "#E8F0FF",
         positive: "#21C389",
         negative: "#FF4D4D",
-        kakaoYellow: "#FAE100",
+        kakaoYellow: "#F9DB00",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

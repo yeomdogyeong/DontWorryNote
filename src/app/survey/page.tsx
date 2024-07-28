@@ -46,8 +46,8 @@ export default function Survey() {
       <ProgressBar stepNumber={step} />
       <div className="w-full p-6 mt-4 flex justify-between items-center ">
         <div className="self-start ml-8">
-          <p className="text-2xl font-bold">{listItem[step]?.title?.one}</p>
-          <p className="text-2xl font-bold">{listItem[step]?.title?.two}</p>
+          <p className="text-[24px] font-[700]">{listItem[step]?.title?.one}</p>
+          <p className="text-[24px] font-[700]">{listItem[step]?.title?.two}</p>
         </div>
         <div className="self-end flex tracking-wider">
           <p className="text-mainGreen">{step}</p>
@@ -72,8 +72,8 @@ export default function Survey() {
         } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <span
-          className={`${
-            select ? "text-white" : "text-gray-400"
+          className={`font-600 ${
+            select ? "text-white" : "text-gray-600"
           } flex justify-center items-center h-1/3 w-full text-lg`}
         >
           {step === 5 ? "내 성향 분석하기" : "다음으로"}

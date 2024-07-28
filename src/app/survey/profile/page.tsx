@@ -69,8 +69,8 @@ export default function Main() {
 
       <div className="w-full p-6 mt-4 flex justify-between items-center ">
         <div className="self-start ml-[20px] mb-[32px]">
-          <p className="text-2xl font-bold">개미와 베짱이에서</p>
-          <p className="text-2xl font-bold">어떤 프로필로 활동할까요?</p>
+          <p className="text-[24px] font-bold">개미와 베짱이에서</p>
+          <p className="text-[24px] font-bold">어떤 프로필로 활동할까요?</p>
         </div>
       </div>
       {url ? (

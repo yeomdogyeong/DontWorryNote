@@ -43,7 +43,7 @@ function ResultPage() {
         <div className="flex">
           {resultIdx && (
             <p
-              className={`text-2xl font-bold${
+              className={`text-[24px] font-bold${
                 surveyList[0][resultIdx]?.srcBg === "baejjange"
                   ? "text-mainGreen"
                   : "text-mainBlack"
@@ -53,7 +53,7 @@ function ResultPage() {
             </p>
           )}
 
-          <p className="text-2xl font-bold">입니다</p>
+          <p className="text-[24px] font-bold">입니다</p>
         </div>
       </div>
       <div className="flex flex-col items-center w-full tracking-wide">

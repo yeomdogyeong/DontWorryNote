@@ -17,7 +17,7 @@ export const SliderItem = ({
 }: SliderItemType) => {
   return (
     <div className="flex-center flex-col relative">
-      <div className="text-2xl flex items-center flex-col font-semibold mb-[32px]">
+      <div className="text-[24px] flex items-center flex-col font-semibold mb-[32px]">
         <div>{text1}</div>
         <div>{text2}</div>
       </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
 import google from "../../../public/google.png";
@@ -19,15 +19,15 @@ function OnBoardingPage() {
     console.log("kakao!");
   };
   return (
-    <main className="w-full flex flex-col items-center bg-gray-50 pt-[82px] min-h-screen ">
+    <main className="w-full flex flex-col items-center pt-[82px] min-h-screen ">
       <div className="w-full ">
         <SimpleSlider />
       </div>
 
-      <div className="w-full max-w-[440px] items-center flex flex-col justify-center mt-[56px]">
+      <div className="w-full max-w-[440px] items-center flex flex-col justify-center mt-[112px]">
         <div className="">
           <AuthButton
-            text="KaKao로 시작하기"
+            text="카카오로 시작하기"
             bgColor="kakao"
             srcImg={kakao}
             onClick={handleKakao}
