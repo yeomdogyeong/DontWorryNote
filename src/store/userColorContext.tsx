@@ -10,19 +10,17 @@ const UserColorContext = createContext("");
 export const UserColorProvider = ({ children }: any) => {
   const [userColor, setUserColor] = useState("");
   const userType = useMyStore((state) => state.tendency);
-  const storedUserScore = localStorage.getItem("userScore");
-  const userScore =
-    storedUserScore !== null ? parseInt(storedUserScore, 10) : null;
+
+  // const userScore = useUserStore();
+  const { users } = useUserStore();
   useEffect(() => {
-    // userType이 gaejjange일 때는 mainGreen, gaemi일 때는 mainBlack으로 설정
-    if (userScore !== null && userScore > 4) {
-      userType === SubjectType.GAEMI;
+    console.log(users.score);
+    if (users.score > 3) {
       setUserColor("mainBlack");
     } else {
       setUserColor("mainGreen");
-      userType === SubjectType.BAEZZANGE;
     }
-  }, [userType]);
+  }, [users]);
 
   return (
     <UserColorContext.Provider value={userColor}>
