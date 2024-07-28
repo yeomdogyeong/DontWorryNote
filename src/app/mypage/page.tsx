@@ -58,8 +58,6 @@ export default function MyPage() {
     return <></>;
   }
 
-  console.log(setDate);
-
   return (
     <div className="h-full">
       <DefaultHeader title="마이페이지" />

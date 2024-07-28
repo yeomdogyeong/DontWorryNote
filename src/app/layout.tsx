@@ -31,6 +31,12 @@ export default function RootLayout({
       <html lang="en" className="h-full">
         <head>
           <link rel="icon" href="/favicon.png" type="image/png" />
+          <link
+            rel="stylesheet"
+            as="style"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+          />
+
           <title>개짱이</title>
           <script
             defer

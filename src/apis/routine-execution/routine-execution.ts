@@ -21,7 +21,6 @@ export const deleteRoutineExecution = (
 };
 
 export const getRoutineExecution = (from: string, to: string) => {
-  console.log(from, to);
   return Axios.get<ApiResponse<RoutineExecution[]>>(`/v1/routine-execution`, {
     params: { from, to },
   });
