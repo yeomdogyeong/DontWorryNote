@@ -10,37 +10,29 @@ import routineGaemi from "../../../public/routine-gaemi.png";
 import useMyStore from "@/store/useMyStore";
 import RoutineItem from "../modules/routine/RoutineItem";
 import { convertEmojiImgSrc, SubjectType } from "@/types/common";
-import { DaysOfWeekType, RoutineCategoryType } from "@/types/apis/routine";
 import { Burning } from "../icon/Burning";
-export const OptionDialog = () => {
-  const userColor = useUserColor();
-  const [isRoutineBoxVisible, setIsRoutineBoxVisible] = useState(false);
-  const { tendency } = useMyStore();
-  let data = "mango";
-  useEffect(() => {
-    console.log("mango2");
-    if (data) {
-      setIsRoutineBoxVisible(true);
-    }
-  }, []);
+import { RoutineExecution } from "@/types/apis/routineExecution";
+//props에 내려주는거 any로 하지말기 (타입캐스팅이 안됌)
+//isfetched => reactquery에 있는데 이거 쓰면 데이터 가져오기 전에 이미지 설정 가능
+interface OptionDialogType {
+  //? 있을때 | undefined 같음
+  data?: RoutineExecution[];
+  todayDate: string;
+  refetch: () => void;
+  isFetched: boolean;
+}
 
-  const dummyRoutineItem = {
-    routineId: 1,
-    tendency: SubjectType.GAEMI,
-    category: RoutineCategoryType.HEALTH,
-    name: "망고강쥐랑 놀기",
-    description: "30분동안 놀아주기",
-    emoji: 1,
-    startedDate: "2023-07-01",
-    endedDate: null,
-    executionTime: "07:00",
-    userId: 123,
-    daysOfWeek: [DaysOfWeekType.FRIDAY],
-  };
-  // h-[700px] max-h-[73vh]
+export const OptionDialog = ({
+  data,
+  todayDate,
+  refetch,
+  isFetched,
+}: OptionDialogType) => {
+  const { tendency } = useMyStore();
+
   return (
     <>
-      <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center overflow-auto w-[500px] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
+      <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
         <div className="relative w-full">
           <Image
             src={tendency === "GAEMI" ? maingaemi : mainbaejjange}
@@ -54,124 +46,51 @@ export const OptionDialog = () => {
         </div>
         <div className="self-start m-3 text-xl">오늘의 할 일 목록</div>
 
-        {isRoutineBoxVisible ? (
-          <div className="flex flex-col items-center w-full justify-start ">
+        {isFetched ? (
+          <div className="flex flex-col items-center w-full justify-start overflow-auto pb-[60px] ">
             <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
+              {data &&
+                data.map((item) => (
+                  <RoutineItem
+                    refetch={() => {
+                      refetch();
+                    }}
+                    key={item.routine.routineId}
+                    {...item.routine}
+                    isExecution={item.executionDates.some((date) => {
+                      return date === todayDate;
+                    })}
+                    formatDate={todayDate}
+                  />
+                ))}
             </div>
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>{" "}
-            <div className="mb-4 w-full">
-              <RoutineItem
-                {...dummyRoutineItem}
-                isExecution={true}
-                formatDate="2023-07-27"
-                refetch={() => console.log("Refetch called")}
-              />
-            </div>
-          </div>
-        ) : tendency === "GAEMI" ? (
-          <div className="flex flex-col items-center justify-center h-full">
-            <div className="flex flex-col items-center justify-center opacity-50">
-              <Image
-                src={routineGaemi}
-                alt="userTypeImge"
-                width={170}
-                height={200}
-                className="mb-[24px]"
-              />
-              <button className="flex items-center bg-mainBlack rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2">
-                루틴 추가하기
-              </button>
-            </div>{" "}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
             <div className="flex flex-col items-center justify-center opacity-50">
               <Image
-                src={routineBaezzange}
+                src={
+                  tendency === SubjectType.GAEMI
+                    ? routineGaemi
+                    : routineBaezzange
+                }
                 alt="userTypeImge"
                 width={170}
                 height={200}
                 className="mb-[24px]"
               />
-              <button className="flex items-center bg-mainGreen rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2">
+              <button
+                className={`flex items-center ${
+                  tendency === SubjectType.GAEMI
+                    ? "bg-mainBlack"
+                    : "bg-mainGreen"
+                } rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2`}
+              >
                 루틴 추가하기
               </button>
-            </div>{" "}
+            </div>
           </div>
         )}
-
-        {/* <div className="">앗! 아직 만들어진 루틴이 없어요!</div>
-          <div className="mb-[24px]">새로운 루틴을 추가해보세요!</div>
-          {tendency === "GAEMI" ? (
-            <button className="flex items-center bg-mainBlack rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2">
-              루틴 추가하기
-            </button>
-          ) : (
-            <button className="flex items-center bg-mainGreen rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2">
-              루틴 추가하기
-            </button>
-          )} */}
       </div>
     </>
   );

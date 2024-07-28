@@ -19,13 +19,13 @@ function OnBoardingPage() {
     console.log("kakao!");
   };
   return (
-    <main className="w-full h-full flex flex-col justify-center items-center p-8 bg-gray-50">
-      <div className="w-[380px] h-[400px] mt-[32px] mb-[102px]">
+    <main className="w-full flex flex-col items-center bg-gray-50 pt-[82px] min-h-screen ">
+      <div className="w-full ">
         <SimpleSlider />
       </div>
 
-      <div className="w-full max-w-[440px] items-center flex flex-col justify-center">
-        <div className="mt-4">
+      <div className="w-full max-w-[440px] items-center flex flex-col justify-center mt-[56px]">
+        <div className="">
           <AuthButton
             text="KaKao로 시작하기"
             bgColor="kakao"
@@ -33,7 +33,7 @@ function OnBoardingPage() {
             onClick={handleKakao}
           />
         </div>
-        <div className="">
+        <div className="mt-[8px] pb-[10px]">
           <AuthButton text="Google로 시작하기" bgColor="" srcImg={google} />
         </div>
       </div>

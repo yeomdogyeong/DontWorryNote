@@ -19,18 +19,18 @@ export default function HomePage() {
   now.format();
   const todayDate = now.format("YYYY-MM-DD");
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isFetched } = useQuery({
     //두 번째 인자를 기준으로 이전 데이터를 캐시할지 말지 결정
     queryKey: ["routineExecution"],
     queryFn: () => getRoutineExecution(todayDate, todayDate),
   });
 
   useEffect(() => {
-    // console.log('data.length', data && data.length)
+    console.log("data", data);
     if (userColor) {
       setLoading(false);
     }
-  }, [userColor]);
+  }, [userColor, data]);
 
   if (loading) {
     return (
@@ -59,7 +59,12 @@ export default function HomePage() {
         <div>제가 옆에서 열심히 응원할게요!</div>
       </div>
 
-      <OptionDialog />
+      <OptionDialog
+        data={data?.data.data}
+        todayDate={todayDate}
+        refetch={refetch}
+        isFetched={isFetched}
+      />
 
       <BottomNavigation />
     </div>
