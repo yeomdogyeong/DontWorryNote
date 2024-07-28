@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import baejjange from "../../../../public/Ellipse1.png";
-import gaemi from "../../../../public/Ellipse2.png";
+import baejjange from "../../../../public/Ellipse11.png";
+import gaemi from "../../../../public/Ellipse21.png";
 import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
 import useUserStore from "@/store/useUserStore";
