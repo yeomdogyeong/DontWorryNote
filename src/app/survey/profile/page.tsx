@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import baejjange from "../../../../public/Ellipse1.png";
 import gaemi from "../../../../public/Ellipse2.png";
 import camera from "../../../../public/camera.png";
@@ -12,22 +12,23 @@ import { postFile } from "@/apis/file/file";
 import { FileType } from "@/types/apis/file";
 import { HOME_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
+import { SubjectType } from "@/types/common";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
   const setInitializeState = useMyStore((state) => state.setInitializeState);
   const [isFocused, setIsFocused] = useState(false);
   const userColor = useUserColor();
-  const userType = useMyStore((state) => state.tendency);
+  const [userType, setUserType] = useState<SubjectType>();
   const router = useRouter();
-  const [uploadImg, setUploadImg] = useState<string>("");
-  const [uploadFile, setUploadFile] = useState<Blob | string>("");
-
+  const [url, setUrl] = useState<string | null>(null);
+  const [file, setFile] = useState<File>();
+  const [userNickname, setUserNickname] = useState<string>("");
   const handleToMain = async () => {
-    const { data } = await postFile(FileType.USER_IMAGE, uploadFile);
-
+    const { data } = await postFile(FileType.USER_IMAGE, file);
+    console.log(data);
     await postUserOnboarding({
-      nickname: "test22",
+      nickname: userNickname,
       tendency: userType,
       profileImagePath: data.data.path,
     });
@@ -39,25 +40,28 @@ export default function Main() {
     router.push(HOME_PATH);
   };
 
-  const changeUserImg = (e: ChangeEvent<HTMLInputElement>) => {
-    //유저가 누를때 파일의 0번째 있는걸 가져와서 해당 이미지에 놓을거
-    const files = e.target.files;
-    console.log(files);
-    if (files && files.length > 0) {
-      const file = files[0];
-      setUploadFile(file);
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        // 이미지를 처리하는 코드
-        if (reader.result) {
-          setUploadImg(reader.result.toString());
-        }
-      };
-    } else {
-      console.log("파일이 선택되지 않았습니다.");
-    }
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files as FileList;
+
+    const url = window.URL.createObjectURL(file[0]);
+    setUrl(url);
+    setFile(file[0]);
   };
+
+  const handleUserName = (e: any) => {
+    setUserNickname(e.target.value);
+    console.log(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log("usercolor", userColor);
+    if (userColor === "mainGreen") {
+      setUserType(SubjectType.BAEZZANGE);
+    } else {
+      setUserType(SubjectType.GAEMI);
+    }
+  }, [userColor]);
 
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
@@ -69,22 +73,17 @@ export default function Main() {
           <p className="text-2xl font-bold">어떤 프로필로 활동할까요?</p>
         </div>
       </div>
-      {uploadImg ? (
+      {url ? (
         <div className="w-[103px] h-[100px] rounded-full overflow-hidden flex justify-center items-center border-2 border-gray-100">
           <input
             type="file"
             id="fileInput"
             className="hidden"
-            accept="image/*"
-            onChange={changeUserImg}
+            accept={"image/jpeg, image/png"}
+            onChange={handleFileChange}
           />
           <label htmlFor="fileInput">
-            <Image
-              src={uploadImg}
-              alt="user-upload-img"
-              width={103}
-              height={100}
-            />
+            <Image src={url} alt="user-upload-img" width={103} height={100} />
           </label>
         </div>
       ) : (
@@ -93,14 +92,27 @@ export default function Main() {
             type="file"
             id="fileInput"
             className="hidden"
-            accept="image/*"
-            onChange={changeUserImg}
+            accept={"image/jpeg, image/png"}
+            onChange={handleFileChange}
+            ref={fileInputRef}
           />
           <label htmlFor="fileInput">
             {userColor === "mainGreen" ? (
-              <Image alt="user-img" src={baejjange} width={103} height={100} />
+              <Image
+                alt="user-img"
+                src={baejjange}
+                width={103}
+                height={100}
+                onClick={() => fileInputRef.current?.click()}
+              />
             ) : (
-              <Image alt="user-img" src={gaemi} width={103} height={100} />
+              <Image
+                alt="user-img"
+                src={gaemi}
+                width={103}
+                height={100}
+                onClick={() => fileInputRef.current?.click()}
+              />
             )}
 
             <p className="absolute bottom-0 right-0">
@@ -114,6 +126,8 @@ export default function Main() {
         <input
           className={`border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-${userColor}`}
           placeholder="닉네임을 입력해주세요"
+          value={userNickname}
+          onChange={handleUserName}
         />
         <div className="self-start mt-[8px] text-gray-600">
           6자리 이내, 문자/숫자 가능, 특수문자/기호 입력불가

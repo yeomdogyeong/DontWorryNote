@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
 import google from "../../../public/google.png";
@@ -10,18 +10,22 @@ import { useRouter } from "next/navigation";
 function OnBoardingPage() {
   const router = useRouter();
 
+  // useEffect(() => {
+  //   localStorage.removeItem("tokenKey");
+  // }, []);
+
   const handleKakao = () => {
     router.push(`https://gaezzange.duckdns.org/oauth2/authorization/kakao`);
     console.log("kakao!");
   };
   return (
-    <main className="w-full h-full flex flex-col justify-center items-center p-8 bg-gray-50">
-      <div className="w-[440px] mt-[32px] mb-[102px]">
+    <main className="w-full flex flex-col items-center bg-gray-50 pt-[82px] min-h-screen ">
+      <div className="w-full ">
         <SimpleSlider />
       </div>
 
-      <div className="mb-[70px]">
-        <div className="mb-4">
+      <div className="w-full max-w-[440px] items-center flex flex-col justify-center mt-[56px]">
+        <div className="">
           <AuthButton
             text="KaKao로 시작하기"
             bgColor="kakao"
@@ -29,7 +33,7 @@ function OnBoardingPage() {
             onClick={handleKakao}
           />
         </div>
-        <div className="">
+        <div className="mt-[8px] pb-[10px]">
           <AuthButton text="Google로 시작하기" bgColor="" srcImg={google} />
         </div>
       </div>

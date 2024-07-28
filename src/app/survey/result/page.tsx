@@ -31,10 +31,10 @@ function ResultPage() {
     }
     console.log("resultIdx", resultIdx);
     localStorage.setItem("userScore", JSON.stringify(users.score));
-  }, [users.score]);
+  }, [users.score, resultIdx]);
 
   return (
-    <div className="flex-col w-full p-6 mt-4 flex justify-between items-center ">
+    <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[110px]">
       <div className="self-start ml-2">
         <p className="text-lg font-thin text-gray-500">
           개짱이력(GJLS) 분석결과 회원님은
@@ -63,27 +63,24 @@ function ResultPage() {
             alt="baejjange"
             className={`mt-16 h-50 ${
               resultIdx === "result1" ? "w-80" : "w-40"
-            }`}
+            } md:${resultIdx === "result1" ? "w-80" : "w-40"} `}
           />
         )}
         <div className="mt-6 bg-gray-100 flex justify-center items-center rounded-full w-[200px] h-[50px]">
           내 개짱이력 분석결과
         </div>
-        <div className="border-2 w-full mt-6 flex items-center justify-center rounded-xl p-4">
+        <div className="mt-[16px] flex items-center border-[1px] border-gray-200 px-[16px] pt-[16px] pb-[18px] gap-[14px]">
           {resultIdx && surveyList[0][resultIdx]?.subImg && (
             <Image
               src={surveyList[0][resultIdx].subImg}
               alt="baejjange"
-              className="mr-4 self-start"
+              className=""
+              width={40}
+              height={40}
             />
           )}
-          <div className="font-thin text-gray-600">
-            <p className="text-[12px] sm:text-[16px]">
-              {resultIdx && surveyList[0][resultIdx]?.subTitle1}
-            </p>
-            <p className="text-[12px] sm:text-[16px] ">
-              {resultIdx && surveyList[0][resultIdx]?.subTitle2}
-            </p>
+          <div className="white-space font-[400] text-[14ox] text-gray-600 ">
+            {resultIdx && surveyList[0][resultIdx]?.subTitle}
           </div>
         </div>
         <div className="w-full mt-6 flex flex-col items-start bg-gray-100 rounded-xl p-4 tracking-widest">
@@ -113,7 +110,7 @@ function ResultPage() {
             }
             console.log(userType);
           }}
-          className={`flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
+          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[90px]  text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"
               : "bg-mainBlack"

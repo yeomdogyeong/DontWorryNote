@@ -25,13 +25,13 @@ export const SliderItem = ({
         <Image
           src={subImg}
           alt="character-img"
-          width={300}
-          height={120}
+          width={248}
+          height={320}
           className="absolute left-10 bottom-0"
         />
       )}
 
-      <Image src={srcImg} alt="character-img" width={300} height={120} />
+      <Image src={srcImg} alt="character-img" width={264} height={120} />
     </div>
   );
 };

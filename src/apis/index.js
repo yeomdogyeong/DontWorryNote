@@ -1,8 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-export const userInstance = (baseURL, headers) => {
+function userInstance(baseURL, headers) {
   const instance = axios.create({
     baseURL: baseURL,
     headers: {
@@ -41,8 +40,8 @@ export const userInstance = (baseURL, headers) => {
     },
     function (error) {
       console.log(error);
+
       if (error.response && error.response.status === 401) {
-        // const router = useRouter();
         alert("토큰이 만료되었습니다.");
         localStorage.removeItem("tokenKey");
         window.location.href = "/onboarding";
@@ -52,7 +51,9 @@ export const userInstance = (baseURL, headers) => {
   );
 
   return instance;
-};
+}
+
+export default userInstance;
 
 export const onBoarding = userInstance(
   "https://gaezzange.duckdns.org/api/v1/auth/token"

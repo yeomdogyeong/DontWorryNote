@@ -3,7 +3,6 @@ import { create } from "zustand";
 
 interface MyState {
   isSignedIn: boolean;
-
   nickname: string;
   tendency: SubjectType;
   userId?: number;
