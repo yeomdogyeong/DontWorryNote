@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
-export const getWeekDates = () => {
-  const today = new Date();
+export const getWeekDates = (date?: string | number) => {
+  const today = date ? new Date(date) : new Date();
 
   // Convert to Seoul time
   const offset = 9 * 60; // Seoul is UTC+9

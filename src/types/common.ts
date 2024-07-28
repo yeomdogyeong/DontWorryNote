@@ -121,7 +121,7 @@ export const PostTypeArray = [
   {
     value: PostType.DAILY,
     name: convertPostTypeValue(PostType.DAILY),
-  },
+  },  
   {
     value: PostType.ETC,
     name: convertPostTypeValue(PostType.ETC),

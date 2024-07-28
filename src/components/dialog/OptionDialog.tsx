@@ -48,7 +48,7 @@ export const OptionDialog = ({
 
         {isFetched ? (
           <div className="flex flex-col items-center w-full justify-start overflow-auto pb-[60px] ">
-            <div className="mb-4 w-full">
+            <div className="flex flex-col gap-[8px] w-full">
               {data &&
                 data.map((item) => (
                   <RoutineItem

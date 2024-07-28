@@ -1,4 +1,6 @@
 import CheckIcon from "@/components/icon/CheckIcon";
+import { LeftArrow } from "@/components/icon/LeftArrow";
+import RightArrow from "@/components/icon/RightArrow";
 import useMyStore from "@/store/useMyStore";
 import useUserStore from "@/store/useUserStore";
 import { SubjectType } from "@/types/common";
@@ -49,13 +51,13 @@ export default function Calendar(props: CalendarProps) {
     <>
       <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
 
-      <div className="fixed z-[100] w-[335px] h-[418px] flex flex-col pt-[16px] px-[20px] pb-[8px] rounded-[12px] bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed z-[100] w-[335px] min-h-[418px] flex flex-col pt-[16px] px-[20px] pb-[8px] rounded-[12px] bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center justify-between h-[64px]">
           <button
             onClick={handlePrevMonth}
-            className="rounded-[4px] border-[1px] w-[48px] h-[48px]"
+            className="flex-center rounded-[4px] border-[1px] w-[48px] h-[48px]"
           >
-            &lt;
+            <LeftArrow />
           </button>
           <h2 className="font-[600] text-[20px]">
             {currentDate.format("YYYY. MM")}
@@ -64,7 +66,7 @@ export default function Calendar(props: CalendarProps) {
             onClick={handleNextMonth}
             className="rounded-[4px] border-[1px] w-[48px] h-[48px]"
           >
-            &gt;
+            <RightArrow />
           </button>
         </div>
         <div className="my-[8px] grid grid-cols-7 text-center">

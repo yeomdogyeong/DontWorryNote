@@ -1,10 +1,8 @@
-import React from "react";
-
 interface Props {
   size?: 28 | 20;
 }
 
-export const LeftArrow = (props: Props) => {
+export default function RightArrow(props: Props) {
   const { size = 28 } = props;
 
   if (size === 20) {
@@ -17,13 +15,13 @@ export const LeftArrow = (props: Props) => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M2.85724 10H17.143"
+          d="M17.1428 10H2.85705"
           stroke="#111111"
           stroke-width="1.5"
           stroke-linecap="round"
         />
         <path
-          d="M7.85718 5L2.85718 10L7.85718 15"
+          d="M12.1428 5L17.1428 10L12.1428 15"
           stroke="#111111"
           stroke-width="1.5"
           stroke-linecap="round"
@@ -42,18 +40,18 @@ export const LeftArrow = (props: Props) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M4 14H24"
+        d="M24 14H4"
         stroke="#111111"
-        strokeWidth="2"
-        strokeLinecap="round"
+        stroke-width="2"
+        stroke-linecap="round"
       />
       <path
-        d="M11 7L4 14L11 21"
+        d="M17 7L24 14L17 21"
         stroke="#111111"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </svg>
   );
-};
+}

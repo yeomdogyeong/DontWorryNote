@@ -1,6 +1,9 @@
 import { ApiResponse } from "@/types/apis/common";
 import { Axios } from "..";
-import { RoutineExecution } from "@/types/apis/routineExecution";
+import {
+  RoutineExecution,
+  RoutineExecutionCount,
+} from "@/types/apis/routineExecution";
 
 export const postRoutineExecution = (routineId: number, targetDate: string) => {
   return Axios.post<ApiResponse<null>>(
@@ -25,7 +28,10 @@ export const getRoutineExecution = (from: string, to: string) => {
 };
 
 export const getRoutineExecutionCount = (from: string, to: string) => {
-  return Axios.get<ApiResponse<null>>(`/v1/routine-execution/count`, {
-    params: { from, to },
-  });
+  return Axios.get<ApiResponse<RoutineExecutionCount>>(
+    `/v1/routine-execution/count`,
+    {
+      params: { from, to },
+    }
+  );
 };

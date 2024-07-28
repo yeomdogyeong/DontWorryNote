@@ -30,6 +30,8 @@ export default function RootLayout({
     <QueryClientProvider client={queryClient}>
       <html lang="en" className="h-full">
         <head>
+          <link rel="icon" href="/favicon.png" type="image/png" />
+          <title>개짱이</title>
           <script
             defer
             src="https://cdn.swygbro.com/public/widget/swyg-widget.js"
