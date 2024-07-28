@@ -176,7 +176,7 @@ export default function MyPage() {
         </button>
       </div>
       <div className="w-full h-[8px] bg-[#f4f4f4]" />
-      <div className="py-[24px] px-[20px]">
+      <div className="pt-[24px] px-[20px] pb-[76px]">
         <div className="font-[600] text-[16px] ">나의 개짱이 활동</div>
         <button
           onClick={() => router.push(MY_PAGE_ROUTINE_PATH)}
