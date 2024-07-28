@@ -18,7 +18,7 @@ export default function ReportPage() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-start h-full">
+    <div className="min-h-full h-max bg-white">
       <DefaultHeader title="통계" />
       <div className="z-30 flex items-center gap-[20px] h-[52px] sticky top-[56px] bg-white w-full">
         <button

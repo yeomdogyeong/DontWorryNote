@@ -66,3 +66,33 @@ input:focus {
   color: #e5e5eb !important;
   opacity: 1 !important;
 }
+
+@keyframes move {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes move-9s {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes move-11s {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-move {
+  animation: move 3s infinite linear;
+}
+
+.animate-move-9s {
+  animation: move-9s 9s infinite linear;
+}
+
+.animate-move-11s {
+  animation: move-9s 11s infinite linear;
+}
