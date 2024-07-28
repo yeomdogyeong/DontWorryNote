@@ -31,8 +31,8 @@ export default function Home() {
     handleNextPage();
   }, []);
   return (
-    <main className="w-full h-full flex flex-col justify-center items-center">
-      <div className="flex flex-col justify-center items-center mb-[218px]">
+    <main className="w-full h-full flex flex-col items-center">
+      <div className="flex flex-col justify-center items-center mt-[275px]">
         <Image
           src={slogan}
           alt="sloganImg"

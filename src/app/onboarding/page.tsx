@@ -19,7 +19,7 @@ function OnBoardingPage() {
     console.log("kakao!");
   };
   return (
-    <main className="w-full flex flex-col items-center pt-[82px] min-h-screen ">
+    <main className="w-full flex flex-col items-center pt-[69px] min-h-screen h-max bg-white">
       <div className="w-full ">
         <SimpleSlider />
       </div>
