@@ -43,7 +43,7 @@ export default function AddPostPage() {
         },
         {
           title: "일상글",
-          onClick: async () => setPostType(PostType.ROUTINE_DAILY),
+          onClick: async () => setPostType(PostType.DAILY),
         },
         {
           title: "기타",

@@ -84,7 +84,7 @@ export enum PostType {
   ROUTINE_SHARE = "ROUTINE_SHARE",
   ROUTINE_AUTHENTICATION = "ROUTINE_AUTHENTICATION",
   ROUTINE_QUESTION = "ROUTINE_QUESTION",
-  ROUTINE_DAILY = "ROUTINE_DAILY",
+  DAILY = "DAILY",
   ETC = "ETC",
 }
 
@@ -92,7 +92,7 @@ export const convertPostTypeValue = (type: PostType | null) => {
   switch (type) {
     case PostType.ROUTINE_AUTHENTICATION:
       return "루틴 인증";
-    case PostType.ROUTINE_DAILY:
+    case PostType.DAILY:
       return "일상";
     case PostType.ETC:
       return "기타";
@@ -119,8 +119,8 @@ export const PostTypeArray = [
     name: convertPostTypeValue(PostType.ROUTINE_AUTHENTICATION),
   },
   {
-    value: PostType.ROUTINE_DAILY,
-    name: convertPostTypeValue(PostType.ROUTINE_DAILY),
+    value: PostType.DAILY,
+    name: convertPostTypeValue(PostType.DAILY),
   },
   {
     value: PostType.ETC,
