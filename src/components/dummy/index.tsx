@@ -191,8 +191,8 @@ export const surveyList: SurveyList[] = [
       title: "여유로운 베짱이",
       srcImg: baejjange1,
       subImg: minibaejjange,
-      subTitle1: "충분한 휴식을 통해 몸과 마음을 돌보는 당신,",
-      subTitle2: " 작은 도전으로 일상에 활력을 더해볼까요?",
+      subTitle:
+        "충분한 휴식을 통해 몸과 마음을 돌보는 당신, \n 작은 도전으로 일상에 활력을 더해볼까요?",
       score1: 2,
       score2: 8,
       srcBg: "baejjange",
@@ -202,8 +202,8 @@ export const surveyList: SurveyList[] = [
       title: "균형잡힌 베짱이",
       srcImg: baejjange2,
       subImg: minibaejjange,
-      subTitle1: "충분한 휴식과 일의 조화를 잘 맞추는 당신,",
-      subTitle2: "지금의 균형잡힌 삶이 정말 멋지네요!",
+      subTitle:
+        "충분한 휴식과 일의 조화를 잘 맞추는 당신,\n지금의 균형잡힌 삶이 정말 멋지네요!",
       score1: 4,
       score2: 6,
       srcBg: "baejjange",
@@ -213,8 +213,8 @@ export const surveyList: SurveyList[] = [
       title: "균형잡힌 개미",
       srcImg: gaemi,
       subImg: minigaemi,
-      subTitle1: "새로운 지식과 경험을 균형있게 즐기는 당신,",
-      subTitle2: "현재의 밸런스는 매우 이상적입니다!",
+      subTitle:
+        "새로운 지식과 경험을 균형있게 즐기는 당신,\n현재의 밸런스는 매우 이상적입니다!",
       score1: 4,
       score2: 6,
       srcBg: "gaemi",
@@ -224,8 +224,8 @@ export const surveyList: SurveyList[] = [
       title: "부지런한 개미",
       srcImg: gaemi2,
       subImg: minigaemi,
-      subTitle1: "목표를 향해 끊임없이 노력하는 당신, ",
-      subTitle2: "건강한 성장을 위해 잠시 재충전 해볼까요?",
+      subTitle:
+        "목표를 향해 끊임없이 노력하는 당신,\n건강한 성장을 위해 잠시 재충전 해볼까요?",
       score1: 8,
       score2: 2,
       srcBg: "gaemi",

@@ -66,8 +66,7 @@ export type SurveyResult = {
   title: string;
   srcImg: StaticImageData;
   subImg: StaticImageData;
-  subTitle1: string;
-  subTitle2: string;
+  subTitle: string;
   score1: number;
   score2: number;
   srcBg: string;
