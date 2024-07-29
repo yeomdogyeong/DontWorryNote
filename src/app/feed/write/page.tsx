@@ -1,5 +1,6 @@
 "use client";
 
+import imageCompression from "browser-image-compression";
 import { Header } from "@/components/Header";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
 import { useCallback, useRef, useState } from "react";
@@ -54,12 +55,23 @@ export default function AddPostPage() {
   }, [active, setPostType]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.currentTarget.files as FileList;
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const fileList = event.currentTarget.files as FileList;
+    let file = fileList[0];
 
-    const url = window.URL.createObjectURL(file[0]);
+    const resizingBlob = await imageCompression(file, {
+      maxSizeMB: 1.0,
+      maxWidthOrHeight: 1920,
+    });
+    file = new File([resizingBlob], file.name, {
+      type: file.type,
+    });
+
+    const url = window.URL.createObjectURL(file);
     setUrl(url);
-    setFile(file[0]);
+    setFile(file);
   };
 
   const handleAddClick = useCallback(async () => {
