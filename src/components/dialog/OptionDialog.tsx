@@ -46,7 +46,7 @@ export const OptionDialog = ({
         </div>
         <div className="self-start m-3 text-xl">오늘의 할 일 목록</div>
 
-        {isFetched ? (
+        {data && data.length > 0 ? (
           <div className="flex flex-col items-center w-full justify-start overflow-auto pb-[60px] ">
             <div className="flex flex-col gap-[8px] w-full">
               {data &&
