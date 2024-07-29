@@ -87,3 +87,23 @@ export const now = (format?: string) => {
   }
   return dayjs().format(format);
 };
+
+export const replaceDayToValue = {
+  MONDAY: 0,
+  TUESDAY: 1,
+  WEDNESDAY: 2,
+  THURSDAY: 3,
+  FRIDAY: 4,
+  SATURDAY: 5,
+  SUNDAY: 6,
+};
+
+export const replaceFirstMondayToValue = {
+  0: 6,
+  1: 0,
+  2: 1,
+  3: 2,
+  4: 3,
+  5: 4,
+  6: 5,
+};

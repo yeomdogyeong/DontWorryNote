@@ -66,10 +66,10 @@ function ResultPage() {
             } md:${resultIdx === "result1" ? "w-80" : "w-40"} `}
           />
         )}
-        <div className="mt-6 bg-gray-100 flex justify-center items-center rounded-full w-[200px] h-[50px]">
+        <div className="mt-[21px] bg-gray-100 flex-center rounded-full px-[16px] py-[8px] h-[34px]">
           내 개짱이력 분석결과
         </div>
-        <div className="mt-[16px] flex items-center border-[1px] border-gray-200 px-[16px] pt-[16px] pb-[18px] gap-[14px]">
+        <div className="mt-[16px] rounded-[8px] flex items-center border-[1px] border-gray-200 px-[16px] pt-[16px] pb-[18px] gap-[14px]">
           {resultIdx && surveyList[0][resultIdx]?.subImg && (
             <Image
               src={surveyList[0][resultIdx].subImg}
@@ -83,7 +83,7 @@ function ResultPage() {
             {resultIdx && surveyList[0][resultIdx]?.subTitle}
           </div>
         </div>
-        <div className="w-full mt-6 flex flex-col items-start bg-gray-100 rounded-xl p-4 tracking-widest">
+        <div className="w-full mt-[12px] flex flex-col items-start bg-gray-100 rounded-xl p-4 tracking-widest">
           <div className="flex justify-between w-full font-thin text-gray-600 ">
             <p>개미력</p>
             <p>{resultIdx && `${surveyList[0][resultIdx]?.score1}0/100`}</p>
@@ -110,13 +110,13 @@ function ResultPage() {
             }
             console.log(userType);
           }}
-          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[90px]  text-white ${
+          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[56px]  text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"
               : "bg-mainBlack"
           } bottom-0 p-2 rounded-t-sm`}
         >
-          프로필만들기
+          프로필 만들기
         </button>
       )}
     </div>

@@ -69,7 +69,7 @@ export default function Survey() {
         disabled={!select}
         className={`${
           select ? "bg-mainGreen" : ""
-        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[56px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <span
           className={`font-600 ${

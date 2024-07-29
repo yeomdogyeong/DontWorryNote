@@ -16,11 +16,16 @@ export default function Home() {
   const handleNextPage = async () => {
     const userToken = localStorage.getItem("tokenKey");
     if (userToken && !isSignedIn) {
-      const { data } = await getUserMyInfo();
-      setInitializeState({
-        ...data.data,
-      });
-      setTimeout(() => router.push(HOME_PATH), 2000);
+      try {
+        const { data } = await getUserMyInfo();
+        setInitializeState({
+          ...data.data,
+        });
+        setTimeout(() => router.push(HOME_PATH), 2000);
+      } catch (e) {
+        setIsSignedIn(false);
+        setTimeout(() => router.push("/onboarding"), 2000);
+      }
     } else {
       setIsSignedIn(false);
       setTimeout(() => router.push("/onboarding"), 2000);
