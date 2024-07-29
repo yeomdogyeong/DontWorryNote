@@ -37,10 +37,12 @@ export const OptionDialog = ({
           <Image
             src={tendency === "GAEMI" ? maingaemi : mainbaejjange}
             alt="userCharacter"
-            width={103}
-            height={125}
-            className={`z-100 absolute ${
-              tendency === "GAEMI" ? "top-[-115px]" : "top-[-100px]"
+            width={1}
+            height={1}
+            className={`w-[103px] sm:w-[134px] h-[125px] sm:h-[145px] z-100 absolute ${
+              tendency === "GAEMI"
+                ? "top-[-115px] sm:top-[-135px]"
+                : "top-[-100px] sm:top-[-120px]"
             } right-[30px]`}
           />
         </div>

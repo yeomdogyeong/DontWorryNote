@@ -138,9 +138,9 @@ export default function Main() {
         className={`${
           select ? `bg-${userColor}` : ""
         } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[56px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        onClick={handleToMain}
       >
         <span
-          onClick={handleToMain}
           className={`${
             select ? "text-white" : "text-gray-400"
           } flex justify-center items-center w-full text-lg`}
