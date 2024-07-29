@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import baejjange from "../../../../public/Ellipse11.png";
 import gaemi from "../../../../public/Ellipse21.png";
 import camera from "../../../../public/camera.png";
 import { useUserColor } from "@/store/userColorContext";
-import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
 import { getUserMyInfo, postUserOnboarding } from "@/apis/user/user";
 import { postFile } from "@/apis/file/file";
@@ -13,6 +12,7 @@ import { FileType } from "@/types/apis/file";
 import { HOME_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
 import { SubjectType } from "@/types/common";
+import imageCompression from "browser-image-compression";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
@@ -24,9 +24,9 @@ export default function Main() {
   const [url, setUrl] = useState<string | null>(null);
   const [file, setFile] = useState<File>();
   const [userNickname, setUserNickname] = useState<string>("");
+
   const handleToMain = async () => {
     const { data } = await postFile(FileType.USER_IMAGE, file);
-    console.log(data);
     await postUserOnboarding({
       nickname: userNickname,
       tendency: userType,
@@ -41,12 +41,24 @@ export default function Main() {
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.currentTarget.files as FileList;
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const fileList = event.currentTarget.files as FileList;
+    let file = fileList[0];
 
-    const url = window.URL.createObjectURL(file[0]);
+    const resizingBlob = await imageCompression(file, {
+      maxSizeMB: 1.0,
+      maxWidthOrHeight: 1920,
+    });
+    file = new File([resizingBlob], file.name, {
+      type: file.type,
+    });
+
+    const url = window.URL.createObjectURL(file);
+
     setUrl(url);
-    setFile(file[0]);
+    setFile(file);
   };
 
   const handleUserName = (e: any) => {
