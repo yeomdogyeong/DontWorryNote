@@ -2,7 +2,7 @@ import {
   getRoutineExecution,
   getRoutineExecutionCount,
 } from "@/apis/routine-execution/routine-execution";
-import { getWeekDates } from "@/util/date";
+import { getWeekDates, replaceFirstMondayToValue } from "@/util/date";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useCallback, useMemo, useState } from "react";
@@ -10,16 +10,6 @@ import { LeftArrow } from "../icon/LeftArrow";
 import RightArrow from "../icon/RightArrow";
 import { createBooleanArray } from "@/util/common";
 import { SubjectType } from "@/types/common";
-
-const replaceDayToValue = {
-  MONDAY: 0,
-  TUESDAY: 1,
-  WEDNESDAY: 2,
-  THURSDAY: 3,
-  FRIDAY: 4,
-  SATURDAY: 5,
-  SUNDAY: 6,
-};
 
 export default function WeekDayReport() {
   const [currentWeek, setCurrentWeek] = useState({
@@ -54,18 +44,25 @@ export default function WeekDayReport() {
   const failedCount = useMemo(() => {
     const possibleCheckRoutine =
       routineExecutionList?.data.data.reduce((prev, cur) => {
-        cur.routine.daysOfWeek.forEach((day) => {
-          if (
-            replaceDayToValue[day] <
-            (getWeekDates(currentWeek.startDate).some(
-              (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
-            )
-              ? dayjs(new Date()).day()
-              : 7)
-          ) {
-            prev++;
-          }
-        });
+        // cur.routine.daysOfWeek.forEach((day) => {
+        //   console.log(
+        //     getWeekDates(currentWeek.startDate).some(
+        //       (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
+        //     )
+        //       ? replaceFirstMondayToValue[dayjs(new Date()).day()]
+        //       : 7
+        //   );
+        //   if (
+        //     replaceDayToValue[day] <=
+        //     (getWeekDates(currentWeek.startDate).some(
+        //       (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
+        //     )
+        //       ? replaceFirstMondayToValue[dayjs(new Date()).day()]
+        //       : 7)
+        //   ) {
+        //     prev++;
+        //   }
+        // });
         return prev;
       }, 0) ?? 0;
 
