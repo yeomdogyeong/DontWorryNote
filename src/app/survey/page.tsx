@@ -37,7 +37,7 @@ export default function Survey() {
     if (!step) {
       router.replace("/survey?step=1");
     }
-  }, []);
+  }, [router, step]);
 
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
@@ -69,12 +69,12 @@ export default function Survey() {
         disabled={!select}
         className={`${
           select ? "bg-mainGreen" : ""
-        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[56px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
       >
         <span
           className={`font-600 ${
             select ? "text-white" : "text-gray-600"
-          } flex justify-center items-center h-1/3 w-full text-lg`}
+          } flex justify-center items-center  w-full text-lg`}
         >
           {step === 5 ? "내 성향 분석하기" : "다음으로"}
         </span>

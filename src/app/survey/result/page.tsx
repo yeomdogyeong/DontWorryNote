@@ -100,7 +100,9 @@ function ResultPage() {
           )}
         </div>
       </div>
-
+      {/* <div className="border-[1px] p-[16px] rounded-3xl shadow-md absolute top-[657px]">
+        개짱이와 루틴을 만들며 여유로운 개짱이가 되어봐요! 😄
+      </div> */}
       {resultIdx && (
         <button
           onClick={() => {
@@ -110,7 +112,7 @@ function ResultPage() {
             }
             console.log(userType);
           }}
-          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[56px]  text-white ${
+          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[90px]  text-white ${
             surveyList[0][resultIdx]?.srcBg === "baejjange"
               ? "bg-mainGreen"
               : "bg-mainBlack"
