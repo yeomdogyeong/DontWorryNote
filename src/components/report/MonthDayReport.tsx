@@ -26,19 +26,6 @@ export default function MonthDayReport() {
     return dates;
   }, [startDate, endDate]);
 
-  const { data } = useQuery({
-    queryKey: [
-      "getExecutionCount",
-      days[0].format("YYYY-MM-DD"),
-      days[days.length - 1].format("YYYY-MM-DD"),
-    ],
-    queryFn: () =>
-      getRoutineExecutionCount(
-        days[0].format("YYYY-MM-DD"),
-        days[days.length - 1].format("YYYY-MM-DD")
-      ),
-  });
-
   const { data: routineExecutionList, refetch } = useQuery({
     queryKey: [
       "routineExecution",

@@ -25,6 +25,7 @@ export default function AddPostPage() {
   const [file, setFile] = useState<File>();
   const [url, setUrl] = useState<string | null>(null);
 
+  const [isLoading, setIsLoading] = useState(false);
   const { active } = useAddPostCateogoryModalOverlay();
 
   const handlePostType = useCallback(() => {
@@ -75,6 +76,7 @@ export default function AddPostPage() {
   };
 
   const handleAddClick = useCallback(async () => {
+    setIsLoading(true);
     const { data } = await postFile(FileType.FEED_IMAGE, file);
     await postFeed({
       tendency: type,
@@ -83,6 +85,7 @@ export default function AddPostPage() {
       feedImagePath: data.data.path,
     });
     router.push(FEED_PATH);
+    setIsLoading(false);
   }, [file, type, postType, contents, router]);
 
   const handleContentsChange = useCallback(
@@ -97,6 +100,7 @@ export default function AddPostPage() {
         title="게시글 작성"
         rightButton={
           <button
+            disabled={isLoading}
             onClick={handleAddClick}
             className="text-mainGreen font-[600] text-[16px]"
           >
@@ -164,9 +168,11 @@ export default function AddPostPage() {
         {url && (
           <div className="w-[88px] h-[88px] relative">
             <Image
+              style={{ height: 80 }}
               alt="post-img"
               width={80}
               height={80}
+              objectFit="cover"
               className="absolute bottom-0 left-0 rounded-[8px]"
               src={url}
             />
