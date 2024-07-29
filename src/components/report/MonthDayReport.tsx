@@ -1,15 +1,16 @@
-import {
-  getRoutineExecution,
-  getRoutineExecutionCount,
-} from "@/apis/routine-execution/routine-execution";
+import { getRoutineExecution } from "@/apis/routine-execution/routine-execution";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LeftArrow } from "../icon/LeftArrow";
 import RightArrow from "../icon/RightArrow";
+import Image from "next/image";
+import report_baezzange from "../../../public/report_baezzange_m.png";
+import report_gaemi from "../../../public/report_gaemi_m.png";
 
 export default function MonthDayReport() {
   const [currentDate, setCurrentDate] = useState(dayjs(new Date()));
+  const [executionMap, setExecutionMap] = useState<any>({});
 
   const startOfMonth = currentDate.startOf("month");
   const endOfMonth = currentDate.endOf("month");
@@ -38,6 +39,25 @@ export default function MonthDayReport() {
         days[days.length - 1].format("YYYY-MM-DD")
       ),
   });
+
+  useEffect(() => {
+    let newExecutionMap: any = {};
+    routineExecutionList?.data.data.map((item) => {
+      item.executionDates.forEach((date) => {
+        if (newExecutionMap.hasOwnProperty(date)) {
+          newExecutionMap[date][item.routine.tendency]++;
+        } else {
+          newExecutionMap[date] = {
+            BAEZZANGE: 0,
+            GAEMI: 0,
+          };
+          newExecutionMap[date][item.routine.tendency]++;
+        }
+      });
+    });
+
+    setExecutionMap(newExecutionMap);
+  }, [routineExecutionList]);
 
   const handlePrevMonth = () => {
     setCurrentDate(currentDate.subtract(1, "month"));
@@ -70,16 +90,35 @@ export default function MonthDayReport() {
         {days.map((day) => (
           <div
             key={day.format("YYYY-MM-DD")}
-            className={`w-[42px] h-[40px] flex-center ${
-              day.month() !== currentDate.month() ? "opacity-50" : ""
-            } ${
-              day.isSame(currentDate, "day")
+            className={`w-[48px] h-[80px] gap-[8px] flex-center flex-col ${
+              day.isSame(new Date(), "day") && day.isSame(new Date(), "month")
                 ? `bg-gray-800 text-white rounded-full`
                 : ""
             }
                   ${day.day() === 0 ? "text-negative" : ""}`}
           >
-            {day.date()}
+            {executionMap.hasOwnProperty(day.format("YYYY-MM-DD")) ? (
+              <Image
+                alt="gaezzange-img"
+                src={
+                  executionMap[day.format("YYYY-MM-DD")]["GAEMI"] >
+                  executionMap[day.format("YYYY-MM-DD")]["BAEZZANGE"]
+                    ? report_gaemi
+                    : report_baezzange
+                }
+                width={32}
+                height={32}
+              />
+            ) : (
+              <div className="w-[32px] h-[32px] rounded-full bg-gray-100" />
+            )}
+            <div
+              className={`${
+                day.month() !== currentDate.month() ? "opacity-50" : ""
+              }`}
+            >
+              {day.date()}
+            </div>
           </div>
         ))}
       </div>
