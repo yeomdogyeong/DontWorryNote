@@ -64,7 +64,7 @@ export default function Calendar(props: CalendarProps) {
           </h2>
           <button
             onClick={handleNextMonth}
-            className="rounded-[4px] border-[1px] w-[48px] h-[48px]"
+            className="flex-center rounded-[4px] border-[1px] w-[48px] h-[48px]"
           >
             <RightArrow />
           </button>

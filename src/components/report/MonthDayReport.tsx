@@ -2,7 +2,6 @@ import {
   getRoutineExecution,
   getRoutineExecutionCount,
 } from "@/apis/routine-execution/routine-execution";
-import { getWeekDates } from "@/util/date";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useMemo, useState } from "react";
@@ -10,23 +9,6 @@ import { LeftArrow } from "../icon/LeftArrow";
 import RightArrow from "../icon/RightArrow";
 
 export default function MonthDayReport() {
-  const [currentWeek, setCurrentWeek] = useState({
-    startDate: getWeekDates()[0],
-    endDate: getWeekDates()[6],
-  });
-
-  const { data } = useQuery({
-    queryKey: ["getExecutionCount", currentWeek.startDate, currentWeek.endDate],
-    queryFn: () =>
-      getRoutineExecutionCount(currentWeek.startDate, currentWeek.endDate),
-  });
-
-  const { data: routineExecutionList, refetch } = useQuery({
-    queryKey: ["routineExecution", currentWeek.startDate, currentWeek.endDate],
-    queryFn: () =>
-      getRoutineExecution(currentWeek.startDate, currentWeek.endDate),
-  });
-
   const [currentDate, setCurrentDate] = useState(dayjs(new Date()));
 
   const startOfMonth = currentDate.startOf("month");
@@ -44,7 +26,31 @@ export default function MonthDayReport() {
     return dates;
   }, [startDate, endDate]);
 
-  console.log(days);
+  const { data } = useQuery({
+    queryKey: [
+      "getExecutionCount",
+      days[0].format("YYYY-MM-DD"),
+      days[days.length - 1].format("YYYY-MM-DD"),
+    ],
+    queryFn: () =>
+      getRoutineExecutionCount(
+        days[0].format("YYYY-MM-DD"),
+        days[days.length - 1].format("YYYY-MM-DD")
+      ),
+  });
+
+  const { data: routineExecutionList, refetch } = useQuery({
+    queryKey: [
+      "routineExecution",
+      days[0].format("YYYY-MM-DD"),
+      days[days.length - 1].format("YYYY-MM-DD"),
+    ],
+    queryFn: () =>
+      getRoutineExecution(
+        days[0].format("YYYY-MM-DD"),
+        days[days.length - 1].format("YYYY-MM-DD")
+      ),
+  });
 
   const handlePrevMonth = () => {
     setCurrentDate(currentDate.subtract(1, "month"));
@@ -64,7 +70,7 @@ export default function MonthDayReport() {
           <LeftArrow size={20} />
         </button>
         <h2 className="flex items-center font-[500] text-[18px] text-gray-900">
-          {dayjs(currentWeek.startDate).format("YYYY. MM")}{" "}
+          {dayjs(days[15]).format("YYYY. MM")}{" "}
         </h2>
         <button
           onClick={handleNextMonth}

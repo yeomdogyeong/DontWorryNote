@@ -2,7 +2,11 @@ import {
   getRoutineExecution,
   getRoutineExecutionCount,
 } from "@/apis/routine-execution/routine-execution";
-import { getWeekDates, replaceFirstMondayToValue } from "@/util/date";
+import {
+  getWeekDates,
+  replaceDayToValue,
+  replaceFirstMondayToValue,
+} from "@/util/date";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useCallback, useMemo, useState } from "react";
@@ -10,6 +14,9 @@ import { LeftArrow } from "../icon/LeftArrow";
 import RightArrow from "../icon/RightArrow";
 import { createBooleanArray } from "@/util/common";
 import { SubjectType } from "@/types/common";
+import Image from "next/image";
+import report_baezzange from "../../../public/report_baezzange.png";
+import report_gaemi from "../../../public/report_gaemi.png";
 
 export default function WeekDayReport() {
   const [currentWeek, setCurrentWeek] = useState({
@@ -17,17 +24,22 @@ export default function WeekDayReport() {
     endDate: getWeekDates()[6],
   });
 
-  const { data } = useQuery({
+  const { data, isFetched: isFetchedCount } = useQuery({
     queryKey: ["getExecutionCount", currentWeek.startDate, currentWeek.endDate],
     queryFn: () =>
       getRoutineExecutionCount(currentWeek.startDate, currentWeek.endDate),
   });
 
-  const { data: routineExecutionList, refetch } = useQuery({
-    queryKey: ["routineExecution", currentWeek.startDate, currentWeek.endDate],
-    queryFn: () =>
-      getRoutineExecution(currentWeek.startDate, currentWeek.endDate),
-  });
+  const { data: routineExecutionList, isFetched: isFetchedRoutineExecution } =
+    useQuery({
+      queryKey: [
+        "routineExecution",
+        currentWeek.startDate,
+        currentWeek.endDate,
+      ],
+      queryFn: () =>
+        getRoutineExecution(currentWeek.startDate, currentWeek.endDate),
+    });
 
   const successCount = useMemo(() => {
     return getWeekDates(currentWeek.startDate).reduce(
@@ -41,28 +53,125 @@ export default function WeekDayReport() {
       [0, 0]
     );
   }, [data]);
+
+  const gaemiPercent = useMemo(() => {
+    return ((successCount[0] + successCount[1]) / successCount[0]) * 100 ===
+      Infinity
+      ? 0
+      : ((successCount[0] + successCount[1]) / successCount[0]) * 100;
+  }, [successCount]);
+
+  const baezzangePercent = useMemo(() => {
+    return ((successCount[0] + successCount[1]) / successCount[1]) * 100 ===
+      Infinity
+      ? 0
+      : ((successCount[0] + successCount[1]) / successCount[1]) * 100;
+  }, [successCount]);
+
+  const waveRenderer = useMemo(() => {
+    if (!isFetchedCount || !isFetchedRoutineExecution) {
+      return;
+    }
+
+    if (gaemiPercent === 100) {
+      return (
+        <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
+          <div
+            className={`absolute top-[18%] rounded-[45%] left-[-100px] bg-gray-500 opacity-[.9] w-[300px] h-[300px] animate-move-7s`}
+          ></div>
+          <div
+            className={`absolute top-[38%] rounded-[45%] left-[-100px] bg-gray-700 opacity-[.9] w-[300px] h-[300px] animate-move-9s`}
+          ></div>
+          <div
+            className={`absolute top-[62%] rounded-[45%] left-[-100px] bg-mainBlack opacity-[.9] w-[300px] h-[300px] animate-move-11s`}
+          ></div>
+        </div>
+      );
+    }
+
+    if (gaemiPercent > 70) {
+      return (
+        <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
+          <div
+            className={`absolute top-[75%] rounded-[45%] left-[-100px] bg-green-700  opacity-[.9] w-[300px] h-[300px] animate-move-7s`}
+          ></div>
+          <div
+            className={`absolute top-[30%] rounded-[45%] left-[-100px] bg-gray-700 opacity-[.8] w-[300px] h-[300px] animate-move-9s`}
+          ></div>
+          <div
+            className={`absolute top-[52%] rounded-[45%] left-[-100px] bg-mainBlack opacity-[.6] w-[300px] h-[300px] animate-move-11s`}
+          ></div>
+        </div>
+      );
+    }
+
+    if (gaemiPercent > 50) {
+      return (
+        <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
+          <div
+            className={`absolute top-[45%] rounded-[55%] left-[-100px] bg-green-600 opacity-[.9] w-[300px] h-[300px] animate-move-9s`}
+          ></div>
+          <div
+            className={`absolute top-[65%] rounded-[45%] left-[-100px] bg-green-900  opacity-[.9] w-[300px] h-[300px] animate-move-7s`}
+          ></div>
+          <div
+            className={`absolute top-[55%] rounded-[45%] left-[-100px] bg-mainBlack opacity-[.9] w-[300px] h-[300px] animate-move-11s`}
+          ></div>
+        </div>
+      );
+    }
+
+    if (gaemiPercent > 20) {
+      return (
+        <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
+          <div
+            className={`absolute top-[38%] rounded-[45%] left-[-100px] bg-green-600 opacity-[.9] w-[300px] h-[300px] animate-move-7s`}
+          ></div>
+          <div
+            className={`absolute top-[65%] rounded-[45%] left-[-100px] bg-green-700 opacity-[.9] w-[300px] h-[300px] animate-move-9s`}
+          ></div>
+          <div
+            className={`absolute top-[72%] rounded-[45%] left-[-100px] bg-mainBlack opacity-[.9] w-[300px] h-[300px] animate-move-11s`}
+          ></div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
+        <div
+          className={`absolute top-[18%] rounded-[45%] left-[-100px] bg-green-600 opacity-[.9] w-[300px] h-[300px] animate-move-7s`}
+        ></div>
+        <div
+          className={`absolute top-[38%] rounded-[45%] left-[-100px] bg-green-700 opacity-[.9] w-[300px] h-[300px] animate-move-9s`}
+        ></div>
+        <div
+          className={`absolute top-[62%] rounded-[45%] left-[-100px] bg-green-900 opacity-[.9] w-[300px] h-[300px] animate-move-11s`}
+        ></div>
+      </div>
+    );
+  }, [
+    gaemiPercent,
+    baezzangePercent,
+    isFetchedCount,
+    isFetchedRoutineExecution,
+  ]);
+
   const failedCount = useMemo(() => {
     const possibleCheckRoutine =
       routineExecutionList?.data.data.reduce((prev, cur) => {
-        // cur.routine.daysOfWeek.forEach((day) => {
-        //   console.log(
-        //     getWeekDates(currentWeek.startDate).some(
-        //       (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
-        //     )
-        //       ? replaceFirstMondayToValue[dayjs(new Date()).day()]
-        //       : 7
-        //   );
-        //   if (
-        //     replaceDayToValue[day] <=
-        //     (getWeekDates(currentWeek.startDate).some(
-        //       (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
-        //     )
-        //       ? replaceFirstMondayToValue[dayjs(new Date()).day()]
-        //       : 7)
-        //   ) {
-        //     prev++;
-        //   }
-        // });
+        cur.routine.daysOfWeek.forEach((day) => {
+          if (
+            replaceDayToValue[day] <=
+            (getWeekDates(currentWeek.startDate).some(
+              (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
+            )
+              ? replaceFirstMondayToValue[dayjs(new Date()).day()]
+              : 7)
+          ) {
+            prev++;
+          }
+        });
         return prev;
       }, 0) ?? 0;
 
@@ -137,14 +246,35 @@ export default function WeekDayReport() {
       <div className="w-full h-[8px] bg-[#f4f4f4]" />
       <div className="pt-[24px] px-[20px] pb-[32px]">
         <div className="text-[16px] font-[600]">선호 루틴 분석</div>
-        <div className="mt-[20px]">
-          <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
-            <div
-              className={`absolute top-[48%] rounded-[45%] left-[-100px] bg-mainGreen opacity-[.9] w-[300px] h-[300px] animate-move-9s`}
-            ></div>
-            <div
-              className={`absolute top-[52%] rounded-[45%] left-[-100px] bg-mainBlack opacity-[.9] w-[300px] h-[300px] animate-move-11s`}
-            ></div>
+        <div className="flex items-center mt-[20px]">
+          {waveRenderer}
+          <div className="ml-auto w-[175px] ">
+            <div className="flex items-center">
+              <Image
+                src={report_baezzange}
+                alt="report-baezzange"
+                width={32}
+                height={32}
+              />
+              <div className="ml-[6px]">베짱이 루틴</div>
+              <div className="ml-auto flex font-[600]">
+                <div>{baezzangePercent}</div>
+                <div className="text-gray-500">%</div>
+              </div>
+            </div>
+            <div className="flex items-center mt-[20px]">
+              <Image
+                src={report_gaemi}
+                alt="report-gaemi"
+                width={32}
+                height={32}
+              />
+              <div className="ml-[6px]">개미 루틴</div>
+              <div className="ml-auto flex font-[600]">
+                <div>{gaemiPercent}</div>
+                <div className="text-gray-500">%</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
