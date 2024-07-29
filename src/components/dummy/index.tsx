@@ -11,6 +11,20 @@ import minigaemi from "../../../public/Ellipse2.png";
 import gaemi from "../../../public/gaemi1.png";
 import gaemi2 from "../../../public/gaemi2.png";
 import { SubjectType, SurveyList } from "@/types/common";
+import { Book } from "../icon/Book";
+import { Spa } from "../icon/Spa";
+import { Lazy } from "../icon/Lazy";
+import { Semina } from "../icon/Semina";
+import { Lecture } from "../icon/Lecture";
+import { Tv } from "../icon/Tv";
+import { Health } from "../icon/Health";
+import { Music } from "../icon/Music";
+import { Plan } from "../icon/Plan";
+import { Focus } from "../icon/Focus";
+import { Happy } from "../icon/Happy";
+import { Productivity } from "../icon/Productivity";
+import { Mad } from "../icon/Mad";
+import { Sunglass } from "../icon/Sunglass";
 export const listItem = [
   {},
   {
@@ -53,15 +67,15 @@ export const listItem = [
       two: "느끼는것은 무엇인가요?",
     },
     items: [
-      { text: "끊임없는 자기 발전", srcImg: <School />, score: 1 },
+      { text: "끊임없는 자기 발전", srcImg: <Burning />, score: 1 },
       {
         text: "행복과 만족",
-        srcImg: <Burning />,
+        srcImg: <Happy />,
         score: 0,
       },
       {
         text: "성취감과 목표달성",
-        srcImg: <Sleep />,
+        srcImg: <Focus />,
         score: 1,
       },
       {
@@ -71,7 +85,7 @@ export const listItem = [
       },
       {
         text: "효율성과 생산성",
-        srcImg: <Muscle />,
+        srcImg: <Productivity />,
         score: 1,
       },
       {
@@ -87,30 +101,30 @@ export const listItem = [
       two: "무엇이라고 생각하나요?",
     },
     items: [
-      { text: "자기계발 및 독서", srcImg: <School />, score: 1 },
+      { text: "자기계발 및 독서", srcImg: <Book />, score: 1 },
       {
         text: "스파나 마사지로 힐링",
-        srcImg: <Burning />,
+        srcImg: <Spa />,
         score: 0,
       },
       {
         text: "워크숍 및 세미나 참석",
-        srcImg: <Sleep />,
+        srcImg: <Semina />,
         score: 1,
       },
       {
         text: "여유롭고 느긋한 휴식",
-        srcImg: <Drawing />,
+        srcImg: <Lazy />,
         score: 0,
       },
       {
         text: "강의 수강 및 자격증 취득",
-        srcImg: <Muscle />,
+        srcImg: <Lecture />,
         score: 1,
       },
       {
         text: "집에서 영화나 드라마 몰아보기",
-        srcImg: <Family />,
+        srcImg: <Tv />,
         score: 0,
       },
     ],
@@ -121,30 +135,30 @@ export const listItem = [
       two: "주로 어떻게 해소하나요?",
     },
     items: [
-      { text: "운동으로 스트레스 해소", srcImg: <School />, score: 1 },
+      { text: "운동으로 스트레스 해소", srcImg: <Health />, score: 1 },
       {
         text: "가족이나 친구와의 대화",
-        srcImg: <Burning />,
+        srcImg: <Family />,
         score: 0,
       },
       {
         text: "음악 감상 또는 명상",
-        srcImg: <Sleep />,
+        srcImg: <Music />,
         score: 0,
       },
       {
         text: "계획을 세우고 문제를 해결",
-        srcImg: <Drawing />,
+        srcImg: <Plan />,
         score: 1,
       },
       {
         text: "취미 활동 즐기기",
-        srcImg: <Muscle />,
+        srcImg: <Drawing />,
         score: 0,
       },
       {
         text: "새로운 프로젝트나 도전에 집중",
-        srcImg: <Family />,
+        srcImg: <Focus />,
         score: 1,
       },
     ],
@@ -155,30 +169,30 @@ export const listItem = [
       two: "어떤 모습인가요?",
     },
     items: [
-      { text: "목표지향적 개짱이", srcImg: <School />, score: 1 },
+      { text: "목표지향적 개짱이", srcImg: <Focus />, score: 1 },
       {
         text: "똑똑한 개짱이",
-        srcImg: <Burning />,
+        srcImg: <Book />,
         score: 1,
       },
       {
         text: "여유로운 개짱이",
-        srcImg: <Sleep />,
+        srcImg: <Sunglass />,
         score: 0,
       },
       {
         text: "계획적인 개짱이",
-        srcImg: <Drawing />,
+        srcImg: <Plan />,
         score: 1,
       },
       {
         text: "행복한 개짱이",
-        srcImg: <Muscle />,
+        srcImg: <Happy />,
         score: 0,
       },
       {
         text: "즐거운 개짱이",
-        srcImg: <Family />,
+        srcImg: <Mad />,
         score: 0,
       },
     ],
