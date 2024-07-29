@@ -154,7 +154,10 @@ export default function WeekDayReport() {
         <div className="mt-[20px] flex flex-col gap-[16px]">
           {routineExecutionList?.data.data.map((item) => {
             return (
-              <div className="flex flex-col gap-[6px]">
+              <div
+                key={item.routine.routineId}
+                className="flex flex-col gap-[6px]"
+              >
                 <div className="flex justify-between">
                   <div className="font-[400]">{item.routine.name}</div>
                   <div className="font-[400] text-[12px] mt-[3px] text-gray-600">
@@ -166,9 +169,10 @@ export default function WeekDayReport() {
                 </div>
                 <div className="w-full flex gap-[4px]">
                   {createBooleanArray(item.executionDates.length).map(
-                    (bool) => {
+                    (bool, idx) => {
                       return (
                         <div
+                          key={idx}
                           className={`w-full h-[12px] rounded-[2px] ${
                             bool
                               ? item.routine.tendency === SubjectType.BAEZZANGE
