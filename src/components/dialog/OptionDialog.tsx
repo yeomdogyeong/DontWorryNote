@@ -11,6 +11,7 @@ import useMyStore from "@/store/useMyStore";
 import RoutineItem from "../modules/routine/RoutineItem";
 import { convertEmojiImgSrc, SubjectType } from "@/types/common";
 import { Burning } from "../icon/Burning";
+import { useRouter } from "next/navigation";
 import { RoutineExecution } from "@/types/apis/routineExecution";
 //props에 내려주는거 any로 하지말기 (타입캐스팅이 안됌)
 //isfetched => reactquery에 있는데 이거 쓰면 데이터 가져오기 전에 이미지 설정 가능
@@ -29,7 +30,7 @@ export const OptionDialog = ({
   isFetched,
 }: OptionDialogType) => {
   const { tendency } = useMyStore();
-
+  const router = useRouter();
   return (
     <>
       <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
@@ -82,6 +83,7 @@ export const OptionDialog = ({
                 className="mb-[24px]"
               />
               <button
+                onClick={() => router.push("/routine/write")}
                 className={`flex items-center ${
                   tendency === SubjectType.GAEMI
                     ? "bg-mainBlack"
