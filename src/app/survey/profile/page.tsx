@@ -76,10 +76,10 @@ export default function Main() {
   }, [userColor]);
 
   return (
-    <div className="flex flex-col items-center justify-start bg-gray-50 h-full">
+    <div className="flex flex-col items-center justify-start bg-gray-50 h-full pt-[32px]">
       {/* <ProgressBar srcImg={onestep} /> */}
 
-      <div className="w-full p-6 mt-4 flex justify-between items-center ">
+      <div className="w-full flex justify-between items-center ">
         <div className="self-start ml-[20px] mb-[32px]">
           <p className="text-[24px] font-bold">개미와 베짱이에서</p>
           <p className="text-[24px] font-bold">어떤 프로필로 활동할까요?</p>

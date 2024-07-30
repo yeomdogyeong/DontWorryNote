@@ -27,16 +27,17 @@ export const ListComponent = ({
 
   return (
     <>
-      <button className="mt-4">
+      <button className="mt-[8px] w-full px-[20px]">
         <div
           onClick={() => {
             handlePick();
           }}
-          className={`tracking-wide border-2 flex justify-left items-center px-[16px] py-[14px] text-lg rounded-xl w-[400px] max-w-[80vw] h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
+          className={`tracking-wide border-2 flex justify-left items-center px-[16px] py-[14px] text-lg rounded-xl h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
             isSelected ? "bg-subGreen border-mainGreen" : ""
           }`}
         >
-          <p>{srcImg}</p> <p className="ml-4 ">{text}</p>
+          <span>{srcImg}</span>
+          <span className="ml-4 ">{text}</span>
         </div>
       </button>
     </>

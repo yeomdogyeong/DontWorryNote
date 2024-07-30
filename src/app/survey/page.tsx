@@ -44,8 +44,8 @@ export default function Survey() {
       <Header />
       {/* <ProgressBar srcImg={onestep} /> */}
       <ProgressBar stepNumber={step} />
-      <div className="w-full p-6 mt-4 flex justify-between items-center ">
-        <div className="self-start ml-8">
+      <div className="w-full flex justify-between items-center mt-[32px]  px-[20px] mb-[24px]">
+        <div className="self-start ">
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.one}</p>
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.two}</p>
         </div>
@@ -55,15 +55,18 @@ export default function Survey() {
           <p>5</p>
         </div>
       </div>
-      {listItem[step]?.items?.map((el, idx) => (
-        <ListComponent
-          key={idx}
-          srcImg={el.srcImg}
-          text={el.text}
-          select={select}
-          onClick={setSelect}
-        />
-      ))}
+      <div className="w-full">
+        {listItem[step]?.items?.map((el, idx) => (
+          <ListComponent
+            key={idx}
+            srcImg={el.srcImg}
+            text={el.text}
+            select={select}
+            onClick={setSelect}
+          />
+        ))}
+      </div>
+
       <button
         onClick={handleScore}
         disabled={!select}
