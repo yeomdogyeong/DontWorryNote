@@ -14,7 +14,7 @@ export default function ActionSheet(props: ActionSheetProps) {
   return (
     <>
       <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
-      <div className="fixed z-[100] bg-white w-full max-w-page bottom-0">
+      <div className="fixed z-[100] left-1/2 transform -translate-x-1/2  bg-white w-full max-w-page bottom-0">
         {list.map((item, idx) => (
           <div
             onClick={async () => {
