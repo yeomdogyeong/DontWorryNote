@@ -134,14 +134,14 @@ export default function Main() {
         </div>
       )}
 
-      <div>
+      <div className="w-full px-[20px]">
         <input
-          className={`border-b-2 bg-gray-50 w-[335px] h-[40px] focus:outline-none focus:border-${userColor}`}
+          className={`border-b-2 bg-gray-50 w-full h-[40px] px-[20px] focus:outline-none focus:border-${userColor}`}
           placeholder="닉네임을 입력해주세요"
           value={userNickname}
           onChange={handleUserName}
         />
-        <div className="self-start mt-[8px] text-gray-600">
+        <div className="w-full px-[20px] self-start mt-[8px] text-gray-600">
           6자리 이내, 문자/숫자 가능, 특수문자/기호 입력불가
         </div>
       </div>
@@ -149,7 +149,7 @@ export default function Main() {
       <button
         className={`${
           select ? `bg-${userColor}` : ""
-        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[56px] max-h-[10vh] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
         onClick={handleToMain}
       >
         <span
