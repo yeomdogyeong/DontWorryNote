@@ -40,14 +40,16 @@ export const OptionDialog = ({
             alt="userCharacter"
             width={1}
             height={1}
-            className={`w-[103px] sm:w-[134px] h-[125px] sm:h-[145px] z-100 absolute ${
+            className={`w-[103px] xs:w-[134px] h-[125px] xs:h-[145px] z-100 absolute ${
               tendency === "GAEMI"
-                ? "top-[-115px] sm:top-[-135px]"
-                : "top-[-100px] sm:top-[-120px]"
+                ? "top-[-115px] xs:top-[-135px]"
+                : "top-[-115px] xs:top-[-133px]"
             } right-[30px]`}
           />
         </div>
-        <div className="self-start m-3 text-xl">오늘의 할 일 목록</div>
+        <div className="self-start px-[20px] mt-[32px] text-[18px] mb-[12px]">
+          오늘의 루틴 목록
+        </div>
 
         {data && data.length > 0 ? (
           <div className="flex flex-col items-center w-full justify-start overflow-auto pb-[60px] ">

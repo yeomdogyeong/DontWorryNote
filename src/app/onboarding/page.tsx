@@ -24,8 +24,8 @@ function OnBoardingPage() {
         <SimpleSlider />
       </div>
 
-      <div className="w-full max-w-[440px] items-center flex flex-col justify-center mt-[112px]">
-        <div className="">
+      <div className="w-full items-center flex flex-col justify-center mt-[112px]">
+        <div className="w-full px-[20px]">
           <AuthButton
             text="카카오로 시작하기"
             bgColor="kakao"
@@ -33,7 +33,7 @@ function OnBoardingPage() {
             onClick={handleKakao}
           />
         </div>
-        <div className="mt-[8px] pb-[10px]">
+        <div className="mt-[8px] pb-[10px] w-full px-[20px]">
           <AuthButton text="Google로 시작하기" bgColor="" srcImg={google} />
         </div>
       </div>

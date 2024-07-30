@@ -45,14 +45,14 @@ export default function HomePage() {
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
       } h-[30vh] `}
     >
-      <div className="text-[20px]  text-white self-start ml-7 font-bold sm:text-2xl">
+      <div className="text-[20px]  text-white self-start mx-[20px] font-bold sm:text-2xl">
         <div className="white-space text-[20px]">안녕하세요! 개짱이님</div>
         <div> 오늘은 어떤 삶을 살아볼까요?</div>
       </div>
 
       <div
         className={` flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] sm:w-[270px] sm:h-[100px] sm:text-[19px]
-           ml-[20px] border-none p-4  text-[14px] rounded-xl ${
+           mx-[20px] border-none p-4  text-[14px] rounded-xl ${
              tendency === "GAEMI" ? "bg-[#505866]" : "bg-[#649C7D]"
            }`}
       >
