@@ -124,7 +124,7 @@ export default function FeedItem(props: Props) {
           />
         </button>
         <button className="flex-center w-full" onClick={handleComment}>
-          <CommentIcon />
+          <CommentIcon size={16} />
         </button>
       </div>
     </div>

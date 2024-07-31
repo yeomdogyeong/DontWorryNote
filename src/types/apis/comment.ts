@@ -13,4 +13,6 @@ export interface FeedComment {
   commentCreatedAt: string;
   commentLikeCount: number;
   isCommentLike: boolean;
+
+  children?: FeedComment[];
 }

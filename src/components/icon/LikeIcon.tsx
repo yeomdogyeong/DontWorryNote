@@ -1,9 +1,35 @@
 interface Props {
   color?: string;
+  size?: 16 | 28;
 }
 
 export default function LikeIcon(props: Props) {
-  const { color = "#CCCCCC" } = props;
+  const { color = "#CCCCCC", size = 28 } = props;
+
+  if (size === 16) {
+    return (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.99984 6.6665H2.6665V13.3332H5.99984V6.6665Z"
+          stroke={color}
+          stroke-width="1.33333"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6 6.6665V13.3332H11.3333L13.3333 6.6665H10L10.6667 3.99984L9.33333 2.6665L6 6.6665Z"
+          stroke={color}
+          stroke-width="1.33333"
+          stroke-linejoin="round"
+        />
+      </svg>
+    );
+  }
 
   return (
     <svg

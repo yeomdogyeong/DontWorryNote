@@ -15,9 +15,7 @@ export const putFeedComment = (
 };
 
 export const deleteFeedComment = (feedId: number, commentId: number) => {
-  return Axios.delete<ApiResponse<null>>(
-    `/v1/feed/${feedId}/${commentId}/like-toggle`
-  );
+  return Axios.delete<ApiResponse<null>>(`/v1/feed/${feedId}/${commentId}`);
 };
 
 export const postFeedByIdCommentLikeToggle = (

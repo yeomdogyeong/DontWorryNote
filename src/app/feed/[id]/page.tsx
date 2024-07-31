@@ -1,17 +1,21 @@
 "use client";
 
-import { postFeedComment } from "@/apis/comment/comment";
+import { getFeedComments, postFeedComment } from "@/apis/comment/comment";
 import { deleteFeed, getFeed, postFeedByIdLikeToggle } from "@/apis/feed/feed";
 import { Header } from "@/components/Header";
 import CommentIcon from "@/components/icon/CommentIcon";
 import LikeIcon from "@/components/icon/LikeIcon";
 import MoreIcon from "@/components/icon/MoreIcon";
+import Comment from "@/components/modules/comment/Comment";
+import ParentComment from "@/components/modules/comment/ParentComment";
 import { useActionSheetOverlay } from "@/components/overlay/actionSheet/ActionSheetOverlay";
 import { FEED_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
+import { FeedComment } from "@/types/apis/comment";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
 import { CACHE_TIME } from "@/util/common";
 import { formatTimeDifference } from "@/util/date";
+import { createCommentTree } from "@/util/tree";
 import { valid } from "@/util/valid";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { produce } from "immer";
@@ -40,6 +44,25 @@ export default function FeedDetailPage() {
     gcTime: CACHE_TIME,
     enabled: valid(feedId),
   });
+
+  const {
+    data: commentsData,
+    isFetched: isCommentsFetched,
+    refetch: commentRefetch,
+  } = useQuery({
+    queryKey: ["getFeedComments", feedId],
+    queryFn: () => getFeedComments(feedId as number),
+    gcTime: CACHE_TIME,
+    enabled: valid(feedId),
+  });
+
+  const commentTree = useMemo(() => {
+    if (isCommentsFetched) {
+      console.log(commentsData);
+      return createCommentTree(commentsData?.data.data as FeedComment[]);
+    }
+    return [];
+  }, [commentsData, isCommentsFetched]);
 
   const isMine = useMemo(
     () => userId === data?.data.data.userId,
@@ -97,7 +120,7 @@ export default function FeedDetailPage() {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-max min-h-full bg-white">
       <Header
         rightButton={
           isMine && (
@@ -110,6 +133,7 @@ export default function FeedDetailPage() {
       <div className="px-[20px] py-[12px]">
         <div className="flex h-[37px]">
           <Image
+            className="rounded-full"
             style={{ height: 32 }}
             src={data?.data.data.profileImagePath ?? ""}
             width={32}
@@ -173,18 +197,46 @@ export default function FeedDetailPage() {
         </button>
       </div>
       <div className="h-[8px] bg-[#F4F4F4]" />
-      <div className="px-[20px] pt-[24px] pb-[40px] ">
-        <div>
-          {data?.data.data.commentForm &&
-          data?.data.data.commentForm.length > 0 ? (
-            <div className="flex-center text-gray-500">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
-          ) : (
-            <div className="h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
-          )}
-        </div>
+      <div className="pb-[52px]">
+        {commentTree.length > 0 ? (
+          <div>
+            {commentTree.map((item: FeedComment, idx: number) => {
+              return (
+                <div
+                  className={`py-[24px] ${
+                    idx !== 0 ? "border-t border-gray-100" : ""
+                  }`}
+                >
+                  <ParentComment
+                    key={item.commentId}
+                    {...item}
+                    onChange={() => {
+                      commentRefetch();
+                    }}
+                    feedId={feedId as number}
+                    tendency={data?.data.data.feedTendency as SubjectType}
+                  />
+                  {item.children?.map((replyComment) => (
+                    <Comment
+                      key={replyComment.commentId}
+                      {...replyComment}
+                      onChange={() => {
+                        commentRefetch();
+                      }}
+                      feedId={feedId as number}
+                      tendency={data?.data.data.feedTendency as SubjectType}
+                    />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="px-[20px] h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
+        )}
       </div>
       <div className="h-[8px] bg-[#F4F4F4]" />
-      <div className="fixed bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
+      <div className="fixed z-20 bg-white bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -207,6 +259,7 @@ export default function FeedDetailPage() {
             });
             setComment("");
             refetch();
+            commentRefetch();
           }}
         >
           등록
