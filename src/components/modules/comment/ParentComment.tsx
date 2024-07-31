@@ -12,6 +12,7 @@ import { FeedComment } from "@/types/apis/comment";
 import { SubjectType } from "@/types/common";
 import { formatTimeDifference } from "@/util/date";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
 interface Props extends FeedComment {
@@ -36,8 +37,14 @@ export default function ParentComment(props: Props) {
     onChange,
   } = props;
 
+  const router = useRouter();
+
   const { active } = useActionSheetOverlay();
   const { active: alertActive } = useAlertOverlay();
+
+  const handleCommentClick = useCallback(() => {
+    router.push(`/feed/${feedId}/comment/${commentId}`);
+  }, [feedId, commentId]);
 
   const handleMoreIconClick = useCallback(() => {
     active({
@@ -74,8 +81,6 @@ export default function ParentComment(props: Props) {
     await postFeedByIdCommentLikeToggle(feedId, commentId);
     await onChange();
   }, [feedId, commentId]);
-
-  const handleCommentClick = useCallback(() => {}, []);
 
   const myId = useMyStore((state) => state.userId);
   const isMine = useMemo(() => userId === myId, [myId, userId]);

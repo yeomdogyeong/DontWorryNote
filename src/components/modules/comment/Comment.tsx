@@ -12,6 +12,7 @@ import { FeedComment } from "@/types/apis/comment";
 import { SubjectType } from "@/types/common";
 import { formatTimeDifference } from "@/util/date";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
 interface Props extends FeedComment {
@@ -35,6 +36,7 @@ export default function Comment(props: Props) {
 
     onChange,
   } = props;
+  const router = useRouter();
 
   const { active } = useActionSheetOverlay();
   const { active: alertActive } = useAlertOverlay();
@@ -75,13 +77,11 @@ export default function Comment(props: Props) {
     await onChange();
   }, [feedId, commentId]);
 
-  const handleCommentClick = useCallback(() => {}, []);
-
   const myId = useMyStore((state) => state.userId);
   const isMine = useMemo(() => userId === myId, [myId, userId]);
 
   return (
-    <div className="w-full mt-[24px]">
+    <div className="w-full mt-[24px] pl-[64px] pr-[20px]">
       <div className="w-full flex h-[37px]">
         <Image
           className="rounded-full"
@@ -126,18 +126,11 @@ export default function Comment(props: Props) {
                   ? tendency === SubjectType.GAEMI
                     ? "text-[#353C49]"
                     : "text-[#2FA464]"
-                  : undefined
+                  : "text-[#999999]"
               }`}
             >
               좋아요 {commentLikeCount}
             </div>
-          </button>
-          <button
-            className="flex ml-[12px] text-gray-500"
-            onClick={handleCommentClick}
-          >
-            <CommentIcon size={16} />
-            <div className="ml-[4px]">답글달기</div>
           </button>
         </div>
       </div>
