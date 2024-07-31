@@ -31,23 +31,28 @@ export const OptionDialog = ({
 }: OptionDialogType) => {
   const { tendency } = useMyStore();
   const router = useRouter();
+  // const tendency = SubjectType.GAEMI;
   return (
     <>
-      <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0 p-4 rounded-t-2xl">
+      <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0  px-[20px] rounded-t-2xl">
         <div className="relative w-full">
           <Image
             src={tendency === "GAEMI" ? maingaemi : mainbaejjange}
             alt="userCharacter"
             width={1}
             height={1}
-            className={`w-[103px] xs:w-[134px] h-[125px] xs:h-[145px] z-100 absolute ${
-              tendency === "GAEMI"
-                ? "top-[-115px] xs:top-[-135px]"
-                : "top-[-115px] xs:top-[-133px]"
-            } right-[30px]`}
+            className={`${
+              tendency === SubjectType.GAEMI
+                ? "w-[103px] h-[125px]"
+                : "w-[119px] h-[121px]"
+            } xs:w-[134px]  xs:h-[145px] z-100 absolute ${
+              tendency === SubjectType.GAEMI
+                ? "top-[-102px] xs:top-[-118px]"
+                : "top-[-99px] xs:top-[-119px]"
+            } right-[15px]`}
           />
         </div>
-        <div className="self-start px-[20px] mt-[32px] text-[18px] mb-[12px]">
+        <div className="self-start mt-[32px] text-[18px] mb-[12px]">
           오늘의 루틴 목록
         </div>
 

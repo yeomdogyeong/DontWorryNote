@@ -62,8 +62,8 @@ function ResultPage() {
             src={surveyList[0][resultIdx].srcImg}
             alt="baejjange"
             className={`mt-16 h-50 ${
-              resultIdx === "result1" ? "w-80" : "w-40"
-            } md:${resultIdx === "result1" ? "w-80" : "w-40"} `}
+              resultIdx === "result1" ? "w-[208px] h-[145px]" : "w-40"
+            } md:${resultIdx === "result1" ? "w-[122px]" : "w-[164px]"} `}
           />
         )}
         <div className="mt-[21px] bg-gray-100 flex-center rounded-full px-[16px] py-[8px] h-[34px]">

@@ -32,12 +32,12 @@ export const ListComponent = ({
           onClick={() => {
             handlePick();
           }}
-          className={`tracking-wide border-2 flex justify-left items-center px-[16px] py-[14px] text-lg rounded-xl h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
+          className={`tracking-wide border-2 flex justify-left items-center text-gray-800 px-[16px] font-[500] py-[14px] text-[16px] rounded-xl h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
             isSelected ? "bg-subGreen border-mainGreen" : ""
           }`}
         >
           <span>{srcImg}</span>
-          <span className="ml-4 ">{text}</span>
+          <span className="ml-[8px] ">{text}</span>
         </div>
       </button>
     </>

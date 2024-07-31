@@ -49,10 +49,10 @@ export default function Survey() {
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.one}</p>
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.two}</p>
         </div>
-        <div className="self-end flex tracking-wider">
+        <div className="self-start flex tracking-wider h-[22px] items-center font-[600]">
           <p className="text-mainGreen">{step}</p>
-          <p> /</p>
-          <p>5</p>
+          <p className="text-gray-400"> /</p>
+          <p className="text-gray-400">5</p>
         </div>
       </div>
       <div className="w-full">
