@@ -55,17 +55,29 @@ export default function WeekDayReport() {
   }, [data]);
 
   const gaemiPercent = useMemo(() => {
-    return ((successCount[0] + successCount[1]) / successCount[0]) * 100 ===
-      Infinity
-      ? 0
-      : ((successCount[0] + successCount[1]) / successCount[0]) * 100;
+    const value =
+      ((successCount[0] + successCount[1]) / successCount[0]) * 100 === Infinity
+        ? 0
+        : ((successCount[0] + successCount[1]) / successCount[0]) * 100;
+
+    if (Number.isNaN(value)) {
+      return 0;
+    } else {
+      return value;
+    }
   }, [successCount]);
 
   const baezzangePercent = useMemo(() => {
-    return ((successCount[0] + successCount[1]) / successCount[1]) * 100 ===
-      Infinity
-      ? 0
-      : ((successCount[0] + successCount[1]) / successCount[1]) * 100;
+    const value =
+      ((successCount[0] + successCount[1]) / successCount[1]) * 100 === Infinity
+        ? 0
+        : ((successCount[0] + successCount[1]) / successCount[1]) * 100;
+
+    if (Number.isNaN(value)) {
+      return 0;
+    } else {
+      return value;
+    }
   }, [successCount]);
 
   const waveRenderer = useMemo(() => {
