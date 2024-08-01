@@ -18,6 +18,12 @@ import Image from "next/image";
 import report_baezzange from "../../../public/report_baezzange.png";
 import report_gaemi from "../../../public/report_gaemi.png";
 import empty_wave from "../../../public/empty_wave.png";
+import routine_baezzange from "../../../public/routine_baezznge.png";
+import routine_gaemi from "../../../public/routine_gaemi.png";
+import useMyStore from "@/store/useMyStore";
+import { useRouter } from "next/navigation";
+import { ADD_ROUTINE_PATH } from "@/store/path";
+import PlusIcon from "../icon/PlusIcon";
 
 export default function WeekDayReport() {
   const [currentWeek, setCurrentWeek] = useState({
@@ -25,11 +31,15 @@ export default function WeekDayReport() {
     endDate: getWeekDates()[6],
   });
 
+  const userType = useMyStore((state) => state.tendency);
+
   const { data, isFetched: isFetchedCount } = useQuery({
     queryKey: ["getExecutionCount", currentWeek.startDate, currentWeek.endDate],
     queryFn: () =>
       getRoutineExecutionCount(currentWeek.startDate, currentWeek.endDate),
   });
+
+  const router = useRouter();
 
   const { data: routineExecutionList, isFetched: isFetchedRoutineExecution } =
     useQuery({
@@ -270,77 +280,118 @@ export default function WeekDayReport() {
           ) : (
             waveRenderer
           )}
-          <div className="ml-auto w-[175px] ">
-            <div className="flex items-center">
-              <Image
-                src={report_baezzange}
-                alt="report-baezzange"
-                width={32}
-                height={32}
-              />
-              <div className="ml-[6px]">베짱이 루틴</div>
-              <div className="ml-auto flex font-[600]">
-                <div>{baezzangePercent}</div>
-                <div className="text-gray-500">%</div>
+          {isEmpty ? (
+            <div className="ml-auto w-[195px] font-[400]">
+              <div className="text-gray-600 text-[16px]">
+                등록된 루틴이 없어요!
+              </div>
+              <div className="mt-[8px] text-gray-500">
+                기간 내 분석 가능한 루틴이 없으니 기간을 다시 지정해 주세요.
               </div>
             </div>
-            <div className="flex items-center mt-[20px]">
-              <Image
-                src={report_gaemi}
-                alt="report-gaemi"
-                width={32}
-                height={32}
-              />
-              <div className="ml-[6px]">개미 루틴</div>
-              <div className="ml-auto flex font-[600]">
-                <div>{gaemiPercent}</div>
-                <div className="text-gray-500">%</div>
+          ) : (
+            <div className="ml-auto w-[175px] ">
+              <div className="flex items-center">
+                <Image
+                  src={report_baezzange}
+                  alt="report-baezzange"
+                  width={32}
+                  height={32}
+                />
+                <div className="ml-[6px]">베짱이 루틴</div>
+                <div className="ml-auto flex font-[600]">
+                  <div>{baezzangePercent}</div>
+                  <div className="text-gray-500">%</div>
+                </div>
+              </div>
+              <div className="flex items-center mt-[20px]">
+                <Image
+                  src={report_gaemi}
+                  alt="report-gaemi"
+                  width={32}
+                  height={32}
+                />
+                <div className="ml-[6px]">개미 루틴</div>
+                <div className="ml-auto flex font-[600]">
+                  <div>{gaemiPercent}</div>
+                  <div className="text-gray-500">%</div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="w-full h-[8px] bg-[#f4f4f4]" />
       <div className="pt-[24px] px-[20px] pb-[76px]">
         <div className="text-[16px] font-[600]">루틴 진행상황</div>
-        <div className="mt-[20px] flex flex-col gap-[16px]">
-          {routineExecutionList?.data.data.map((item) => {
-            return (
-              <div
-                key={item.routine.routineId}
-                className="flex flex-col gap-[6px]"
-              >
-                <div className="flex justify-between">
-                  <div className="font-[400]">{item.routine.name}</div>
-                  <div className="font-[400] text-[12px] mt-[3px] text-gray-600">
-                    <span className="font-[600] text-mainBlack">
-                      {item.executionDates.length}일{" "}
-                    </span>
-                    / {item.routine.daysOfWeek.length}일
+        {isEmpty ? (
+          <div className="mt-[12px] flex-col flex-center">
+            <Image
+              src={
+                userType === SubjectType.BAEZZANGE
+                  ? routine_baezzange
+                  : routine_gaemi
+              }
+              alt="empty_case"
+              width={138}
+              height={96}
+            />
+            <div className="mt-[12px] w-[175px] h-[40] text-gray-600 text-center">
+              앗! 아직 만들어진 루틴이 없어요! 새로운 루틴을 추가해보세요!
+            </div>
+            <button
+              onClick={() => router.push(ADD_ROUTINE_PATH)}
+              className={`flex-center mt-[24px] flex-center w-[175px] h-[48px] text-white gap-[8px] rounded-[8px] ${
+                userType === SubjectType.BAEZZANGE
+                  ? "bg-mainGreen"
+                  : "bg-mainBlack"
+              }`}
+            >
+              <PlusIcon />
+              <div>루틴 추가하기</div>
+            </button>
+          </div>
+        ) : (
+          <div className="mt-[20px] flex flex-col gap-[16px]">
+            {routineExecutionList?.data.data.map((item) => {
+              return (
+                <div
+                  key={item.routine.routineId}
+                  className="flex flex-col gap-[6px]"
+                >
+                  <div className="flex justify-between">
+                    <div className="font-[400]">{item.routine.name}</div>
+                    <div className="font-[400] text-[12px] mt-[3px] text-gray-600">
+                      <span className="font-[600] text-mainBlack">
+                        {item.executionDates.length}일{" "}
+                      </span>
+                      / {item.routine.daysOfWeek.length}일
+                    </div>
+                  </div>
+                  <div className="w-full flex gap-[4px]">
+                    {createBooleanArray(item.executionDates.length).map(
+                      (bool, idx) => {
+                        return (
+                          <div
+                            key={idx}
+                            className={`w-full h-[12px] rounded-[2px] ${
+                              bool
+                                ? item.routine.tendency ===
+                                  SubjectType.BAEZZANGE
+                                  ? "bg-mainGreen"
+                                  : "bg-mainBlack"
+                                : "bg-gray-200"
+                            }`}
+                          ></div>
+                        );
+                      }
+                    )}
                   </div>
                 </div>
-                <div className="w-full flex gap-[4px]">
-                  {createBooleanArray(item.executionDates.length).map(
-                    (bool, idx) => {
-                      return (
-                        <div
-                          key={idx}
-                          className={`w-full h-[12px] rounded-[2px] ${
-                            bool
-                              ? item.routine.tendency === SubjectType.BAEZZANGE
-                                ? "bg-mainGreen"
-                                : "bg-mainBlack"
-                              : "bg-gray-200"
-                          }`}
-                        ></div>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
