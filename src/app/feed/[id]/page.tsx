@@ -203,12 +203,12 @@ export default function FeedDetailPage() {
             {commentTree.map((item: FeedComment, idx: number) => {
               return (
                 <div
+                  key={item.commentId}
                   className={`py-[24px] ${
                     idx !== 0 ? "border-t border-gray-100" : ""
                   }`}
                 >
                   <ParentComment
-                    key={item.commentId}
                     {...item}
                     onChange={() => {
                       commentRefetch();
