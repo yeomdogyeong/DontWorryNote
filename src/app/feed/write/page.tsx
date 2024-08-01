@@ -108,7 +108,7 @@ export default function AddPostPage() {
           </button>
         }
       />
-      <div className="flex flex-col py-[24px] px-[20px] w-full h-max">
+      <div className="flex flex-col pb-[24px] pt-[8px] px-[20px] w-full h-max">
         <div className="flex gap-[8px] w-full">
           <div
             className={`flex-center gap-[8px] border-[1px] rounded-[8px] flex-1 h-[48px] cursor-pointer border-gray-200 ${
