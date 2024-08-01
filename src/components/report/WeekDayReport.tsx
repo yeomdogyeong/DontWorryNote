@@ -306,7 +306,7 @@ export default function WeekDayReport() {
                     <span className="font-[600] text-mainBlack">
                       {item.executionDates.length}일{" "}
                     </span>
-                    / 7일
+                    / {item.routine.daysOfWeek.length}일
                   </div>
                 </div>
                 <div className="w-full flex gap-[4px]">
