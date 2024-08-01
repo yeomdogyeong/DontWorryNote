@@ -46,6 +46,11 @@ function userInstance(baseURL, headers) {
         localStorage.removeItem("tokenKey");
         window.location.href = "/onboarding";
       }
+
+      if (error.response && error.response.status === 400) {
+        alert("이미 등록된 유저입니다");
+        window.location.href = "/home";
+      }
       return Promise.reject(error);
     }
   );
