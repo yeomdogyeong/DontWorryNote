@@ -58,7 +58,7 @@ export default function CommentPage() {
       );
     }
     return [];
-  }, [commentsData, isCommentsFetched]);
+  }, [commentsData, isCommentsFetched, commentId]);
 
   return (
     <div className="h-max min-h-full bg-white">

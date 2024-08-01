@@ -49,7 +49,7 @@ export default function PostEditPage() {
       setContents(data?.data.data.feedContent);
       setUrl(data?.data.data.feedImagePath as string);
     }
-  }, [isFetched]);
+  }, [isFetched, data]);
 
   const handlePostType = useCallback(() => {
     active({
@@ -121,7 +121,7 @@ export default function PostEditPage() {
     });
 
     router.replace(`${FEED_PATH}/${feedId}`);
-  }, [file, type, postType, contents, router]);
+  }, [file, type, postType, contents, router, data, feedId, url]);
 
   const handleContentsChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {

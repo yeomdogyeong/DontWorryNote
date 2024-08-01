@@ -68,7 +68,7 @@ export default function WeekDayReport() {
       },
       [0, 0]
     );
-  }, [data]);
+  }, [data, currentWeek]);
 
   const gaemiPercent = useMemo(() => {
     const value =
@@ -178,12 +178,7 @@ export default function WeekDayReport() {
         ></div>
       </div>
     );
-  }, [
-    gaemiPercent,
-    baezzangePercent,
-    isFetchedCount,
-    isFetchedRoutineExecution,
-  ]);
+  }, [gaemiPercent, isFetchedCount, isFetchedRoutineExecution]);
 
   const failedCount = useMemo(() => {
     const possibleCheckRoutine =
@@ -204,7 +199,7 @@ export default function WeekDayReport() {
       }, 0) ?? 0;
 
     return possibleCheckRoutine - (successCount[0] + successCount[1]);
-  }, [data, routineExecutionList, currentWeek, successCount]);
+  }, [routineExecutionList, currentWeek, successCount]);
 
   const handlePrevWeek = useCallback(() => {
     setCurrentWeek({

@@ -121,6 +121,7 @@ export default function AddRoutinePage() {
 
     router.push(HOME_PATH);
   }, [
+    loadWith,
     router,
     type,
     routineType,
