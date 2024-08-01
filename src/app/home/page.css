@@ -1,33 +1,35 @@
 .speech-bubble {
   position: relative;
-  background: #00aabb;
+  /* background: #00aabb; */
   border-radius: 0.4em;
-  padding: 10px;
-  color: white;
-  width: fit-content;
-  margin-left: auto; /* Aligns the bubble to the right */
-  margin-right: 20px; /* Adjusts the right margin as needed */
 }
 
-.speech-bubble::after {
+.speech-bubble1:after {
   content: "";
   position: absolute;
-  right: -10px; /* Positions the tip to the right */
+  right: 0;
   top: 50%;
-  transform: translateY(-50%);
   width: 0;
   height: 0;
-  border: 10px solid transparent;
-  border-left-color: #00aabb;
+  border: 20px solid transparent;
+  border-left-color: #505866;
   border-right: 0;
   border-bottom: 0;
-  margin-top: -5px;
+  margin-top: -10px;
+  margin-right: -15px;
 }
 
-.speech-bubble-container {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  margin-left: 8px;
-  position: relative;
+.speech-bubble2:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-left-color: #649c7d;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-right: -15px;
 }

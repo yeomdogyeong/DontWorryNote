@@ -49,7 +49,7 @@ export const OptionDialog = ({
               tendency === SubjectType.GAEMI
                 ? "top-[-102px] xs:top-[-118px]"
                 : "top-[-99px] xs:top-[-119px]"
-            } right-[15px]`}
+            } right-[0px]`}
           />
         </div>
         <div className="self-start mt-[32px] text-[18px] mb-[12px]">
