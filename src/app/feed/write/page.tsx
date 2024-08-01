@@ -147,7 +147,7 @@ export default function AddPostPage() {
         <textarea
           value={contents}
           onChange={handleContentsChange}
-          className="bg-transparent	resize-none mt-[8px] px-[16px] py-[20px] border-[1px] rounded-[8px] w-full h-[220px] text-gray-800"
+          className="bg-transparent	resize-none mt-[8px] px-[16px] py-[12px] border-[1px] rounded-[8px] w-full h-[220px] text-gray-800"
         />
         <button className="mt-[12px] flex-center gap-[6px] border-[1px] rounded-[8px] w-full h-[52px]">
           <AddPictureIcon />

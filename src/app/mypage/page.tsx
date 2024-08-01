@@ -126,15 +126,27 @@ export default function MyPage() {
                     />
                   </div>
                 ) : (
-                  <div className="flex-center bg-gray-100 w-[24px] h-[24px] text-[12px] text-gray-400 rounded-[4px]">
+                  <div
+                    className={`flex-center w-[24px] h-[24px] text-[12px] text-gray-400 font-[400] rounded-full ${
+                      dayjs(date).date() === dayjs(new Date()).date()
+                        ? userType === SubjectType.BAEZZANGE
+                          ? "text-mainGreen"
+                          : "text-mainBlack"
+                        : "text-gray-400"
+                    } ${
+                      dayjs(date).date() === dayjs(new Date()).date()
+                        ? "bg-white font-[500]"
+                        : "bg-gray-100"
+                    }`}
+                  >
                     {dayjs(date).date()}
                   </div>
                 )}
                 <div
                   className={`mt-[8px] text-[12px] ${
                     dayjs(date).date() === dayjs(new Date()).date()
-                      ? "text-white"
-                      : ""
+                      ? "text-white font-[600]"
+                      : "font-[400] text-gray-600"
                   }`}
                 >
                   {convertDayToText(idx)}
