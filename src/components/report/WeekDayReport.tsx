@@ -17,6 +17,7 @@ import { SubjectType } from "@/types/common";
 import Image from "next/image";
 import report_baezzange from "../../../public/report_baezzange.png";
 import report_gaemi from "../../../public/report_gaemi.png";
+import empty_wave from "../../../public/empty_wave.png";
 
 export default function WeekDayReport() {
   const [currentWeek, setCurrentWeek] = useState({
@@ -40,6 +41,11 @@ export default function WeekDayReport() {
       queryFn: () =>
         getRoutineExecution(currentWeek.startDate, currentWeek.endDate),
     });
+
+  const isEmpty = useMemo(
+    () => routineExecutionList?.data.data.length === 0,
+    [routineExecutionList]
+  );
 
   const successCount = useMemo(() => {
     return getWeekDates(currentWeek.startDate).reduce(
@@ -259,7 +265,11 @@ export default function WeekDayReport() {
       <div className="pt-[24px] px-[20px] pb-[32px]">
         <div className="text-[16px] font-[600]">선호 루틴 분석</div>
         <div className="flex items-center mt-[20px]">
-          {waveRenderer}
+          {isEmpty ? (
+            <Image src={empty_wave} alt="empty_wave" width={100} height={100} />
+          ) : (
+            waveRenderer
+          )}
           <div className="ml-auto w-[175px] ">
             <div className="flex items-center">
               <Image

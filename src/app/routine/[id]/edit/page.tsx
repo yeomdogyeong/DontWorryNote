@@ -226,7 +226,7 @@ export default function RoutineEditPage() {
 
   return (
     <div className="flex flex-col items-center justify-start h-full ">
-      <Header title="루틴 추가하기" />
+      <Header title="루틴 수정하기" />
       <div className="flex flex-col mt-[24px] pb-[32px] px-[20px] w-full h-max bg-white">
         <div className="text-gray-700">루틴 성향</div>
         <div className="mt-[12px] flex gap-[8px] w-full">
@@ -352,7 +352,7 @@ export default function RoutineEditPage() {
           </button>
           <div>매일 이 루틴을 반복할 거에요!</div>
         </div>
-        <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[8px]">
+        <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[6px]">
           <button
             onClick={() =>
               setSelectedDay({ ...selectedDay, MONDAY: !selectedDay.MONDAY })
@@ -479,7 +479,7 @@ export default function RoutineEditPage() {
           }`}
           onClick={handleAddClick}
         >
-          루틴 추가하기
+          루틴 수정하기
         </div>
       </div>
     </div>

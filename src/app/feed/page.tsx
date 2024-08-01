@@ -124,7 +124,7 @@ export default function FeedPage() {
                       ? "border-mainGreen bg-subGreen text-mainGreen"
                       : "border-mainBlack bg-subBlack text-mainBlack"
                     : "bg-white text-gray-800"
-                } flex-shrink-0 font-[400] text-gray-800 text-[13px] border-[1px] border-gray-200 rounded-[100px] h-[36px] flex-center px-[12px] py-[8px]`}
+                } flex-shrink-0 text-gray-800 text-[13px] border-[1px] border-gray-200 rounded-[100px] h-[36px] flex-center px-[12px] py-[8px]`}
               >
                 {item.name}
               </div>

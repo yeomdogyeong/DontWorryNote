@@ -21,7 +21,7 @@ export default function AddPostCateogoryModal(
       <div className="fixed z-[100] bottom-0 left-1/2 transform -translate-x-1/2 max-w-page w-full">
         <div className="h-[440px] rounded-t-[20px] bg-white">
           <div className="flex items-center justify-between pt-[28px] px-[20px] pb-[16px]">
-            <div className="font-[600] text-[20px]">카테고리 선택하기</div>
+            <div className="font-[500] text-[20px]">카테고리 선택하기</div>
             <button onClick={() => onClose?.()}>
               <CloseIcon />
             </button>
@@ -34,7 +34,7 @@ export default function AddPostCateogoryModal(
                   await onClose?.();
                 }}
                 key={idx}
-                className={`${item.className} flex-center text-gray-800 bg-gray-50 p-[16px] rounded-[8px]`}
+                className={`${item.className} flex items-center text-gray-800 bg-gray-50 p-[16px] rounded-[8px]`}
               >
                 {item.title}
               </button>
