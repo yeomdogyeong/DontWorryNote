@@ -53,6 +53,13 @@ export default function FeedPage() {
     enabled: isEnabled,
   });
 
+  const moreMaxPageWidth = useMemo(() => {
+    if (window && window.innerWidth > 500) {
+      return window.innerWidth / 2 - 250 + 20;
+    }
+    return 20;
+  }, []);
+
   useEffect(() => {
     if (
       searchParams.get("type") === null ||
@@ -137,8 +144,9 @@ export default function FeedPage() {
           })}
         </div>
         <button
+          style={{ right: moreMaxPageWidth }}
           onClick={() => router.push(ADD_POST_PATH)}
-          className={`fixed right-[20px] bottom-[68px] flex-center w-[52px] h-[52px] rounded-full ${
+          className={`fixed bottom-[68px] shadow-[0_4px_4px_0px_rgba(0,0,0,0.16)] flex-center w-[52px] h-[52px] rounded-full ${
             feedType === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
           }`}
         >
