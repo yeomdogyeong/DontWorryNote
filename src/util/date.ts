@@ -107,3 +107,20 @@ export const replaceFirstMondayToValue = {
   5: 4,
   6: 5,
 };
+
+export function getDaysSinceStart(startDate: string) {
+  // 오늘 날짜를 가져옵니다.
+  const today = new Date();
+
+  // 시작 날짜를 가져옵니다.
+  const start = new Date(startDate);
+
+  // 두 날짜 간의 차이를 밀리초로 계산합니다.
+  const diffInMs = today.getTime() - start.getTime();
+
+  // 밀리초를 일 수로 변환합니다.
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+  // 1일부터 시작하도록 1을 더합니다.
+  return diffInDays + 1;
+}

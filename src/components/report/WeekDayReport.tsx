@@ -56,27 +56,27 @@ export default function WeekDayReport() {
 
   const gaemiPercent = useMemo(() => {
     const value =
-      ((successCount[0] + successCount[1]) / successCount[0]) * 100 === Infinity
+      (successCount[0] / (successCount[0] + successCount[1])) * 100 === Infinity
         ? 0
-        : ((successCount[0] + successCount[1]) / successCount[0]) * 100;
+        : (successCount[0] / (successCount[0] + successCount[1])) * 100;
 
     if (Number.isNaN(value)) {
       return 0;
     } else {
-      return value;
+      return Math.round(value);
     }
   }, [successCount]);
 
   const baezzangePercent = useMemo(() => {
     const value =
-      ((successCount[0] + successCount[1]) / successCount[1]) * 100 === Infinity
+      (successCount[1] / (successCount[0] + successCount[1])) * 100 === Infinity
         ? 0
-        : ((successCount[0] + successCount[1]) / successCount[1]) * 100;
+        : (successCount[1] / (successCount[0] + successCount[1])) * 100;
 
     if (Number.isNaN(value)) {
       return 0;
     } else {
-      return value;
+      return Math.round(value);
     }
   }, [successCount]);
 
@@ -117,7 +117,7 @@ export default function WeekDayReport() {
       );
     }
 
-    if (gaemiPercent > 50) {
+    if (gaemiPercent >= 50) {
       return (
         <div className="circle relative overflow-hidden border-[#464343] rounded-full bg-gray-100 translate3d(0, 0, 0) w-[100px] h-[100px]">
           <div
@@ -306,7 +306,7 @@ export default function WeekDayReport() {
                     <span className="font-[600] text-mainBlack">
                       {item.executionDates.length}일{" "}
                     </span>
-                    / 7일
+                    / {item.routine.daysOfWeek.length}일
                   </div>
                 </div>
                 <div className="w-full flex gap-[4px]">

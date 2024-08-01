@@ -4,16 +4,16 @@ import {
 } from "@/apis/routine-execution/routine-execution";
 import { deleteRoutine } from "@/apis/routine/routine";
 import CheckFillIcon from "@/components/icon/CheckFillIcon";
-import CheckIcon from "@/components/icon/CheckIcon";
 import MoreIcon from "@/components/icon/MoreIcon";
 import { useActionSheetOverlay } from "@/components/overlay/actionSheet/ActionSheetOverlay";
 import { useAlertOverlay } from "@/components/overlay/alert/AlertOverlay";
 import { RoutineItemType } from "@/types/apis/routine";
 import { SubjectType, convertEmojiImgSrc } from "@/types/common";
-import dayjs from "dayjs";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import fire from "../../../../public/routine_fire.png";
+import { getDaysSinceStart } from "@/util/date";
 
 interface Props extends RoutineItemType {
   isExecution: boolean;
@@ -31,6 +31,7 @@ export default function RoutineItem(props: Props) {
     isExecution,
     formatDate,
     routineId,
+    startedDate,
     refetch,
   } = props;
   const { active } = useActionSheetOverlay();
@@ -47,6 +48,12 @@ export default function RoutineItem(props: Props) {
           }`}
         >
           {tendency === SubjectType.BAEZZANGE ? "베짱이루틴" : "개미루틴"}
+        </div>
+        <div className="flex-center ml-[6px] gap-[6px] py-[2px] px-[8px] rounded-[8px] bg-gray-50 h-[21px]">
+          <Image alt="fire" src={fire} width={12} height={16} />
+          <div className="text-[12px] text-gray-700">
+            {getDaysSinceStart(startedDate)}일째 진행중
+          </div>
         </div>
         <button
           className="ml-auto"

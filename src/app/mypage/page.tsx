@@ -126,15 +126,27 @@ export default function MyPage() {
                     />
                   </div>
                 ) : (
-                  <div className="flex-center bg-gray-100 w-[24px] h-[24px] text-[12px] text-gray-400 rounded-[4px]">
+                  <div
+                    className={`flex-center w-[24px] h-[24px] text-[12px] text-gray-400 font-[400] rounded-full ${
+                      dayjs(date).date() === dayjs(new Date()).date()
+                        ? userType === SubjectType.BAEZZANGE
+                          ? "text-mainGreen"
+                          : "text-mainBlack"
+                        : "text-gray-400"
+                    } ${
+                      dayjs(date).date() === dayjs(new Date()).date()
+                        ? "bg-white font-[500]"
+                        : "bg-gray-100"
+                    }`}
+                  >
                     {dayjs(date).date()}
                   </div>
                 )}
                 <div
                   className={`mt-[8px] text-[12px] ${
                     dayjs(date).date() === dayjs(new Date()).date()
-                      ? "text-white"
-                      : ""
+                      ? "text-white font-[600]"
+                      : "font-[400] text-gray-600"
                   }`}
                 >
                   {convertDayToText(idx)}
@@ -158,19 +170,19 @@ export default function MyPage() {
             <div>개짱이님! 즐거운 하루를 위해</div>
             <div>새로운 루틴을 작성해 보세요!</div>
           </div>
-          <div className="ml-[28px]">
-            <Image
-              width={66}
-              height={59}
-              src={
-                userType === SubjectType.BAEZZANGE
-                  ? routine_baejjange
-                  : routine_gaemi
-              }
-              alt="character"
-            />
-          </div>
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center">
+            <div className="mr-[24px]">
+              <Image
+                width={66}
+                height={59}
+                src={
+                  userType === SubjectType.BAEZZANGE
+                    ? routine_baejjange
+                    : routine_gaemi
+                }
+                alt="character"
+              />
+            </div>
             <RightArrowIcon color="#ffffff" />
           </div>
         </button>

@@ -23,6 +23,7 @@ import dayjs from "dayjs";
 import { postRoutine } from "@/apis/routine/routine";
 import { useRouter } from "next/navigation";
 import { HOME_PATH } from "@/store/path";
+import useLoading from "@/hooks/useLoading";
 
 export default function AddRoutinePage() {
   const router = useRouter();
@@ -34,6 +35,8 @@ export default function AddRoutinePage() {
   const [startedDate, setStartedDate] = useState(new Date().toDateString());
   const [endedDate, setEndedDate] = useState<string | undefined>(undefined);
   const [time, setTime] = useState("1970-01-01 06:00");
+
+  const { isLoading, loadWith } = useLoading();
 
   const [selectedDay, setSelectedDay] = useState({
     MONDAY: false,
@@ -96,22 +99,24 @@ export default function AddRoutinePage() {
     }
   }, [isAllCheck]);
   const handleAddClick = useCallback(async () => {
-    await postRoutine({
-      tendency: type,
-      category: routineType as RoutineCategoryType,
-      name: name as string,
-      description: description as string,
-      emoji: emoji,
-      startedDate: dayjs(startedDate).format("YYYY-MM-DD"),
-      endedDate: endedDate ? dayjs(endedDate).format("YYYY-MM-DD") : null,
-      executionTime: dayjs(time).format("HH:mm:00"),
-      daysOfWeek: Object.entries(selectedDay).reduce((prev, cur) => {
-        if (cur[1] === true) {
-          prev.push(cur[0] as DaysOfWeekType);
-        }
+    loadWith(async () => {
+      await postRoutine({
+        tendency: type,
+        category: routineType as RoutineCategoryType,
+        name: name as string,
+        description: description as string,
+        emoji: emoji,
+        startedDate: dayjs(startedDate).format("YYYY-MM-DD"),
+        endedDate: endedDate ? dayjs(endedDate).format("YYYY-MM-DD") : null,
+        executionTime: dayjs(time).format("HH:mm:00"),
+        daysOfWeek: Object.entries(selectedDay).reduce((prev, cur) => {
+          if (cur[1] === true) {
+            prev.push(cur[0] as DaysOfWeekType);
+          }
 
-        return prev;
-      }, [] as DaysOfWeekType[]),
+          return prev;
+        }, [] as DaysOfWeekType[]),
+      });
     });
 
     router.push(HOME_PATH);
@@ -423,14 +428,15 @@ export default function AddRoutinePage() {
               .replace("PM", "오후")}
           </div>
         </div>
-        <div
+        <button
+          disabled={isLoading}
           className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${
             type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
           }`}
           onClick={handleAddClick}
         >
           루틴 추가하기
-        </div>
+        </button>
       </div>
     </div>
   );
