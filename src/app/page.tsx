@@ -22,14 +22,14 @@ export default function Home() {
         setInitializeState({
           ...data.data,
         });
-        setTimeout(() => router.push(HOME_PATH), 2000);
+        setTimeout(() => router.push(HOME_PATH), 3000);
       } catch (e) {
         setIsSignedIn(false);
-        setTimeout(() => router.push("/onboarding"), 2000);
+        setTimeout(() => router.push("/onboarding"), 3000);
       }
     } else {
       // setIsSignedIn(false);
-      setTimeout(() => router.push("/onboarding"), 2000);
+      setTimeout(() => router.push("/onboarding"), 3000);
     }
   };
 
@@ -39,13 +39,13 @@ export default function Home() {
   }, [handleNextPage]);
   return (
     <main className="w-full h-full flex flex-col items-center">
-      <div className="flex flex-col justify-center items-center mt-[275px]  animate__animated animate__bounceIn">
+      <div className="flex flex-col justify-center items-center mt-[275px] ">
         <Image
           src={slogan}
           alt="sloganImg"
           width={236}
           height={33}
-          className="mb-[16px]"
+          className="mb-[16px]  animate__animated animate__bounceIn animate__slower"
         />
         <div className="text-gray-600 font-semibold">
           개짱이: 나를 찾아가는 루틴 여정
