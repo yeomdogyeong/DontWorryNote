@@ -18,6 +18,11 @@ function OnBoardingPage() {
     router.push(`https://gaezzange.duckdns.org/oauth2/authorization/kakao`);
     console.log("kakao!");
   };
+  const handleGoogle = () => {
+    router.push(`https://gaezzange.duckdns.org/oauth2/authorization/google`);
+    console.log("google!");
+  };
+
   return (
     <main className="w-full flex flex-col items-center pt-[69px] min-h-screen h-max bg-white">
       <div className="w-full ">
@@ -34,7 +39,12 @@ function OnBoardingPage() {
           />
         </div>
         <div className="mt-[8px] pb-[10px] w-full px-[20px]">
-          <AuthButton text="Google로 시작하기" bgColor="" srcImg={google} />
+          <AuthButton
+            text="Google로 시작하기"
+            bgColor=""
+            srcImg={google}
+            onClick={handleGoogle}
+          />
         </div>
       </div>
     </main>
