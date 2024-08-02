@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     handleNextPage();
-  }, []);
+  }, [handleNextPage]);
   return (
     <main className="w-full h-full flex flex-col items-center">
       <div className="flex flex-col justify-center items-center mt-[275px]">

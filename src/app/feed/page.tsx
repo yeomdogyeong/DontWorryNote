@@ -53,6 +53,13 @@ export default function FeedPage() {
     enabled: isEnabled,
   });
 
+  const moreMaxPageWidth = useMemo(() => {
+    if (window && window.innerWidth > 500) {
+      return window.innerWidth / 2 - 250 + 20;
+    }
+    return 20;
+  }, []);
+
   useEffect(() => {
     if (
       searchParams.get("type") === null ||
@@ -124,7 +131,7 @@ export default function FeedPage() {
                       ? "border-mainGreen bg-subGreen text-mainGreen"
                       : "border-mainBlack bg-subBlack text-mainBlack"
                     : "bg-white text-gray-800"
-                } flex-shrink-0 font-[400] text-gray-800 text-[13px] border-[1px] border-gray-200 rounded-[100px] h-[36px] flex-center px-[12px] py-[8px]`}
+                } flex-shrink-0 text-gray-800 text-[13px] border-[1px] border-gray-200 rounded-[100px] h-[36px] flex-center px-[12px] py-[8px]`}
               >
                 {item.name}
               </div>
@@ -137,8 +144,9 @@ export default function FeedPage() {
           })}
         </div>
         <button
+          style={{ right: moreMaxPageWidth }}
           onClick={() => router.push(ADD_POST_PATH)}
-          className={`fixed right-[20px] bottom-[68px] flex-center w-[52px] h-[52px] rounded-full ${
+          className={`fixed bottom-[68px] shadow-[0_4px_4px_0px_rgba(0,0,0,0.16)] flex-center w-[52px] h-[52px] rounded-full ${
             feedType === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
           }`}
         >

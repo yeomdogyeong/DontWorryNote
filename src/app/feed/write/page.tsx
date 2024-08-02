@@ -149,24 +149,8 @@ export default function AddPostPage() {
           onChange={handleContentsChange}
           className="bg-transparent	resize-none mt-[8px] px-[16px] py-[12px] border-[1px] rounded-[8px] w-full h-[220px] text-gray-800"
         />
-        <button className="mt-[12px] flex-center gap-[6px] border-[1px] rounded-[8px] w-full h-[52px]">
-          <AddPictureIcon />
-          <div
-            className="text-gray-700"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            사진 첨부하기
-          </div>
-          <input
-            type="file"
-            accept={"image/jpeg, image/png"}
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            hidden
-          />
-        </button>
         {url && (
-          <div className="w-[88px] h-[88px] relative">
+          <div className="mt-[12px] w-[88px] h-[88px] relative">
             <Image
               style={{ height: 80 }}
               alt="post-img"
@@ -187,9 +171,27 @@ export default function AddPostPage() {
             </button>
           </div>
         )}
+
+        <button className="mt-[12px] flex-center gap-[6px] border-[1px] rounded-[8px] w-full h-[52px]">
+          <AddPictureIcon />
+          <div
+            className="text-gray-700"
+            onClick={() => fileInputRef.current?.click()}
+          >
+            사진 첨부하기
+          </div>
+          <input
+            type="file"
+            accept={"image/jpeg, image/png"}
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            hidden
+          />
+        </button>
+
         <div className="mt-[40px] text-gray-900">
           <div>커뮤니티 이용 안내</div>
-          <div className="mt-[12px] text-gray-600">
+          <div className="mt-[12px] font-[400] text-gray-600">
             <div>
               아래와 같은 게시물을 업로드 시, 이용 약관에 따라 예고 없이
               게시물이 삭제되고 계정 이용이 제한되며, 사안에 따라 민형사상 법적

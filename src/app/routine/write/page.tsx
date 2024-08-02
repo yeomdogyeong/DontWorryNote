@@ -121,6 +121,7 @@ export default function AddRoutinePage() {
 
     router.push(HOME_PATH);
   }, [
+    loadWith,
     router,
     type,
     routineType,
@@ -307,7 +308,7 @@ export default function AddRoutinePage() {
           </button>
           <div>매일 이 루틴을 반복할 거에요!</div>
         </div>
-        <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[8px]">
+        <div className="h-[48px] mt-[8px] rounded-[8px] w-full h-[48px] flex gap-[6px]">
           <button
             onClick={() =>
               setSelectedDay({ ...selectedDay, MONDAY: !selectedDay.MONDAY })
