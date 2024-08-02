@@ -48,21 +48,9 @@ export default function HomePage() {
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
       } h-[30vh] `}
     >
-      <div className="text-[20px]  text-white self-start mx-[20px] font-bold sm:text-2xl">
-        <div className="white-space text-[20px]">안녕하세요! 개짱이님</div>
+      <div className="text-[20px] h-full mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-bold">
+        <div className="white-space">안녕하세요! 개짱이님</div>
         <div> 오늘은 어떤 삶을 살아볼까요?</div>
-      </div>
-
-      <div
-        className={`speech-bubble flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] sm:w-[270px] sm:h-[100px] sm:text-[19px]
-        mx-[20px] border-none p-4 text-[14px] rounded-xl ${
-          tendency === "GAEMI"
-            ? "bg-[#505866] speech-bubble1"
-            : "bg-[#649C7D] speech-bubble2"
-        }`}
-      >
-        <div>오늘도 행복한 하루를 보내세요. </div>
-        <div>제가 옆에서 열심히 응원할게요!</div>
       </div>
 
       <OptionDialog

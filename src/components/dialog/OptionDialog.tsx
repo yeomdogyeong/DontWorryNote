@@ -34,8 +34,19 @@ export const OptionDialog = ({
   // const tendency = SubjectType.GAEMI;
   return (
     <>
-      <div className="h-[700px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0  px-[20px] rounded-t-2xl">
+      <div className="h-[700px]  min-w-[370px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0  px-[20px] rounded-t-2xl">
         <div className="relative w-full">
+          <div
+            className={`speech-bubble absolute top-[-85px] xs:top-[-115px] xs:w-[280px]  xs:text-[18px] left-[-20px] flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] 
+        mx-[20px] border-none p-4 text-[14px] rounded-xl ${
+          tendency === "GAEMI"
+            ? "bg-[#505866] speech-bubble1"
+            : "bg-[#649C7D] speech-bubble2"
+        }`}
+          >
+            <div>오늘도 행복한 하루를 보내세요. </div>
+            <div>제가 옆에서 열심히 응원할게요!</div>
+          </div>
           <Image
             src={tendency === "GAEMI" ? maingaemi : mainbaejjange}
             alt="userCharacter"
@@ -52,7 +63,7 @@ export const OptionDialog = ({
             } right-[0px]`}
           />
         </div>
-        <div className="self-start mt-[32px] text-[18px] mb-[12px]">
+        <div className="self-start mt-[32px] text-[18px] mb-[12px] absolute">
           오늘의 루틴 목록
         </div>
 
