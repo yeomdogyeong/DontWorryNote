@@ -1,18 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
 import google from "../../../public/google.png";
 import kakao from "../../../public/kakao.png";
 import SimpleSlider from "@/components/slider/SimpleSlider";
 import { useRouter } from "next/navigation";
+import useMyStore from "@/store/useMyStore";
 
 function OnBoardingPage() {
   const router = useRouter();
-
-  // useEffect(() => {
-  //   localStorage.removeItem("tokenKey");
-  // }, []);
+  const { isSignedIn } = useMyStore();
 
   const handleKakao = () => {
     router.push(`https://gaezzange.duckdns.org/oauth2/authorization/kakao`);

@@ -1,4 +1,5 @@
 "use client";
+import "animate.css";
 import Image from "next/image";
 import slogan from "../../public/slogan.png";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ export default function Home() {
   );
   const handleNextPage = async () => {
     const userToken = localStorage.getItem("tokenKey");
-    if (userToken && !isSignedIn) {
+    if (userToken && isSignedIn) {
       try {
         const { data } = await getUserMyInfo();
         setInitializeState({
@@ -27,17 +28,18 @@ export default function Home() {
         setTimeout(() => router.push("/onboarding"), 2000);
       }
     } else {
-      setIsSignedIn(false);
+      // setIsSignedIn(false);
       setTimeout(() => router.push("/onboarding"), 2000);
     }
   };
 
   useEffect(() => {
+    console.log("isSignedInApp", isSignedIn);
     handleNextPage();
   }, [handleNextPage]);
   return (
     <main className="w-full h-full flex flex-col items-center">
-      <div className="flex flex-col justify-center items-center mt-[275px]">
+      <div className="flex flex-col justify-center items-center mt-[275px]  animate__animated animate__bounceIn">
         <Image
           src={slogan}
           alt="sloganImg"

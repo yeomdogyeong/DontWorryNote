@@ -20,7 +20,7 @@ export default function HomePage() {
   var now = dayjs();
   now.format();
   const todayDate = now.format("YYYY-MM-DD");
-
+  const { isSignedIn } = useMyStore();
   const { data, refetch, isFetched } = useQuery({
     //두 번째 인자를 기준으로 이전 데이터를 캐시할지 말지 결정
     queryKey: ["routineExecution"],
@@ -28,10 +28,11 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    console.log("data", data);
+    console.log("isSignedInHome", isSignedIn);
     if (userColor) {
       setLoading(false);
     }
+    console.log();
   }, [userColor, data]);
 
   if (loading) {

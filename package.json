@@ -14,6 +14,7 @@
     "@mui/x-date-pickers": "^7.10.0",
     "@tanstack/react-query": "^5.51.11",
     "@toss/use-overlay": "^1.4.0",
+    "animate.css": "^4.1.1",
     "axios": "^1.7.2",
     "base-64": "^1.0.0",
     "browser-image-compression": "^2.0.2",

@@ -11,6 +11,7 @@ function TokenPage() {
   const params = useSearchParams();
   const tokenKey = params.get("tokenKey");
   const router = useRouter();
+  const { isSignedIn, setIsSignedIn } = useMyStore();
 
   const { setInitializeState } = useMyStore(
     useShallow((state) => ({
@@ -19,6 +20,7 @@ function TokenPage() {
   );
 
   const handleTokenParsing = async () => {
+    console.log("1", isSignedIn);
     const userToken = localStorage.getItem("tokenKey");
 
     let payload = userToken?.substring(
@@ -38,6 +40,8 @@ function TokenPage() {
         });
 
         router.push(HOME_PATH);
+        setIsSignedIn(true);
+        console.log("2", isSignedIn);
       } else {
         router.push("/survey");
       }
