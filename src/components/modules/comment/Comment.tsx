@@ -2,7 +2,6 @@ import {
   deleteFeedComment,
   postFeedByIdCommentLikeToggle,
 } from "@/apis/comment/comment";
-import CommentIcon from "@/components/icon/CommentIcon";
 import LikeIcon from "@/components/icon/LikeIcon";
 import MoreIcon from "@/components/icon/MoreIcon";
 import { useActionSheetOverlay } from "@/components/overlay/actionSheet/ActionSheetOverlay";
