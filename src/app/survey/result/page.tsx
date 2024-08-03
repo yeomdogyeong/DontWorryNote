@@ -7,11 +7,13 @@ import { surveyList } from "@/components/dummy";
 import { useRouter } from "next/navigation";
 import "animate.css";
 import "./page.css";
+import useMyStore from "@/store/useMyStore";
 function ResultPage() {
   const { users, setStatus, userType } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";
   const [resultIdx, setResultIdx] = useState<ResultKey | undefined>();
   const router = useRouter();
+  const { wannabe } = useMyStore();
   const handleMakeProfile = () => {
     router.push("/survey/profile");
   };
@@ -33,6 +35,10 @@ function ResultPage() {
     console.log("resultIdx", resultIdx);
     localStorage.setItem("userScore", JSON.stringify(users.score));
   }, [users.score, resultIdx]);
+
+  useEffect(() => {
+    console.log("wanna", wannabe);
+  });
 
   return (
     <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[180px]">
@@ -104,7 +110,8 @@ function ResultPage() {
       {resultIdx && (
         <div className="fixed bottom-0 left-0 right-0 flex flex-col items-center">
           <div className="speech-bubble border-[1px] p-[16px] mt-[10px] bg-white rounded-3xl shadow-md z-100 animate__animated animate__pulse animate__infinite">
-            개짱이와 루틴을 만들며 여유로운 개짱이가 되어봐요! 😄
+            개짱이와 루틴을 만들며{" "}
+            <span className="text-mainGreen">{wannabe}</span>가 되어봐요! 😄
           </div>
           <button
             onClick={() => {

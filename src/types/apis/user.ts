@@ -5,4 +5,5 @@ export interface GetUserMyInfoRs {
   nickname: string;
   profileImagePath: string;
   tendency: SubjectType;
+  wannabe: string;
 }

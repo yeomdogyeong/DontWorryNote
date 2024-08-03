@@ -7,11 +7,13 @@ interface MyState {
   tendency: SubjectType;
   userId?: number;
   profileImagePath: string;
+  wannabe: string;
 }
 
 interface MyStore extends MyState {
   setInitializeState(v: Omit<MyState, "isSignedIn">): void;
   setIsSignedIn: (v: boolean) => void;
+  setWannabe: (v: string) => void;
 }
 
 const initialState = {
@@ -19,6 +21,7 @@ const initialState = {
   tendency: SubjectType.GAEMI,
   nickname: "",
   profileImagePath: "",
+  wannabe: "",
 };
 
 const useMyStore = create<MyStore>((set) => ({
@@ -34,6 +37,12 @@ const useMyStore = create<MyStore>((set) => ({
     set(() => ({
       isSignedIn: v,
     })),
+
+  setWannabe: (v: string) => {
+    set(() => ({
+      wannabe: v,
+    }));
+  },
 }));
 
 export default useMyStore;

@@ -10,7 +10,7 @@ export const Music = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <g clip-path="url(#clip0_1163_2910)">
+      <g clipPath="url(#clip0_1163_2910)">
         <rect x="0.75" width="28" height="28" fill="url(#pattern0_1163_2910)" />
       </g>
       <defs>

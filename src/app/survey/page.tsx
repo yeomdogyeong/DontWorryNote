@@ -3,23 +3,32 @@ import { Header } from "@/components/Header";
 import onestep from "../../../public/onestep.png";
 import { ListComponent } from "@/components/survey/ListComponent";
 import { listItem } from "@/components/dummy";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ProgressBar } from "@/components/survey/ProgressBar";
 import useUserStore from "@/store/useUserStore";
+import useMyStore from "@/store/useMyStore";
 export default function Survey() {
   const [select, setSelect] = useState<string | null>(null);
   const params = useSearchParams();
   const step = Number(params.get("step"));
   const router = useRouter();
   const { users, increaseScore } = useUserStore();
-
+  const { setWannabe } = useMyStore();
   //클릭을 하고 다음 버튼을 누를때 score저장
   const handleScore = () => {
     const selectedScore =
       listItem[step]?.items?.find((el) => el.text === select)?.score || 0;
     increaseScore(selectedScore);
+
+    const selectWannabe = listItem[step]?.items?.find(
+      (el) => el.text === select
+    )?.text;
+
+    if (step === 5) {
+      setWannabe(selectWannabe!);
+    }
 
     if (select) {
       const nextStep =
@@ -36,10 +45,6 @@ export default function Survey() {
   useEffect(() => {
     if (!step) {
       router.replace("/survey?step=1");
-    }
-
-    if (step === 5) {
-      console.log("스텝4");
     }
   }, [router, step]);
 
