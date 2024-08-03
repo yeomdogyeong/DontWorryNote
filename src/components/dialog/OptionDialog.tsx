@@ -34,8 +34,10 @@ export const OptionDialog = ({
   // const tendency = SubjectType.GAEMI;
   return (
     <>
-      <div className="h-[700px]  min-w-[370px] max-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0  px-[20px] rounded-t-2xl">
-        <div className="relative w-full">
+      <div
+        className={`min-h-[73vh] absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 bottom-0  px-[20px] rounded-t-2xl`}
+      >
+        <div className={`relative w-full `}>
           <div
             className={`speech-bubble absolute top-[-85px] xs:top-[-115px] xs:w-[280px]  xs:text-[18px] left-[-20px] flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] 
         mx-[20px] border-none p-4 text-[14px] rounded-xl ${
@@ -87,8 +89,8 @@ export const OptionDialog = ({
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full">
-            <div className="flex flex-col items-center justify-center opacity-50">
+          <div className="flex flex-col items-center justify-center h-full w-full absolute">
+            <div className="flex flex-col items-center justify-center opacity-50 w-full h-full">
               <Image
                 src={
                   tendency === SubjectType.GAEMI

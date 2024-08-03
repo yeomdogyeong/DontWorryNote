@@ -44,9 +44,9 @@ export default function HomePage() {
   }
   return (
     <div
-      className={`flex flex-col justify-evenly ${
+      className={`flex flex-col justify-evenly h-full ${
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
-      } h-[30vh] `}
+      }`}
     >
       <div className="text-[20px] h-full mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-bold">
         <div className="white-space">안녕하세요! 개짱이님</div>
