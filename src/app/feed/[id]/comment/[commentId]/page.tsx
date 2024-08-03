@@ -103,7 +103,7 @@ export default function CommentPage() {
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className={`border-gray-200 border-[1px] flex-center w-full px-[16px] py-[10px] rounded-[8px] focus:outline-none ${
+          className={`border-gray-200 border-[1px] focus:text-[16px] h-[40px] flex-center w-full px-[16px] py-[10px] rounded-[8px] focus:outline-none ${
             data?.data.data.tendency === SubjectType.BAEZZANGE
               ? "focus:border-mainGreen"
               : "focus:border-mainBlack"
