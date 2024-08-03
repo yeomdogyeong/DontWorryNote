@@ -5,7 +5,8 @@ import useUserStore from "@/store/useUserStore";
 import { ResultBar } from "@/components/survey/ResultBar";
 import { surveyList } from "@/components/dummy";
 import { useRouter } from "next/navigation";
-
+import "animate.css";
+import "./page.css";
 function ResultPage() {
   const { users, setStatus, userType } = useUserStore();
   type ResultKey = "result1" | "result2" | "result3" | "result4";
@@ -34,7 +35,7 @@ function ResultPage() {
   }, [users.score, resultIdx]);
 
   return (
-    <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[110px]">
+    <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[180px]">
       <div className="self-start ml-2">
         <p className="text-lg font-thin text-gray-500">
           개짱이력(GJLS) 분석결과 회원님은
@@ -100,26 +101,28 @@ function ResultPage() {
           )}
         </div>
       </div>
-      {/* <div className="border-[1px] p-[16px] rounded-3xl shadow-md absolute top-[657px]">
-        개짱이와 루틴을 만들며 여유로운 개짱이가 되어봐요! 😄
-      </div> */}
       {resultIdx && (
-        <button
-          onClick={() => {
-            handleMakeProfile();
-            if (surveyList[0][resultIdx]?.status) {
-              setStatus(surveyList[0][resultIdx].status);
-            }
-            console.log(userType);
-          }}
-          className={`flex flex-col items-center justify-center fixed w-[500px] max-w-[100vw] h-[90px]  text-white ${
-            surveyList[0][resultIdx]?.srcBg === "baejjange"
-              ? "bg-mainGreen"
-              : "bg-mainBlack"
-          } bottom-0 p-2 rounded-t-sm`}
-        >
-          프로필 만들기
-        </button>
+        <div className="fixed bottom-0 left-0 right-0 flex flex-col items-center">
+          <div className="speech-bubble border-[1px] p-[16px] mt-[10px] bg-white rounded-3xl shadow-md z-100 animate__animated animate__pulse animate__infinite">
+            개짱이와 루틴을 만들며 여유로운 개짱이가 되어봐요! 😄
+          </div>
+          <button
+            onClick={() => {
+              handleMakeProfile();
+              if (surveyList[0][resultIdx]?.status) {
+                setStatus(surveyList[0][resultIdx].status);
+              }
+              console.log(userType);
+            }}
+            className={`flex flex-col items-center justify-center w-[500px] max-w-[100vw] h-[90px] text-white ${
+              surveyList[0][resultIdx]?.srcBg === "baejjange"
+                ? "bg-mainGreen"
+                : "bg-mainBlack"
+            } p-2 rounded-t-sm`}
+          >
+            프로필 만들기
+          </button>
+        </div>
       )}
     </div>
   );

@@ -37,6 +37,10 @@ export default function Survey() {
     if (!step) {
       router.replace("/survey?step=1");
     }
+
+    if (step === 5) {
+      console.log("스텝4");
+    }
   }, [router, step]);
 
   return (
