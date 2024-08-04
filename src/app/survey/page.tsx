@@ -65,7 +65,7 @@ export default function Survey() {
           <p className="text-gray-400">5</p>
         </div>
       </div>
-      <div className="w-full overflow-auto pb-[80px]">
+      <div className="w-full overflow-auto">
         {listItem[step]?.items?.map((el, idx) => (
           <ListComponent
             key={idx}
