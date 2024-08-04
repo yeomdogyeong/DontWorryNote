@@ -48,7 +48,7 @@ export default function HomePage() {
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
       }`}
     >
-      <div className="text-[20px] mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-bold">
+      <div className="text-[20px] mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-[600]">
         <div className="white-space">안녕하세요! 개짱이님</div>
         <div> 오늘은 어떤 삶을 살아볼까요?</div>
       </div>

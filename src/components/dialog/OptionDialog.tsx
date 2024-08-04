@@ -13,6 +13,7 @@ import { convertEmojiImgSrc, SubjectType } from "@/types/common";
 import { Burning } from "../icon/Burning";
 import { useRouter } from "next/navigation";
 import { RoutineExecution } from "@/types/apis/routineExecution";
+import AddRoutineIcon from "../icon/AddRoutineIcon";
 //props에 내려주는거 any로 하지말기 (타입캐스팅이 안됌)
 //isfetched => reactquery에 있는데 이거 쓰면 데이터 가져오기 전에 이미지 설정 가능
 interface OptionDialogType {
@@ -37,9 +38,9 @@ export const OptionDialog = ({
       <div
         className={`min-h-[83vh] h-full absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 px-[20px] rounded-t-2xl`}
       >
-        <div className={`relative w-full `}>
+        <div className={`relative w-full h-[12px]`}>
           <div
-            className={`speech-bubble absolute top-[-95px] xs:top-[-105px] xs:w-[280px]  xs:text-[18px] left-[-20px] flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] 
+            className={`speech-bubble font-[400] absolute top-[-95px] xs:top-[-105px] xs:w-[280px]  xs:text-[18px] left-[-20px] flex flex-col text-white self-start justify-center items-center mb-[20px] w-[200px] 
         mx-[20px] border-none p-4 text-[14px] rounded-xl ${
           tendency === "GAEMI"
             ? "bg-[#505866] speech-bubble1"
@@ -65,7 +66,7 @@ export const OptionDialog = ({
             } right-[0px]`}
           />
         </div>
-        <div className="self-start mt-[32px] text-[18px] mb-[12px] absolute">
+        <div className="self-start mt-[32px] text-[18px] mb-[12px]  font-[500]">
           오늘의 루틴 목록
         </div>
 
@@ -100,17 +101,21 @@ export const OptionDialog = ({
                 alt="userTypeImge"
                 width={170}
                 height={200}
-                className="mb-[24px]"
+                className=""
               />
+              <div className="mt-[12px] mb-[24px] w-[175px] h-[40] text-gray-600 text-center">
+                앗! 아직 만들어진 루틴이 없어요! 새로운 루틴을 추가해보세요!
+              </div>
               <button
                 onClick={() => router.push("/routine/write")}
                 className={`flex items-center ${
                   tendency === SubjectType.GAEMI
                     ? "bg-mainBlack"
                     : "bg-mainGreen"
-                } rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2`}
+                } rounded-2xl justify-center text-white w-[175px] h-[48px] py-[4px] px-0 mb-8 border-2 `}
               >
-                루틴 추가하기
+                <AddRoutineIcon color="white" />{" "}
+                <span className="ml-[10px]">루틴 추가하기</span>
               </button>
             </div>
           </div>
