@@ -91,7 +91,7 @@ export const OptionDialog = ({
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-full w-full absolute">
-            <div className="flex flex-col items-center justify-center opacity-50 w-full h-full">
+            <div className="flex flex-col items-center justify-center w-full h-full">
               <Image
                 src={
                   tendency === SubjectType.GAEMI
@@ -101,9 +101,9 @@ export const OptionDialog = ({
                 alt="userTypeImge"
                 width={170}
                 height={200}
-                className=""
+                className=" opacity-50"
               />
-              <div className="mt-[12px] mb-[24px] w-[175px] h-[40] text-gray-600 text-center">
+              <div className="mt-[12px] mb-[24px] w-[175px] h-[40] text-gray-600 text-center  opacity-50">
                 앗! 아직 만들어진 루틴이 없어요! 새로운 루틴을 추가해보세요!
               </div>
               <button
