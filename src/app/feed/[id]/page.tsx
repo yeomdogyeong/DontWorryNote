@@ -197,50 +197,48 @@ export default function FeedDetailPage() {
         </button>
       </div>
       <div className="h-[8px] bg-[#F4F4F4]" />
-      <div className="pb-[52px]">
-        {commentTree.length > 0 ? (
-          <div>
-            {commentTree.map((item: FeedComment, idx: number) => {
-              return (
-                <div
-                  key={item.commentId}
-                  className={`py-[24px] ${
-                    idx !== 0 ? "border-t border-gray-100" : ""
-                  }`}
-                >
-                  <ParentComment
-                    {...item}
+      {commentTree.length > 0 ? (
+        <div className="pb-[52px]">
+          {commentTree.map((item: FeedComment, idx: number) => {
+            return (
+              <div
+                key={item.commentId}
+                className={`py-[24px] ${
+                  idx !== 0 ? "border-t border-gray-100" : ""
+                }`}
+              >
+                <ParentComment
+                  {...item}
+                  onChange={() => {
+                    commentRefetch();
+                  }}
+                  feedId={feedId as number}
+                  tendency={data?.data.data.feedTendency as SubjectType}
+                />
+                {item.children?.map((replyComment) => (
+                  <Comment
+                    key={replyComment.commentId}
+                    {...replyComment}
                     onChange={() => {
                       commentRefetch();
                     }}
                     feedId={feedId as number}
                     tendency={data?.data.data.feedTendency as SubjectType}
                   />
-                  {item.children?.map((replyComment) => (
-                    <Comment
-                      key={replyComment.commentId}
-                      {...replyComment}
-                      onChange={() => {
-                        commentRefetch();
-                      }}
-                      feedId={feedId as number}
-                      tendency={data?.data.data.feedTendency as SubjectType}
-                    />
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="px-[20px] h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
-        )}
-      </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="px-[20px] h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
+      )}
       <div className="h-[8px] bg-[#F4F4F4]" />
       <div className="fixed z-20 bg-white bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className={`border-gray-200 border-[1px] flex-center w-full px-[16px] py-[10px] rounded-[8px] focus:outline-none ${
+          className={`border-gray-200 border-[1px] focus:text-[16px] h-[40px] flex-center w-full px-[16px] py-[10px] rounded-[8px] focus:outline-none ${
             data?.data.data.tendency === SubjectType.BAEZZANGE
               ? "focus:border-mainGreen"
               : "focus:border-mainBlack"

@@ -87,7 +87,7 @@ export default function FeedItem(props: Props) {
           </div>
         </div>
         <div
-          className={`ml-auto flex-center w-[72px] h-[30px] rounded-[80px] ${
+          className={`ml-auto py-[6px] px-[12px] flex-center h-[30px] rounded-[80px] ${
             type === SubjectType.GAEMI
               ? "text-mainBlack bg-subBlack"
               : "text-mainGreen bg-subGreen"
@@ -125,7 +125,7 @@ export default function FeedItem(props: Props) {
           />
         </button>
         <button className="flex-center w-full" onClick={handleComment}>
-          <CommentIcon size={16} />
+          <CommentIcon />
         </button>
       </div>
     </div>
