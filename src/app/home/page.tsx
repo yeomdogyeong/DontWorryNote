@@ -44,21 +44,22 @@ export default function HomePage() {
   }
   return (
     <div
-      className={`flex flex-col justify-evenly h-full ${
+      className={`flex flex-col h-full ${
         tendency === "GAEMI" ? "bg-mainBlack" : "bg-mainGreen"
       }`}
     >
-      <div className="text-[20px] h-full mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-bold">
+      <div className="text-[20px] mt-[24px] mb-[11px] xs:text-[24px] xs:mt-[51px] text-white self-start px-[20px] font-bold">
         <div className="white-space">안녕하세요! 개짱이님</div>
         <div> 오늘은 어떤 삶을 살아볼까요?</div>
       </div>
-
-      <OptionDialog
-        data={data?.data.data}
-        todayDate={todayDate}
-        refetch={refetch}
-        isFetched={isFetched}
-      />
+      <div className="relative top-[110px]">
+        <OptionDialog
+          data={data?.data.data}
+          todayDate={todayDate}
+          refetch={refetch}
+          isFetched={isFetched}
+        />
+      </div>
 
       <BottomNavigation />
     </div>
