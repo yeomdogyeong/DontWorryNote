@@ -1,6 +1,7 @@
 .speech-bubble {
   position: relative;
-  border-radius: 0.8em;
+  border-radius: 8000px;
+  box-shadow: 4px 4px 16px 0px #0000001a;
 }
 
 .speech-bubble:after {

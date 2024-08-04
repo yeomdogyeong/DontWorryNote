@@ -13,6 +13,7 @@ import { HOME_PATH } from "@/store/path";
 import useMyStore from "@/store/useMyStore";
 import { SubjectType } from "@/types/common";
 import imageCompression from "browser-image-compression";
+import { Loader } from "@/components/loader/Loader";
 
 export default function Main() {
   const [select, setSelect] = useState(true);
@@ -24,7 +25,7 @@ export default function Main() {
   const [url, setUrl] = useState<string | null>(null);
   const [file, setFile] = useState<File>();
   const [userNickname, setUserNickname] = useState<string>("");
-
+  const [loading, setLoading] = useState<boolean>(true);
   const handleToMain = async () => {
     const { data } = await postFile(FileType.USER_IMAGE, file);
     await postUserOnboarding({
@@ -73,7 +74,19 @@ export default function Main() {
     } else {
       setUserType(SubjectType.GAEMI);
     }
+
+    if (userColor) {
+      setLoading(false);
+    }
   }, [userColor]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center justify-start bg-gray-50 h-full pt-[32px]">

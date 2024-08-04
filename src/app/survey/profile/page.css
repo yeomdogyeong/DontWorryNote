@@ -1,0 +1,45 @@
+.loader {
+  height: 20px;
+  width: 52px;
+  aspect-ratio: 2.5;
+  --_g1: no-repeat radial-gradient(farthest-side, #2fa464 90%, #0000);
+  --_g2: no-repeat
+    radial-gradient(farthest-side, rgba(47, 164, 100, 0.8) 90%, #0000);
+  --_g3: no-repeat
+    radial-gradient(farthest-side, rgba(47, 164, 100, 0.6) 90%, #0000);
+  --_g4: no-repeat
+    radial-gradient(farthest-side, rgba(47, 164, 100, 0.4) 90%, #0000);
+  background: var(--_g1), var(--_g2), var(--_g3), var(--_g4);
+  background-size: 20% 50%;
+  animation: l43 1s infinite linear;
+}
+@keyframes l43 {
+  0% {
+    background-position: calc(0 * 100% / 3) 50%, calc(1 * 100% / 3) 50%,
+      calc(2 * 100% / 3) 50%, calc(3 * 100% / 3) 50%;
+  }
+  16.67% {
+    background-position: calc(0 * 100% / 3) 0, calc(1 * 100% / 3) 50%,
+      calc(2 * 100% / 3) 50%, calc(3 * 100% / 3) 50%;
+  }
+  33.33% {
+    background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 0,
+      calc(2 * 100% / 3) 50%, calc(3 * 100% / 3) 50%;
+  }
+  50% {
+    background-position: calc(0 * 100% / 3) 50%, calc(1 * 100% / 3) 100%,
+      calc(2 * 100% / 3) 0, calc(3 * 100% / 3) 50%;
+  }
+  66.67% {
+    background-position: calc(0 * 100% / 3) 50%, calc(1 * 100% / 3) 50%,
+      calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 0;
+  }
+  83.33% {
+    background-position: calc(0 * 100% / 3) 50%, calc(1 * 100% / 3) 50%,
+      calc(2 * 100% / 3) 50%, calc(3 * 100% / 3) 100%;
+  }
+  100% {
+    background-position: calc(0 * 100% / 3) 50%, calc(1 * 100% / 3) 50%,
+      calc(2 * 100% / 3) 50%, calc(3 * 100% / 3) 50%;
+  }
+}

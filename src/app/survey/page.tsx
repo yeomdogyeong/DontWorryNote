@@ -53,18 +53,19 @@ export default function Survey() {
       <Header />
       {/* <ProgressBar srcImg={onestep} /> */}
       <ProgressBar stepNumber={step} />
-      <div className="w-full flex justify-between items-center mt-[32px]  px-[20px] mb-[24px]">
+
+      <div className="w-full flex justify-between items-center mt-[32px]  px-[20px] mb-[24px] ">
         <div className="self-start ">
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.one}</p>
           <p className="text-[24px] font-[700]">{listItem[step]?.title?.two}</p>
         </div>
-        <div className="self-start flex tracking-wider h-[22px] items-center font-[600]">
+        <div className="self-start flex tracking-wider h-[22px] items-center font-[600] text-[16px]">
           <p className="text-mainGreen">{step}</p>
           <p className="text-gray-400"> /</p>
           <p className="text-gray-400">5</p>
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full overflow-auto pb-[80px]">
         {listItem[step]?.items?.map((el, idx) => (
           <ListComponent
             key={idx}

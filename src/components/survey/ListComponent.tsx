@@ -27,12 +27,12 @@ export const ListComponent = ({
 
   return (
     <>
-      <button className="mt-[8px] w-full px-[20px]">
+      <button className="mb-[8px] w-full px-[20px]">
         <div
           onClick={() => {
             handlePick();
           }}
-          className={`tracking-wide border-2 flex justify-left items-center text-gray-800 px-[16px] font-[500] py-[14px] text-[16px] rounded-xl h-[70px] max-h-[8vh] hover:border-mainGreen hover:bg-subGreen ${
+          className={`tracking-wide border-2 flex justify-left items-center text-gray-800 px-[16px] font-[500] text-[16px] rounded-xl h-[70px]  hover:border-mainGreen hover:bg-subGreen ${
             isSelected ? "bg-subGreen border-mainGreen" : ""
           }`}
         >
