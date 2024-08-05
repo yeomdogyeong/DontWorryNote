@@ -23,6 +23,9 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
+import gaemiImg from "../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../public/small_baejjange.png";
+
 export default function FeedDetailPage() {
   const searchParams = useParams();
   const { userId } = useMyStore();
@@ -134,7 +137,13 @@ export default function FeedDetailPage() {
           <Image
             className="rounded-full"
             style={{ height: 32 }}
-            src={data?.data.data.profileImagePath ?? ""}
+            src={
+              data?.data.data.profileImagePath
+                ? data?.data.data.profileImagePath
+                : data?.data.data.tendency === SubjectType.BAEZZANGE
+                ? baejjangeImg
+                : gaemiImg
+            }
             width={32}
             height={32}
             alt="profile_image"

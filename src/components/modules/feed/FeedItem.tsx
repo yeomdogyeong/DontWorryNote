@@ -11,6 +11,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { produce } from "immer";
 
+import gaemiImg from "../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../public/small_baejjange.png";
 interface Props extends FeedItemType {
   queryKey: (string | undefined)[];
 }
@@ -29,6 +31,7 @@ export default function FeedItem(props: Props) {
     isLike,
     feedId,
     queryKey,
+    tendency,
   } = props;
 
   const router = useRouter();
@@ -74,16 +77,20 @@ export default function FeedItem(props: Props) {
   return (
     <div className="bg-white rounded-[12px] px-[20px] pt-[28px] pb-[8px] shadow-[0_4px_10px_0px_rgba(0,40,100,0.06)]">
       <div className="flex h-[37px]">
-        {profileImagePath && (
-          <Image
-            className="rounded-full"
-            style={{ height: 32 }}
-            src={profileImagePath}
-            width={32}
-            height={32}
-            alt="profile_image"
-          />
-        )}
+        <Image
+          className="rounded-full"
+          style={{ height: 32 }}
+          src={
+            profileImagePath
+              ? profileImagePath
+              : tendency === SubjectType.BAEZZANGE
+              ? baejjangeImg
+              : gaemiImg
+          }
+          width={32}
+          height={32}
+          alt="profile_image"
+        />
         <div className="ml-[12px]">
           <div className="font-[600]">{nickname}</div>
           <div className="text-[12px] text-gray-500">
