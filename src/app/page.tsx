@@ -34,7 +34,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("isSignedInApp", isSignedIn);
     handleNextPage();
   }, [handleNextPage]);
   return (

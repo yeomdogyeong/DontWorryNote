@@ -58,7 +58,6 @@ export default function FeedDetailPage() {
 
   const commentTree = useMemo(() => {
     if (isCommentsFetched) {
-      console.log(commentsData);
       return createCommentTree(commentsData?.data.data as FeedComment[]);
     }
     return [];

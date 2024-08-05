@@ -21,7 +21,6 @@ export default function GlobalContextWrapper(props: Props) {
   );
 
   useEffect(() => {
-    console.log("isSignedInWrapper", isSignedIn);
     if (PUBLIC_PATH.includes(pathname)) {
       return;
     }

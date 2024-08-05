@@ -14,7 +14,6 @@ export const UserColorProvider = ({ children }: any) => {
   // const userScore = useUserStore();
   const { users } = useUserStore();
   useEffect(() => {
-    console.log(users.score);
     if (users.score > 3) {
       setUserColor("mainBlack");
     } else {

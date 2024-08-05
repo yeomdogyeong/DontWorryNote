@@ -27,6 +27,5 @@ export function createCommentTree(data: FeedComment[]) {
     }
   });
 
-  console.log(commentTree);
   return commentTree;
 }

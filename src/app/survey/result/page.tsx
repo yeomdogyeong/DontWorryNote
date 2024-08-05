@@ -19,7 +19,6 @@ function ResultPage() {
   };
 
   useEffect(() => {
-    console.log(users.score);
 
     if (users.score === 1 || users.score === 0) {
       setResultIdx("result1");
@@ -32,13 +31,8 @@ function ResultPage() {
     } else {
       alert("오류");
     }
-    console.log("resultIdx", resultIdx);
     localStorage.setItem("userScore", JSON.stringify(users.score));
   }, [users.score, resultIdx]);
-
-  useEffect(() => {
-    console.log("wanna", wannabe);
-  });
 
   return (
     <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[150px]">
@@ -119,7 +113,6 @@ function ResultPage() {
               if (surveyList[0][resultIdx]?.status) {
                 setStatus(surveyList[0][resultIdx].status);
               }
-              console.log(userType);
             }}
             className={`flex flex-col items-center justify-center w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
               surveyList[0][resultIdx]?.srcBg === "baejjange"

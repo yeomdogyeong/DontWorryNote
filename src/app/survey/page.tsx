@@ -35,7 +35,6 @@ export default function Survey() {
         step + 1 !== 6 ? `/survey?step=${step + 1}` : `/survey/loading`;
       router.push(nextStep);
     }
-    console.log(users);
   };
 
   useEffect(() => {

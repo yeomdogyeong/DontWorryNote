@@ -64,11 +64,9 @@ export default function Main() {
 
   const handleUserName = (e: any) => {
     setUserNickname(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {
-    console.log("usercolor", userColor);
     if (userColor === "mainGreen") {
       setUserType(SubjectType.BAEZZANGE);
     } else {
