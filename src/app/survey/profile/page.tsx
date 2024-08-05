@@ -27,12 +27,19 @@ export default function Main() {
   const [userNickname, setUserNickname] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const handleToMain = async () => {
-    const { data } = await postFile(FileType.USER_IMAGE, file);
-    await postUserOnboarding({
-      nickname: userNickname,
-      tendency: userType,
-      profileImagePath: data.data.path,
-    });
+    if (file) {
+      const { data } = await postFile(FileType.USER_IMAGE, file);
+      await postUserOnboarding({
+        nickname: userNickname,
+        tendency: userType,
+        profileImagePath: data.data.path,
+      });
+    } else {
+      await postUserOnboarding({
+        nickname: userNickname,
+        tendency: userType,
+      });
+    }
 
     const { data: infoData } = await getUserMyInfo();
     setInitializeState({
