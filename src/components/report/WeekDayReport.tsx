@@ -185,12 +185,15 @@ export default function WeekDayReport() {
       routineExecutionList?.data.data.reduce((prev, cur) => {
         cur.routine.daysOfWeek.forEach((day) => {
           if (
+            getWeekDates(currentWeek.startDate)[6] ===
+              getWeekDates(new Date().toISOString())[6] &&
             replaceDayToValue[day] <=
-            (getWeekDates(currentWeek.startDate).some(
-              (date) => date === dayjs(new Date()).format("YYYY-MM-DD")
-            )
-              ? replaceFirstMondayToValue[dayjs(new Date()).day()]
-              : 7)
+              replaceFirstMondayToValue[dayjs(new Date()).day()]
+          ) {
+            prev++;
+          } else if (
+            getWeekDates(currentWeek.startDate)[6] !==
+            getWeekDates(new Date().toISOString())[6]
           ) {
             prev++;
           }
@@ -270,7 +273,7 @@ export default function WeekDayReport() {
       <div className="pt-[24px] px-[20px] pb-[32px]">
         <div className="text-[16px] font-[600]">선호 루틴 분석</div>
         <div className="flex items-center mt-[20px]">
-          {isEmpty ? (
+          {isEmpty || successCount[0] + successCount[1] === 0 ? (
             <Image src={empty_wave} alt="empty_wave" width={100} height={100} />
           ) : (
             waveRenderer
