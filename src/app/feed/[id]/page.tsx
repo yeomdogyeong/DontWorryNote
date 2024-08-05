@@ -233,7 +233,6 @@ export default function FeedDetailPage() {
       ) : (
         <div className="px-[20px] h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
       )}
-      <div className="h-[8px] bg-[#F4F4F4]" />
       <div className="fixed z-20 bg-white bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
         <input
           value={comment}
