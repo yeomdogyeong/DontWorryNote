@@ -142,41 +142,46 @@ export default function AddRoutinePage() {
   }, [timePickerActive, time]);
 
   const handlePostType = useCallback(() => {
+    const list =
+      type === SubjectType.GAEMI
+        ? [
+            {
+              title: "업무 또는 학업",
+              value: RoutineCategoryType.WORK_AND_STUDY,
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.WORK_AND_STUDY),
+            },
+            {
+              title: "운동 및 셀프케어",
+              onClick: async () => setRoutineType(RoutineCategoryType.HEALTH),
+              value: RoutineCategoryType.HEALTH,
+            },
+            {
+              title: "생산적인 자기 계발",
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.SEL_DEVELOPMENT),
+              value: RoutineCategoryType.SEL_DEVELOPMENT,
+            },
+          ]
+        : [
+            {
+              title: "취미 및 여가활동",
+              onClick: async () => setRoutineType(RoutineCategoryType.REST),
+              value: RoutineCategoryType.REST,
+            },
+            {
+              title: "가족 및 친구와의 시간",
+              onClick: async () => setRoutineType(RoutineCategoryType.MEETING),
+              value: RoutineCategoryType.MEETING,
+            },
+            {
+              title: "휴식 및 수면",
+              onClick: async () => setRoutineType(RoutineCategoryType.REST),
+              value: RoutineCategoryType.REST,
+            },
+          ];
     active({
-      list: [
-        {
-          title: "업무 또는 학업",
-          value: RoutineCategoryType.WORK_AND_STUDY,
-          onClick: async () =>
-            setRoutineType(RoutineCategoryType.WORK_AND_STUDY),
-        },
-        {
-          title: "운동 및 셀프케어",
-          onClick: async () => setRoutineType(RoutineCategoryType.HEALTH),
-          value: RoutineCategoryType.HEALTH,
-        },
-        {
-          title: "생산적인 자기 계발",
-          onClick: async () =>
-            setRoutineType(RoutineCategoryType.SEL_DEVELOPMENT),
-          value: RoutineCategoryType.SEL_DEVELOPMENT,
-        },
-        {
-          title: "취미 및 여가활동",
-          onClick: async () => setRoutineType(RoutineCategoryType.REST),
-          value: RoutineCategoryType.REST,
-        },
-        {
-          title: "가족 및 친구와의 시간",
-          onClick: async () => setRoutineType(RoutineCategoryType.MEETING),
-          value: RoutineCategoryType.MEETING,
-        },
-        {
-          title: "휴식 및 수면",
-          onClick: async () => setRoutineType(RoutineCategoryType.REST),
-          value: RoutineCategoryType.REST,
-        },
-      ],
+      list: list,
     });
   }, [active, setRoutineType]);
 
