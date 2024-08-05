@@ -148,13 +148,33 @@ export default function Main() {
       )}
 
       <div className="w-full px-[20px]">
-        <input
-          className={`border-b-2 bg-gray-50 w-full h-[40px] px-[20px] focus:outline-none focus:border-${userColor}`}
-          placeholder="닉네임을 입력해주세요"
-          value={userNickname}
-          onChange={handleUserName}
-        />
-        <div className="w-full px-[20px] self-start mt-[8px] text-gray-600">
+        <div className="relative flex h-100">
+          <input
+            className={`border-b-2 bg-gray-50 w-full h-[40px] font-[400] focus:outline-none focus:border-${userColor} pr-10`}
+            placeholder="닉네임을 입력해주세요"
+            value={userNickname}
+            onChange={handleUserName}
+          />
+          <div
+            onClick={() => setUserNickname("")}
+            className="absolute right-0 top-0 h-full flex items-center pr-3"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.75 15.5C3.60775 15.5 0.25 12.1423 0.25 8C0.25 3.85775 3.60775 0.5 7.75 0.5C11.8923 0.5 15.25 3.85775 15.25 8C15.25 12.1423 11.8923 15.5 7.75 15.5ZM7.75 6.9395L5.629 4.81775L4.56775 5.879L6.6895 8L4.56775 10.121L5.629 11.1823L7.75 9.0605L9.871 11.1823L10.9323 10.121L8.8105 8L10.9323 5.879L9.871 4.81775L7.75 6.9395Z"
+                fill="#CCCCCC"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div className="w-full self-start mt-[8px] text-gray-600">
           6자리 이내, 문자/숫자 가능, 특수문자/기호 입력불가
         </div>
       </div>
@@ -162,7 +182,7 @@ export default function Main() {
       <button
         className={`${
           select ? `bg-${userColor}` : ""
-        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw] h-[90px] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
+        } disabled flex flex-col items-center justify-center absolute w-[500px] max-w-[100vw]  max-h-[10vh] h-[90px] bg-gray-100 bottom-0 p-2 rounded-t-sm`}
         onClick={handleToMain}
       >
         <span

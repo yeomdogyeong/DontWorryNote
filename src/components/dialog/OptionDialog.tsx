@@ -44,7 +44,7 @@ export const OptionDialog = ({
         mx-[20px] border-none p-4 text-[14px] rounded-xl ${
           tendency === "GAEMI"
             ? "bg-[#505866] speech-bubble1"
-            : "bg-[#649C7D] speech-bubble2"
+            : "bg-[#3B9B67] speech-bubble2"
         }`}
           >
             <div>오늘도 행복한 하루를 보내세요. </div>
@@ -66,7 +66,7 @@ export const OptionDialog = ({
             } right-[0px]`}
           />
         </div>
-        <div className="self-start mt-[32px] text-[18px] mb-[12px]  font-[500]">
+        <div className="self-start mt-[32px] text-[18px] mb-[12px]  font-[600]">
           오늘의 루틴 목록
         </div>
 
@@ -90,7 +90,7 @@ export const OptionDialog = ({
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full w-full absolute">
+          <div className="flex flex-col items-center justify-center h-full w-full mb-[52px]">
             <div className="flex flex-col items-center justify-center opacity-50 w-full h-full">
               <Image
                 src={
@@ -99,8 +99,8 @@ export const OptionDialog = ({
                     : routineBaezzange
                 }
                 alt="userTypeImge"
-                width={170}
-                height={200}
+                width={138}
+                height={96}
                 className=""
               />
               <div className="mt-[12px] mb-[24px] w-[175px] h-[40] text-gray-600 text-center">
