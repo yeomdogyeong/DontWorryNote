@@ -10,7 +10,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { produce } from "immer";
-import { ApiResponse } from "@/types/apis/common";
 
 interface Props extends FeedItemType {
   queryKey: (string | undefined)[];
@@ -102,8 +101,8 @@ export default function FeedItem(props: Props) {
         </div>
       </div>
       <div className="mt-[16px]">{feedContent}</div>
-      <div className="mt-[16px] w-full h-[200px] relative">
-        {feedImagePath && (
+      {feedImagePath && (
+        <div className="mt-[16px] w-full h-[200px] relative">
           <Image
             className="rounded-[8px]"
             src={feedImagePath}
@@ -111,8 +110,8 @@ export default function FeedItem(props: Props) {
             layout="fill"
             objectFit="cover"
           />
-        )}
-      </div>
+        </div>
+      )}
       <div className="mt-[24px] flex items-center text-[12px] font-[400] text-gray-600">
         <div>{likeText}</div>
         <div className="ml-auto">댓글 {feedCommentCount}개</div>

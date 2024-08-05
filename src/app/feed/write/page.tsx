@@ -3,7 +3,7 @@
 import imageCompression from "browser-image-compression";
 import { Header } from "@/components/Header";
 import { PostType, SubjectType, convertPostTypeValue } from "@/types/common";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import gaemiImg from "../../../../public/small_gaemi.png";
 import baejjangeImg from "../../../../public/small_baejjange.png";
 import Image from "next/image";
@@ -16,6 +16,7 @@ import { postFile } from "@/apis/file/file";
 import { FileType } from "@/types/apis/file";
 import { useRouter } from "next/navigation";
 import { FEED_PATH } from "@/store/path";
+import { validWithEmptyText } from "@/util/valid";
 
 export default function AddPostPage() {
   const router = useRouter();
@@ -77,13 +78,21 @@ export default function AddPostPage() {
 
   const handleAddClick = useCallback(async () => {
     setIsLoading(true);
-    const { data } = await postFile(FileType.FEED_IMAGE, file);
-    await postFeed({
-      tendency: type,
-      category: postType as PostType,
-      content: contents as string,
-      feedImagePath: data.data.path,
-    });
+    if (url) {
+      const { data } = await postFile(FileType.FEED_IMAGE, file);
+      await postFeed({
+        tendency: type,
+        category: postType as PostType,
+        content: contents as string,
+        feedImagePath: data.data.path,
+      });
+    } else {
+      await postFeed({
+        tendency: type,
+        category: postType as PostType,
+        content: contents as string,
+      });
+    }
     router.push(FEED_PATH);
     setIsLoading(false);
   }, [file, type, postType, contents, router]);
@@ -92,17 +101,24 @@ export default function AddPostPage() {
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setContents(e.target.value);
     },
-    []
+    [setContents]
   );
+
+  const isValid = useMemo(() => {
+    return validWithEmptyText(postType) && validWithEmptyText(contents);
+  }, [postType, contents]);
+
   return (
     <div className="flex flex-col items-center justify-start h-max min-h-full bg-white">
       <Header
         title="게시글 작성"
         rightButton={
           <button
-            disabled={isLoading}
+            disabled={isLoading || !isValid}
             onClick={handleAddClick}
-            className="text-mainGreen font-[600] text-[16px]"
+            className={`font-[600] text-[16px] ${
+              isValid ? "text-mainGreen" : "text-gray-400"
+            }`}
           >
             완료
           </button>

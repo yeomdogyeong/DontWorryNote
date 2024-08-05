@@ -44,5 +44,5 @@ export interface PostFeedRq {
   tendency: SubjectType;
   category: PostType;
   content: string;
-  feedImagePath: string;
+  feedImagePath?: string;
 }
