@@ -51,7 +51,7 @@ export default function RootLayout({
           <GlobalContextWrapper>
             <UserColorProvider>
               <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
-                <div className="max-w-[500px] w-full h-full bg-white">
+                <div className="max-w-[500px] w-full h-full min-h-screen bg-white">
                   {children}
                 </div>
               </body>
