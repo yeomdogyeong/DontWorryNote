@@ -238,7 +238,7 @@ export default function AddRoutinePage() {
             <div>베짱이 피드</div>
           </div>
         </div>
-        <div className="mt-[24px] text-gray-700">루틴 성향</div>
+        <div className="mt-[24px] text-gray-700">루틴 카테고리</div>
         <button
           onClick={handlePostType}
           className="mt-[8px] px-[13px] py-[16px] flex justify-between items-center border-[1px] rounded-[8px] w-full h-[48px]"
