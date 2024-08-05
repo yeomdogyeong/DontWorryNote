@@ -50,7 +50,7 @@ export default function RootLayout({
         <OverlayProvider>
           <GlobalContextWrapper>
             <UserColorProvider>
-              <body className="w-full h-full flex flex-col items-center justify-center bg-[#403e3e]">
+              <body className="w-full h-full flex flex-col h-full items-center justify-center bg-white">
                 <div className="max-w-[500px] w-full h-full bg-white">
                   {children}
                 </div>
