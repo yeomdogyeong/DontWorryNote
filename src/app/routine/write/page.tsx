@@ -207,7 +207,12 @@ export default function AddRoutinePage() {
                 ? "text-mainBlack bg-subBlack border-mainBlack"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.GAEMI)}
+            onClick={() => {
+              if (type === SubjectType.BAEZZANGE) {
+                setType(SubjectType.GAEMI);
+                setRoutineType(null);
+              }
+            }}
           >
             <Image src={gaemiImg} alt="gaemi" className="w-[24px] h-[24px]" />
             <div>개미 피드</div>
@@ -218,7 +223,12 @@ export default function AddRoutinePage() {
                 ? "text-mainGreen bg-subGreen border-mainGreen"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.BAEZZANGE)}
+            onClick={() => {
+              if (type === SubjectType.GAEMI) {
+                setType(SubjectType.BAEZZANGE);
+                setRoutineType(null);
+              }
+            }}
           >
             <Image
               src={baejjangeImg}
