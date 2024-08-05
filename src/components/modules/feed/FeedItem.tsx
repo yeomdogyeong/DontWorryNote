@@ -47,21 +47,26 @@ export default function FeedItem(props: Props) {
     return "처음으로 응원해보세요!";
   }, [feedLikeCount]);
 
-  const handleLike = useCallback(async () => {
-    await postFeedByIdLikeToggle(feedId);
-    queryClient.setQueryData(queryKey, (prevData: any) => {
-      if (!prevData) return prevData;
-      //NOTE: 추후 업로드 할 때, 기록 안막을 시 수정 필요
-      return produce(prevData, (draft: any) => {
-        draft.data.data.forEach((data: FeedItemType) => {
-          if (data.feedId === feedId) {
-            data.isLike = !isLike;
-            data.feedLikeCount += isLike === true ? -1 : 1;
-          }
+  const handleLike = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      await postFeedByIdLikeToggle(feedId);
+      queryClient.setQueryData(queryKey, (prevData: any) => {
+        if (!prevData) return prevData;
+        //NOTE: 추후 업로드 할 때, 기록 안막을 시 수정 필요
+        return produce(prevData, (draft: any) => {
+          draft.data.data.forEach((data: FeedItemType) => {
+            if (data.feedId === feedId) {
+              data.isLike = !isLike;
+              data.feedLikeCount += isLike === true ? -1 : 1;
+            }
+          });
         });
       });
-    });
-  }, [feedId, isLike, queryClient, queryKey]);
+    },
+    [feedId, isLike, queryClient, queryKey]
+  );
 
   const handleComment = useCallback(() => {
     router.push(`${FEED_PATH}/${feedId}`);
