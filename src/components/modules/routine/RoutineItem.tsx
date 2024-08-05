@@ -49,7 +49,7 @@ export default function RoutineItem(props: Props) {
         >
           {tendency === SubjectType.BAEZZANGE ? "베짱이루틴" : "개미루틴"}
         </div>
-        <div className="flex-center ml-[6px] gap-[6px] py-[2px] px-[8px] rounded-[8px] bg-gray-50 h-[21px]">
+        <div className="flex-center ml-[6px] gap-[4px] py-[2px] px-[8px] rounded-[8px] bg-gray-50 h-[21px]">
           <Image alt="fire" src={fire} width={12} height={16} />
           <div className="text-[12px] text-gray-700">
             {getDaysSinceStart(startedDate)}일째 진행중

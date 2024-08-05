@@ -41,7 +41,7 @@ function ResultPage() {
   });
 
   return (
-    <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[180px]">
+    <div className="flex-col w-full overflow-scroll h-full px-[20px] mt-[32px] flex items-center pb-[150px]">
       <div className="self-start ml-2">
         <p className="text-lg font-[400] text-gray-500 ">
           개짱이력(GJLS) 분석결과 회원님은
@@ -76,7 +76,7 @@ function ResultPage() {
         <div className="mt-[21px] bg-gray-100 flex-center rounded-full px-[16px] py-[8px] h-[34px] text-[#333333]">
           내 개짱이력 분석결과
         </div>
-        <div className="mt-[16px] rounded-[8px] flex items-center border-[1px] border-gray-200 px-[16px] pt-[16px] pb-[18px] gap-[14px]">
+        <div className="mt-[16px] rounded-[8px] flex items-center border-[1px] border-gray-200 px-[12px] pt-[16px] pb-[18px] gap-[14px]">
           {resultIdx && surveyList[0][resultIdx]?.subImg && (
             <Image
               src={surveyList[0][resultIdx].subImg}
@@ -90,16 +90,16 @@ function ResultPage() {
             {resultIdx && surveyList[0][resultIdx]?.subTitle}
           </div>
         </div>
-        <div className="w-full mt-[12px] flex flex-col items-start bg-gray-100 rounded-xl p-4 tracking-widest">
+        <div className="w-full mt-[12px] flex flex-col items-start bg-gray-100 rounded-xl p-4 tracking-wide">
           <div className="flex justify-between w-full text-gray-600 font-[400]">
-            <p className="font-[400]">개미력</p>
+            <p className="font-[400] pb-[6px]">개미력</p>
             <p>{resultIdx && `${surveyList[0][resultIdx]?.score1}0/100`}</p>
           </div>
           {resultIdx && (
             <ResultBar count={surveyList[0][resultIdx]?.score1} gaemi={true} />
           )}
-          <div className="flex justify-between w-full text-gray-600 mt-2 font-[400]">
-            <p className="font-[400]">베짱이력</p>
+          <div className="flex justify-between w-full text-gray-600 font-[400] mt-[16px]">
+            <p className="font-[400] pb-[6px]">베짱이력</p>
             <p>{resultIdx && `${surveyList[0][resultIdx]?.score2}0/100`}</p>
           </div>
           {resultIdx && (
@@ -110,7 +110,7 @@ function ResultPage() {
       {resultIdx && (
         <div className="fixed bottom-0 left-0 right-0 flex flex-col items-center">
           <div className="speech-bubble border-[1px] p-[16px] mt-[10px] mb-[10px] bg-white rounded-3xl shadow-md z-100 animate__animated animate__pulse animate__infinite">
-            개짱이와 루틴을 만들며{" "}
+            개짱이와 루틴을 만들며
             <span className="text-mainGreen">{wannabe}</span>가 되어봐요! 😄
           </div>
           <button
@@ -121,11 +121,11 @@ function ResultPage() {
               }
               console.log(userType);
             }}
-            className={`flex flex-col items-center justify-center w-[500px] max-w-[100vw] h-[90px] text-white ${
+            className={`flex flex-col items-center justify-center w-[500px] max-w-[100vw] h-[90px] max-h-[10vh] text-white ${
               surveyList[0][resultIdx]?.srcBg === "baejjange"
                 ? "bg-mainGreen"
                 : "bg-mainBlack"
-            } p-2 rounded-t-sm`}
+            } rounded-t-sm`}
           >
             프로필 만들기
           </button>

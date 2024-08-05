@@ -21,7 +21,7 @@ const initialState = {
   tendency: SubjectType.GAEMI,
   nickname: "",
   profileImagePath: "",
-  wannabe: "",
+  wannabe: " 행복한 개짱이",
 };
 
 const useMyStore = create<MyStore>((set) => ({

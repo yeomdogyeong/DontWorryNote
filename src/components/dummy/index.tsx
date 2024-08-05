@@ -206,7 +206,7 @@ export const surveyList: SurveyList[] = [
       srcImg: baejjange1,
       subImg: minibaejjange,
       subTitle:
-        "충분한 휴식을 통해 몸과 마음을 돌보는 당신, \n 작은 도전으로 일상에 활력을 더해볼까요?",
+        "충분한 휴식을 통해 몸과 마음을 돌보는 당신,\n작은 도전으로 일상에 활력을 더해볼까요?",
       score1: 2,
       score2: 8,
       srcBg: "baejjange",
