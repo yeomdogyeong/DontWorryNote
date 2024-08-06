@@ -156,44 +156,102 @@ export default function AddRoutinePage() {
       type === SubjectType.GAEMI
         ? [
             {
-              title: "업무 또는 학업",
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.WORK_AND_STUDY
+              ),
               value: RoutineCategoryType.WORK_AND_STUDY,
               onClick: async () =>
                 setRoutineType(RoutineCategoryType.WORK_AND_STUDY),
             },
             {
-              title: "운동 및 셀프케어",
+              title: convertRoutineCategoryValue(RoutineCategoryType.PLAN),
+              value: RoutineCategoryType.PLAN,
+              onClick: async () => setRoutineType(RoutineCategoryType.PLAN),
+            },
+            {
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.SELF_DEVELOPMENT
+              ),
+              value: RoutineCategoryType.SELF_DEVELOPMENT,
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.SELF_DEVELOPMENT),
+            },
+            {
+              title: convertRoutineCategoryValue(RoutineCategoryType.HEALTH),
               onClick: async () => setRoutineType(RoutineCategoryType.HEALTH),
               value: RoutineCategoryType.HEALTH,
             },
             {
-              title: "생산적인 자기 계발",
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.NETWORKING
+              ),
               onClick: async () =>
-                setRoutineType(RoutineCategoryType.SEL_DEVELOPMENT),
-              value: RoutineCategoryType.SEL_DEVELOPMENT,
+                setRoutineType(RoutineCategoryType.NETWORKING),
+              value: RoutineCategoryType.NETWORKING,
+            },
+            {
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.CERTIFICATION
+              ),
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.CERTIFICATION),
+              value: RoutineCategoryType.CERTIFICATION,
+            },
+            {
+              title: convertRoutineCategoryValue(RoutineCategoryType.GAEMI_ETC),
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.GAEMI_ETC),
+              value: RoutineCategoryType.GAEMI_ETC,
             },
           ]
         : [
             {
-              title: "취미 및 여가활동",
+              title: convertRoutineCategoryValue(RoutineCategoryType.REST),
+              onClick: async () => setRoutineType(RoutineCategoryType.REST),
+              value: RoutineCategoryType.REST,
+            },
+            {
+              title: convertRoutineCategoryValue(RoutineCategoryType.HOBBY),
               onClick: async () => setRoutineType(RoutineCategoryType.HOBBY),
               value: RoutineCategoryType.HOBBY,
             },
             {
-              title: "가족 및 친구와의 시간",
+              title: convertRoutineCategoryValue(RoutineCategoryType.GAME),
+              onClick: async () => setRoutineType(RoutineCategoryType.GAME),
+              value: RoutineCategoryType.GAME,
+            },
+            {
+              title: convertRoutineCategoryValue(RoutineCategoryType.FOOD),
+              onClick: async () => setRoutineType(RoutineCategoryType.FOOD),
+              value: RoutineCategoryType.FOOD,
+            },
+            {
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.MUSIC_AND_SHOW
+              ),
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.MUSIC_AND_SHOW),
+              value: RoutineCategoryType.MUSIC_AND_SHOW,
+            },
+            {
+              title: convertRoutineCategoryValue(RoutineCategoryType.MEETING),
               onClick: async () => setRoutineType(RoutineCategoryType.MEETING),
               value: RoutineCategoryType.MEETING,
             },
             {
-              title: "휴식 및 수면",
-              onClick: async () => setRoutineType(RoutineCategoryType.REST),
-              value: RoutineCategoryType.REST,
+              title: convertRoutineCategoryValue(
+                RoutineCategoryType.BAEZZANGE_ETC
+              ),
+              onClick: async () =>
+                setRoutineType(RoutineCategoryType.BAEZZANGE_ETC),
+              value: RoutineCategoryType.BAEZZANGE_ETC,
             },
           ];
     active({
       list: list,
+      tendency: type,
     });
-  }, [active, setRoutineType]);
+  }, [active, setRoutineType, type]);
 
   return (
     <div className="flex flex-col items-center justify-start h-full ">
