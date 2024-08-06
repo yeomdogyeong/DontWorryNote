@@ -59,7 +59,7 @@ export default function MyPage() {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-max min-h-screen">
       <DefaultHeader title="마이페이지" />
       <div className="h-[100px] px-[20px] pt-[16px] pb-[28px] flex justify-between">
         <div className="flex items-center gap-[12px]">

@@ -14,6 +14,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
+import gaemiImg from "../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../public/small_baejjange.png";
+
 interface Props extends FeedComment {
   onChange(): void;
   feedId: number;
@@ -85,7 +88,13 @@ export default function Comment(props: Props) {
         <Image
           className="rounded-full"
           style={{ height: 32 }}
-          src={profileImagePath}
+          src={
+            profileImagePath
+              ? profileImagePath
+              : tendency === SubjectType.BAEZZANGE
+              ? baejjangeImg
+              : gaemiImg
+          }
           alt="comment-profile"
           width={32}
           height={32}

@@ -24,6 +24,7 @@ import { postRoutine } from "@/apis/routine/routine";
 import { useRouter } from "next/navigation";
 import { HOME_PATH } from "@/store/path";
 import useLoading from "@/hooks/useLoading";
+import { validWithEmptyText } from "@/util/valid";
 
 export default function AddRoutinePage() {
   const router = useRouter();
@@ -50,6 +51,15 @@ export default function AddRoutinePage() {
 
   const [description, setDescription] = useState<string | undefined>(undefined);
   const [emoji, setEmoji] = useState(15);
+
+  const isSubmitValid = useMemo(() => {
+    return (
+      validWithEmptyText(name) &&
+      validWithEmptyText(description) &&
+      validWithEmptyText(routineType) &&
+      Object.values(selectedDay).some((day) => day)
+    );
+  }, [routineType, name, description, selectedDay]);
 
   const { active } = useAddRoutineCateogoryModalOverlay();
   const { active: emojiActive } = useAddEmojiModalOverlay();
@@ -166,8 +176,8 @@ export default function AddRoutinePage() {
         : [
             {
               title: "취미 및 여가활동",
-              onClick: async () => setRoutineType(RoutineCategoryType.REST),
-              value: RoutineCategoryType.REST,
+              onClick: async () => setRoutineType(RoutineCategoryType.HOBBY),
+              value: RoutineCategoryType.HOBBY,
             },
             {
               title: "가족 및 친구와의 시간",
@@ -197,7 +207,12 @@ export default function AddRoutinePage() {
                 ? "text-mainBlack bg-subBlack border-mainBlack"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.GAEMI)}
+            onClick={() => {
+              if (type === SubjectType.BAEZZANGE) {
+                setType(SubjectType.GAEMI);
+                setRoutineType(null);
+              }
+            }}
           >
             <Image src={gaemiImg} alt="gaemi" className="w-[24px] h-[24px]" />
             <div>개미 피드</div>
@@ -208,7 +223,12 @@ export default function AddRoutinePage() {
                 ? "text-mainGreen bg-subGreen border-mainGreen"
                 : ""
             }`}
-            onClick={() => setType(SubjectType.BAEZZANGE)}
+            onClick={() => {
+              if (type === SubjectType.GAEMI) {
+                setType(SubjectType.BAEZZANGE);
+                setRoutineType(null);
+              }
+            }}
           >
             <Image
               src={baejjangeImg}
@@ -218,7 +238,7 @@ export default function AddRoutinePage() {
             <div>베짱이 피드</div>
           </div>
         </div>
-        <div className="mt-[24px] text-gray-700">루틴 성향</div>
+        <div className="mt-[24px] text-gray-700">루틴 카테고리</div>
         <button
           onClick={handlePostType}
           className="mt-[8px] px-[13px] py-[16px] flex justify-between items-center border-[1px] rounded-[8px] w-full h-[48px]"
@@ -434,15 +454,24 @@ export default function AddRoutinePage() {
               .replace("PM", "오후")}
           </div>
         </div>
-        <button
-          disabled={isLoading}
-          className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${
-            type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
-          }`}
-          onClick={handleAddClick}
-        >
-          루틴 추가하기
-        </button>
+        {isSubmitValid ? (
+          <button
+            disabled={isLoading}
+            className={`mt-[32px] w-full h-[56px] text-[16px] font-[600] flex-center text-white rounded-[12px] ${
+              type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
+            }`}
+            onClick={handleAddClick}
+          >
+            루틴 추가하기
+          </button>
+        ) : (
+          <button
+            disabled={true}
+            className={`mt-[32px] w-full h-[56px] text-[16px] font-[600] flex-center rounded-[12px] bg-gray-200 text-gray-600`}
+          >
+            루틴 추가하기
+          </button>
+        )}
       </div>
     </div>
   );

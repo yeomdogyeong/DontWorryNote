@@ -20,7 +20,6 @@ function TokenPage() {
   );
 
   const handleTokenParsing = async () => {
-    console.log("1", isSignedIn);
     const userToken = localStorage.getItem("tokenKey");
 
     let payload = userToken?.substring(
@@ -32,7 +31,6 @@ function TokenPage() {
       let dec = base64.decode(payload);
 
       const parseDec = JSON.parse(dec);
-      console.log(parseDec);
       if (parseDec.hasOwnProperty("userId")) {
         const { data } = await getUserMyInfo();
         setInitializeState({
@@ -41,7 +39,6 @@ function TokenPage() {
 
         router.push(HOME_PATH);
         setIsSignedIn(true);
-        console.log("2", isSignedIn);
       } else {
         router.push("/survey");
       }
@@ -55,7 +52,6 @@ function TokenPage() {
           params: { tokenKey: tokenKey },
         });
 
-        console.log("Response:", response.data);
       } catch (error) {
         console.error("Error:", error);
       }

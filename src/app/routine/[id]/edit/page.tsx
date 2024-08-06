@@ -24,7 +24,7 @@ import { getRoutine, postRoutine, putRoutine } from "@/apis/routine/routine";
 import { useParams, useRouter } from "next/navigation";
 import { HOME_PATH } from "@/store/path";
 import { useQuery } from "@tanstack/react-query";
-import { valid } from "@/util/valid";
+import { valid, validWithEmptyText } from "@/util/valid";
 
 export default function RoutineEditPage() {
   const router = useRouter();
@@ -185,6 +185,15 @@ export default function RoutineEditPage() {
     });
   }, [timePickerActive, time]);
 
+  const isSubmitValid = useMemo(() => {
+    return (
+      validWithEmptyText(name) &&
+      validWithEmptyText(description) &&
+      validWithEmptyText(routineType) &&
+      Object.values(selectedDay).some((day) => day)
+    );
+  }, [routineType, name, description, selectedDay]);
+
   const handlePostType = useCallback(() => {
     const list =
       type === SubjectType.GAEMI
@@ -210,7 +219,7 @@ export default function RoutineEditPage() {
         : [
             {
               title: "취미 및 여가활동",
-              onClick: async () => setRoutineType(RoutineCategoryType.REST),
+              onClick: async () => setRoutineType(RoutineCategoryType.HOBBY),
               value: RoutineCategoryType.REST,
             },
             {
@@ -262,7 +271,7 @@ export default function RoutineEditPage() {
             <div>베짱이 피드</div>
           </div>
         </div>
-        <div className="mt-[24px] text-gray-700">루틴 성향</div>
+        <div className="mt-[24px] text-gray-700">루틴 카테고리</div>
         <button
           onClick={handlePostType}
           className="mt-[8px] px-[13px] py-[16px] flex justify-between items-center border-[1px] rounded-[8px] w-full h-[48px]"
@@ -478,14 +487,23 @@ export default function RoutineEditPage() {
               .replace("PM", "오후")}
           </div>
         </div>
-        <div
-          className={`mt-[32px] w-full h-[56px] flex-center text-white rounded-[12px] ${
-            type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
-          }`}
-          onClick={handleAddClick}
-        >
-          루틴 수정하기
-        </div>
+        {isSubmitValid ? (
+          <button
+            className={`mt-[32px] w-full h-[56px] text-[16px] font-[600] flex-center text-white rounded-[12px] ${
+              type === SubjectType.GAEMI ? "bg-mainBlack" : "bg-mainGreen"
+            }`}
+            onClick={handleAddClick}
+          >
+            루틴 수정하기
+          </button>
+        ) : (
+          <button
+            disabled={true}
+            className={`mt-[32px] w-full h-[56px] text-[16px] font-[600] flex-center rounded-[12px] bg-gray-200 text-gray-600`}
+          >
+            루틴 수정하기
+          </button>
+        )}
       </div>
     </div>
   );

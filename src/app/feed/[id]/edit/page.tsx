@@ -14,7 +14,7 @@ import { useAddPostCateogoryModalOverlay } from "@/components/overlay/addPostCat
 import { useQuery } from "@tanstack/react-query";
 import { getFeed, putFeed } from "@/apis/feed/feed";
 import { useParams, useRouter } from "next/navigation";
-import { valid } from "@/util/valid";
+import { valid, validWithEmptyText } from "@/util/valid";
 import { postFile } from "@/apis/file/file";
 import { FEED_PATH } from "@/store/path";
 import { FileType } from "@/types/apis/file";
@@ -50,6 +50,10 @@ export default function PostEditPage() {
       setUrl(data?.data.data.feedImagePath as string);
     }
   }, [isFetched, data]);
+
+  const isValid = useMemo(() => {
+    return validWithEmptyText(postType) && validWithEmptyText(contents);
+  }, [postType, contents]);
 
   const handlePostType = useCallback(() => {
     active({
@@ -107,18 +111,22 @@ export default function PostEditPage() {
         content: contents as string,
         feedImagePath: data.data.path,
       });
-      router.replace(`${FEED_PATH}/${feedId}`);
-      return;
+    } else if (data?.data.data.feedImagePath === url) {
+      await putFeed(feedId as number, {
+        tendency: type,
+        category: postType as PostType,
+        content: contents as string,
+        feedImagePath: url?.split(
+          "https://gaezzange.s3.ap-northeast-2.amazonaws.com/"
+        )[1] as string,
+      });
+    } else {
+      await putFeed(feedId as number, {
+        tendency: type,
+        category: postType as PostType,
+        content: contents as string,
+      });
     }
-
-    await putFeed(feedId as number, {
-      tendency: type,
-      category: postType as PostType,
-      content: contents as string,
-      feedImagePath: url?.split(
-        "https://gaezzange.s3.ap-northeast-2.amazonaws.com/"
-      )[1] as string,
-    });
 
     router.replace(`${FEED_PATH}/${feedId}`);
   }, [file, type, postType, contents, router, data, feedId, url]);
@@ -135,8 +143,11 @@ export default function PostEditPage() {
         title="게시글 수정"
         rightButton={
           <button
+            disabled={!isValid}
             onClick={handleAddClick}
-            className="text-mainGreen font-[600] text-[16px]"
+            className={`font-[600] text-[16px] ${
+              isValid ? "text-mainGreen" : "text-gray-400"
+            }`}
           >
             완료
           </button>

@@ -28,11 +28,9 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    console.log("isSignedInHome", isSignedIn);
     if (userColor) {
       setLoading(false);
     }
-    console.log();
   }, [userColor, data]);
 
   if (loading) {

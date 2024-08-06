@@ -27,12 +27,19 @@ export default function Main() {
   const [userNickname, setUserNickname] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const handleToMain = async () => {
-    const { data } = await postFile(FileType.USER_IMAGE, file);
-    await postUserOnboarding({
-      nickname: userNickname,
-      tendency: userType,
-      profileImagePath: data.data.path,
-    });
+    if (file) {
+      const { data } = await postFile(FileType.USER_IMAGE, file);
+      await postUserOnboarding({
+        nickname: userNickname,
+        tendency: userType,
+        profileImagePath: data.data.path,
+      });
+    } else {
+      await postUserOnboarding({
+        nickname: userNickname,
+        tendency: userType,
+      });
+    }
 
     const { data: infoData } = await getUserMyInfo();
     setInitializeState({
@@ -64,11 +71,9 @@ export default function Main() {
 
   const handleUserName = (e: any) => {
     setUserNickname(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {
-    console.log("usercolor", userColor);
     if (userColor === "mainGreen") {
       setUserType(SubjectType.BAEZZANGE);
     } else {

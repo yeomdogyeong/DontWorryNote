@@ -88,7 +88,7 @@ export default function FeedPage() {
     <div className="h-max min-h-full pb-[52px]">
       <DefaultHeader title="피드" />
       <div className="z-30 px-[20px] flex items-center gap-[20px] h-[50px] sticky top-[56px] bg-white w-full">
-        <div
+        <button
           onClick={() => handleFeedTypeClick(SubjectType.GAEMI)}
           className={`relative flex-center text-gray-500 font-[700] text-[20px] h-full ${
             feedType === SubjectType.GAEMI ? "text-gray-900" : ""
@@ -98,8 +98,8 @@ export default function FeedPage() {
           {feedType === SubjectType.GAEMI && (
             <div className="absolute w-full bottom-0 h-[3px] bg-gray-900" />
           )}
-        </div>
-        <div
+        </button>
+        <button
           onClick={() => handleFeedTypeClick(SubjectType.BAEZZANGE)}
           className={`relative flex-center text-gray-500 font-[700] text-[20px] h-full ${
             feedType === SubjectType.BAEZZANGE ? "text-gray-900" : ""
@@ -109,7 +109,7 @@ export default function FeedPage() {
           {feedType === SubjectType.BAEZZANGE && (
             <div className="absolute w-full bottom-0 h-[3px] bg-gray-900" />
           )}
-        </div>
+        </button>
       </div>
       <div className="bg-[#F4F4F4] py-[16px] h-max min-h-screen">
         <div className="h-[36px] flex gap-[8px] px-[20px] items-center w-full overflow-x-auto">

@@ -23,6 +23,9 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
+import gaemiImg from "../../../../public/small_gaemi.png";
+import baejjangeImg from "../../../../public/small_baejjange.png";
+
 export default function FeedDetailPage() {
   const searchParams = useParams();
   const { userId } = useMyStore();
@@ -58,7 +61,6 @@ export default function FeedDetailPage() {
 
   const commentTree = useMemo(() => {
     if (isCommentsFetched) {
-      console.log(commentsData);
       return createCommentTree(commentsData?.data.data as FeedComment[]);
     }
     return [];
@@ -135,7 +137,13 @@ export default function FeedDetailPage() {
           <Image
             className="rounded-full"
             style={{ height: 32 }}
-            src={data?.data.data.profileImagePath ?? ""}
+            src={
+              data?.data.data.profileImagePath
+                ? data?.data.data.profileImagePath
+                : data?.data.data.tendency === SubjectType.BAEZZANGE
+                ? baejjangeImg
+                : gaemiImg
+            }
             width={32}
             height={32}
             alt="profile_image"
@@ -157,13 +165,15 @@ export default function FeedDetailPage() {
           </div>
         </div>
         <div className="py-[16px]">{data?.data.data.feedContent}</div>
-        <Image
-          className="rounded-[10px]"
-          src={data?.data.data.feedImagePath ?? ""}
-          alt="feed-img"
-          width={80}
-          height={80}
-        />
+        {data?.data.data.feedImagePath && (
+          <Image
+            className="rounded-[10px]"
+            src={data?.data.data.feedImagePath ?? ""}
+            alt="feed-img"
+            width={80}
+            height={80}
+          />
+        )}
         <div className="mt-[24px] flex items-center text-[12px] font-[400] text-gray-600">
           <div>{likeText}</div>
           <div className="ml-auto">댓글 {data?.data.data.commentCount}개</div>
@@ -231,7 +241,7 @@ export default function FeedDetailPage() {
           })}
         </div>
       ) : (
-        <div className="px-[20px] h-[120px] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
+        <div className="px-[20px] h-[calc(100vh-330px)] text-center flex-center text-gray-500 whitespace-pre">{`아직 댓글이 없어요.\n 1등으로 댓글을 남겨볼까요?`}</div>
       )}
       <div className="fixed z-20 bg-white bottom-0 w-full max-w-page flex-center gap-[8px] px-[23px] py-[10px] shadow-[0_-10px_10px_0px_rgba(0,0,0,0.04)]">
         <input
