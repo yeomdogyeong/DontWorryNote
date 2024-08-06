@@ -111,7 +111,7 @@ function ResultPage() {
         <div className="fixed bottom-0 left-0 right-0 flex flex-col items-center">
           <div className="speech-bubble border-[1px] p-[16px] mt-[10px] mb-[10px] bg-white rounded-3xl shadow-md z-100 animate__animated animate__pulse animate__infinite">
             개짱이와 루틴을 만들며
-            <span className="text-mainGreen">{wannabe}</span>가 되어봐요! 😄
+            <span className="text-mainGreen"> {wannabe}</span>가 되어봐요! 😄
           </div>
           <button
             onClick={() => {
