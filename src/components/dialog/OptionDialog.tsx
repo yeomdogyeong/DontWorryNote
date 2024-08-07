@@ -36,7 +36,7 @@ export const OptionDialog = ({
   return (
     <>
       <div
-        className={`min-h-[83vh] h-full absolute flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 px-[20px] rounded-t-2xl`}
+        className={`min-h-[80vh] h-full flex flex-col items-center w-[500px] max-w-[100vw] bg-gray-100 px-[20px] rounded-t-2xl`}
       >
         <div className={`relative w-full h-[12px]`}>
           <div
@@ -90,7 +90,7 @@ export const OptionDialog = ({
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full w-full mb-[52px]">
+          <div className="flex flex-col items-center justify-center h-full w-full pb-[52px]">
             <div className="flex flex-col items-center justify-center w-full h-full">
               <Image
                 src={
