@@ -9,17 +9,6 @@ html {
   letter-spacing: -0.015em;
   @apply text-gray-900;
 }
-input,
-textarea {
-  font-size: 16px; /* Prevent zooming on iOS */
-  transform: scale(0.875); /* Scale down to visually appear as 14px */
-  transform-origin: left; /* Ensure scaling starts from the left */
-}
-
-/* Adjust the width to compensate for the scaling */
-input[type="text"] {
-  width: calc(100% / 0.875); /* Adjust width if necessary */
-}
 
 input:focus {
   outline: none;
