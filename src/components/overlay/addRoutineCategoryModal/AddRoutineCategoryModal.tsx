@@ -3,6 +3,7 @@ import {
   RoutineCategoryType,
   convertRoutineCategoryImgSrc,
 } from "@/types/apis/routine";
+import { SubjectType } from "@/types/common";
 import Image from "next/image";
 
 export interface AddRoutineCateogoryModalListItem {
@@ -14,20 +15,26 @@ export interface AddRoutineCateogoryModalListItem {
 
 export interface AddRoutineCateogoryModalProps {
   list: AddRoutineCateogoryModalListItem[];
+  tendency: SubjectType;
   onClose?(): Promise<void>;
 }
 
 export default function AddRoutineCateogoryModal(
   props: AddRoutineCateogoryModalProps
 ) {
-  const { list, onClose } = props;
+  const { list, onClose, tendency } = props;
+
   return (
     <>
       <div className="fixed z-[100] top-0 left-0 bg-black opacity-[.7] w-screen h-screen" />
       <div className="fixed z-[100] bottom-0 left-1/2 transform -translate-x-1/2 max-w-page w-full">
-        <div className="h-[332px] rounded-t-[20px] bg-white">
+        <div className="h-[590px] rounded-t-[20px] bg-white">
           <div className="flex items-center justify-between pt-[28px] px-[20px] pb-[16px]">
-            <div className="font-[500] text-[20px]">카테고리 선택하기</div>
+            <div className="font-[500] text-[20px]">
+              {tendency === SubjectType.BAEZZANGE
+                ? "베짱이 카테고리"
+                : "개미 카테고리"}
+            </div>
             <button onClick={() => onClose?.()}>
               <CloseIcon />
             </button>
