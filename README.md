@@ -2,38 +2,14 @@
 
 # <img width="237" alt="GAEZZANGE" src="https://github.com/user-attachments/assets/be53de3b-16ba-4629-a3b3-5f624b4380d2">
 
-> 여유와 계발의 밸런스! 완벽한 삶을 위한 루틴 기록, 소통 페이지
+> 💪🏻 성장과 여유의 밸런스! 완벽한 삶을 위한 루틴 기록, 소통 페이지
 
-## Table of Contents
+<img src="https://github.com/user-attachments/assets/d6c1d86c-20c7-4832-9ac9-82e68541c5f5" alt="표지" style="width: 700px; height: 400px;">
 
-- [About the Project](#about-the-project)
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [Screenshots](#screenshots)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+## 😀 실행
 
-## About the Project
+> npm run dev
 
-A detailed explanation of the project. Discuss the problem it solves, its intended audience, and any other relevant information.
+## 🎐 설치
 
-## Getting Started
-
-Instructions on how to get a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-List of software and tools required before installing the project.
-
-- Node.js
-- npm or yarn
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/your_username/repo_name.git
+> git clone [https://github.com/your_username/GaejjangE.git](https://github.com/yeomdogyeong/GaejjangE.git)
