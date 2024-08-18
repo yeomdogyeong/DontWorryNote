@@ -13,3 +13,15 @@
 ## 🎐 설치
 
 > git clone [https://github.com/your_username/GaejjangE.git](https://github.com/yeomdogyeong/GaejjangE.git)
+
+### 온보딩 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/dacbda26-7607-42c5-9bed-72cfcb2c0ef3">
+
+### 서베이 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/03c2ace3-9dcd-4448-b799-0f37aa507676">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8fa2f757-ccec-401b-a71b-b32d3823c1bd">
+
+### 메인 페이지
+
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8b8898bb-35fb-46bf-a230-c39c4ef044a7">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/293e4c1c-00da-4f80-b0db-c6ebd5c6f458">
