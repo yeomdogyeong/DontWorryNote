@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# <img width="237" alt="GAEZZANGE" src="https://github.com/user-attachments/assets/be53de3b-16ba-4629-a3b3-5f624b4380d2">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> 💪🏻 성장과 여유의 밸런스! 완벽한 삶을 위한 루틴 기록, 소통 페이지
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://github.com/user-attachments/assets/d6c1d86c-20c7-4832-9ac9-82e68541c5f5" alt="표지" style="width: 700px; height: 400px;">
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 😀 실행
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> npm run dev
 
-## Learn More
+## 🎐 설치
 
-To learn more about Next.js, take a look at the following resources:
+> git clone [https://github.com/your_username/GaejjangE.git](https://github.com/yeomdogyeong/GaejjangE.git)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 온보딩 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/dacbda26-7607-42c5-9bed-72cfcb2c0ef3">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 서베이 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/03c2ace3-9dcd-4448-b799-0f37aa507676">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8fa2f757-ccec-401b-a71b-b32d3823c1bd">
 
-## Deploy on Vercel
+### 메인 페이지
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8b8898bb-35fb-46bf-a230-c39c4ef044a7">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/293e4c1c-00da-4f80-b0db-c6ebd5c6f458">
