@@ -1,10 +1,21 @@
 
+<div align="center">
+<h4>나는 개미일까? 🐜 배짱이일까? 🦗 </h4>
+ <img width="237" alt="GAEZZANGE" src="https://github.com/user-attachments/assets/be53de3b-16ba-4629-a3b3-5f624b4380d2">
 
-# <img width="237" alt="GAEZZANGE" src="https://github.com/user-attachments/assets/be53de3b-16ba-4629-a3b3-5f624b4380d2">
-
-> 💪🏻 성장과 여유의 밸런스! 완벽한 삶을 위한 루틴 기록, 소통 페이지
+<br>
+<h3>💪🏻 성장과 여유의 밸런스! 완벽한 삶을 위한 루틴 기록 개짱이입니다 💜</h3>
 
 <img src="https://github.com/user-attachments/assets/d6c1d86c-20c7-4832-9ac9-82e68541c5f5" alt="표지" style="width: 700px; height: 400px;">
+</div>
+<br>
+
+> <h5>📰 설문을 통해 성향을 알아보세요! </h5>
+> <h5>🔑 카카오, 구글 로그인으로 쉽게 로그인 가능! </h5>
+> <h5>☑ 메인페이지에서 등록한 루틴을 확인하고 추가할 수 있어요!  </h5>
+> <h5>👁️‍🗨 통계페이지에서 한 눈에 루틴 현황을 확인하세요!  </h5>
+> <h5>✏️ 개미,배짱이로 나누어진 피드 페이지에서 의견을 나눠보세요!  </h5>
+<br>
 
 ## 😀 실행
 
