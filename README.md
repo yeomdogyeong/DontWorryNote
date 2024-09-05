@@ -33,13 +33,25 @@
 <img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8fa2f757-ccec-401b-a71b-b32d3823c1bd">
 
 ### 설문 결과 페이지
-<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/2ab9c336-56f6-4ba0-b9f1-e954315791e0">
-<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/bf3e87d7-53d6-470a-8641-d1e9f5818f4b">
-<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/c2a62b04-2455-42a0-9309-5f30608de9bf">
-<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/6ec98ea8-e440-4b7c-b64c-fffbe5b1a025">
+<img style="width:382px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/2ab9c336-56f6-4ba0-b9f1-e954315791e0">
+<img style="width:382px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/bf3e87d7-53d6-470a-8641-d1e9f5818f4b">
+<img style="width:382px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/c2a62b04-2455-42a0-9309-5f30608de9bf">
+<img style="width:382px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/6ec98ea8-e440-4b7c-b64c-fffbe5b1a025">
 
 
 ### 메인 페이지
 
 <img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/8b8898bb-35fb-46bf-a230-c39c4ef044a7">
 <img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/293e4c1c-00da-4f80-b0db-c6ebd5c6f458">
+
+
+### 루틴 작성 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/22837fc9-e3cf-4612-bb5a-23541cbd4c76">
+
+### 피드 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/53e6db84-dd04-41dd-8ac4-597ceac5e9c1">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/259bd706-35b7-4c66-885a-20e6e2bef10c">
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/3d0067bc-8092-4563-8a89-deb8bd389890">
+
+### 통계 페이지
+<img style="width:362px; height: 800px" alt="스크린샷" src="https://github.com/user-attachments/assets/caaad9cd-e6e9-4633-9026-5b50d73bb322">
