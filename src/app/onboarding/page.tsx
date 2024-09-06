@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import { AuthButton } from "@/components/button/AuthButton";
 
-import google from "../../../public/google.png";
-import kakao from "../../../public/kakao.png";
+import googleImg from "../../../public/google.png";
+import kakaoImg from "../../../public/kakao.png";
 import SimpleSlider from "@/components/slider/SimpleSlider";
 import { useRouter } from "next/navigation";
 import useMyStore from "@/store/useMyStore";
@@ -11,13 +11,14 @@ import useMyStore from "@/store/useMyStore";
 function OnBoardingPage() {
   const router = useRouter();
   const { isSignedIn } = useMyStore();
-
+  const kakao = `${process.env.NEXT_KAKAO_URL}`;
+  const google = `${process.env.NEXT_GOOGLE_URL}`;
   const handleKakao = () => {
-    router.push(`https://gaezzange.duckdns.org/oauth2/authorization/kakao`);
+    router.push(kakao);
     console.log("kakao!");
   };
   const handleGoogle = () => {
-    router.push(`https://gaezzange.duckdns.org/oauth2/authorization/google`);
+    router.push(google);
     console.log("google!");
   };
 
@@ -32,7 +33,7 @@ function OnBoardingPage() {
           <AuthButton
             text="카카오로 시작하기"
             bgColor="kakao"
-            srcImg={kakao}
+            srcImg={kakaoImg}
             onClick={handleKakao}
           />
         </div>
@@ -40,7 +41,7 @@ function OnBoardingPage() {
           <AuthButton
             text="Google로 시작하기"
             bgColor=""
-            srcImg={google}
+            srcImg={googleImg}
             onClick={handleGoogle}
           />
         </div>
