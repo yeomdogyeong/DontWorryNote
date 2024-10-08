@@ -1,3 +1,7 @@
+import withPWAInit from "next-pwa";
+const withPWA = withPWAInit({
+  dest: "public",
+});
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -10,4 +14,4 @@ const nextConfig = {
     missingSuspenseWithCSRBailout: false,
   },
 };
-export default nextConfig;
+export default withPWA(nextConfig);
