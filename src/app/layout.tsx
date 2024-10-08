@@ -29,6 +29,14 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en" className="h-full">
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="theme-color" content="#000000" />
         <head>
           <link rel="icon" href="/favicon.png" type="image/png" />
           <link
@@ -36,17 +44,15 @@ export default function RootLayout({
             as="style"
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
           />
-
+          <link rel="apple-touch-icon" href="/icon-512x512.png" />
+          <link rel="manifest" href="/manifest.json" />
           <title>개짱이</title>
           <script
             defer
             src="https://cdn.swygbro.com/public/widget/swyg-widget.js"
           ></script>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          />
         </head>
+
         <OverlayProvider>
           <GlobalContextWrapper>
             <UserColorProvider>

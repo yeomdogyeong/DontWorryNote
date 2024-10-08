@@ -1,10 +1,12 @@
 import withPWAInit from "next-pwa";
 const withPWA = withPWAInit({
   dest: "public",
+  register: true,
+  skipWaiting: true,
 });
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   swcMinify: true,
   images: {
     unoptimized: true,
